@@ -3,14 +3,14 @@ import Image from "next/image"
 
 export default function Hero() {
     return (
-    <section id="hero" className="mt-24 mb-10 mx-7">
+        <section id="hero" className="mt-24 mb-10 mx-7">
             <div className="relative">
                 <div className="flex flex-wrap">
                     <div className="w-full px-4 py-5 lg:w-1/2 mb-5 lg:my-10">
                         <div className="max-w-xl mx-auto">
                             <h4 className="font-extrabold text-3xl text-primary mb-2 max-w-xl">Find <span class="text-white"> Freelancing </span> Jobs that you’ll <span class="text-white"> actualy </span> love.</h4>
-                            <h3 className="text-sm text-secondary ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eum tempora similique consequatur. 
-                                Odit praesentium provident quidem eligendi, aut dolore ipsam ex aperiam error, enim, sed corrupti unde impedit ab pariatur. 
+                            <h3 className="text-sm text-secondary ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eum tempora similique consequatur.
+                                Odit praesentium provident quidem eligendi, aut dolore ipsam ex aperiam error, enim, sed corrupti unde impedit ab pariatur.
                                 Praesentium harum totam nobis adipisci officiis sequi exercitationem mollitia sunt id, veritatis dolores corporis, magni laborum assumenda quod ea.</h3>
                             <div className="flex flex-wrap mt-8">
                                 <p className="font-semibold text-accent text-sm mr-8 mt-2">Follow Us</p>
@@ -18,9 +18,9 @@ export default function Hero() {
                                 <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                                 items-center border border-slate-300 hover:border-primary hover:bg-primary
                                 hover:text-white">
-                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <title>X</title>
-                                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 
+                                    <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <title>X</title>
+                                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 
                                     1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
                                 </a>
 
@@ -28,10 +28,10 @@ export default function Hero() {
                                 <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                                 items-center border border-slate-300 hover:border-primary hover:bg-primary
                                 hover:text-white">
-                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" 
-                                xmlns="http://www.w3.org/2000/svg">
-                                    <title>Instagram</title>
-                                    <path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075
+                                    <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>Instagram</title>
+                                        <path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075
                                     1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 
                                     3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 
                                     2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 
@@ -52,9 +52,9 @@ export default function Hero() {
                                 <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                                 items-center border border-slate-300 hover:border-primary hover:bg-primary
                                 hover:text-white">
-                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <title>LinkedIn</title>
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 
+                                    <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <title>LinkedIn</title>
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 
                                     1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 
                                     2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 
                                     0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -64,9 +64,9 @@ export default function Hero() {
                                 <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                                 items-center border border-slate-300 hover:border-primary hover:bg-primary
                                 hover:text-white">
-                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <title>YouTube</title>
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 
+                                    <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <title>YouTube</title>
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 
                                     3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 
                                     9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 
                                     15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -77,8 +77,8 @@ export default function Hero() {
                     </div>
                     <div className="w-full self-end px-4 lg:w-1/2">
                         <div className="relative max-w-full lg:right-0">
-                            <img src="/image/home_image.png" alt="intro_image"
-                            className="max-w-full mx-auto"/>
+                            <img src="/images/home_image.png" alt="intro_image"
+                                className="max-w-full mx-auto" />
                             <div className="absolute top-7 -z-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-accent rounded-full opacity-50 filter blur-3xl lg:size-11/12"></div>
                         </div>
                     </div>

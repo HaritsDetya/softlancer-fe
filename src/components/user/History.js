@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function History() {
-    return(
+    return (
         <section class="pt-16 bg-background">
             <div class="container">
                 <div class="flex flex-wrap mx-8">
@@ -13,7 +13,7 @@ export default function History() {
                     <div class="bg-light rounded-lg py-3 px-3">
                         <div class="flex flex-wrap">
                             <div class="bg-white rounded-md py-2 px-2">
-                                <img src="/public/image/grab_font.svg" alt="grab"/>
+                                <img src="/images/grab_font.svg" alt="grab" />
                             </div>
                             <h2 class="font-bold px-3">Senior Frontend Web Developer</h2>
                         </div>
