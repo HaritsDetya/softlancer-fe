@@ -5,7 +5,7 @@ export default function Partnership() {
   return (
     <section
       id="partnership"
-      className="my-5 mx-7 bg-accent1 rounded-lg shadow-md"
+      className="mb-5 mx-7 bg-accent1 rounded-lg shadow-md"
     >
       <div className="container">
         <div className="flex flex-wrap py-5 items-center">
