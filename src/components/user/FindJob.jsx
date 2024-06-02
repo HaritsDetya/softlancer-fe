@@ -1,11 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import JobCard from "./jobCard";
 
 export default function FindJob() {
   return (
-    <section id="find_job" class=" bg-gradient-to-b from-background to-primary">
+    <section id="find_job" class="bg-gradient-to-b from-background to-primary">
       <div class="container pb-10">
         <div class="flex flex-wrap mx-8">
           {/* Search */}
@@ -44,10 +42,31 @@ export default function FindJob() {
               </div>
             </form>
           </div>
-
           {/* End Search */}
+
           {/* Jobs */}
           <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:gap-x-2 lg:grid-cols-3">
+            <JobCard
+              projectTitle={"BlueSky App Development"}
+              jobType={"On-site"}
+              projectDescription={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj adsada adsa"
+              }
+            />
+            <JobCard
+              projectTitle={"BlueSky App Development"}
+              jobType={"On-site"}
+              projectDescription={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
+              }
+            />
+            <JobCard
+              projectTitle={"BlueSky App Development"}
+              jobType={"On-site"}
+              projectDescription={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
+              }
+            />
             <JobCard
               projectTitle={"BlueSky App Development"}
               jobType={"On-site"}
@@ -72,6 +91,7 @@ export default function FindJob() {
           </div>
         </div>
         {/* End Jobs */}
+
         {/* Pagination */}
         <div class="flex items-center justify-center mt-2">
           <div class="flex items-center">

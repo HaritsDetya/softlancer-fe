@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
     return (
-        <footer class="pt-24">
+        <footer class="pt-24 bg-gradient-to-b from-primary to-background">
             <div class="container">
                 <div class="flex flex-wrap">
                     <div class="w-full px-4 mb-12">
@@ -74,7 +74,7 @@ export default function Footer() {
                 </div>
             </div>
             <nav class="block bg-accent1 w-full mt-5">
-                <p class="text-sm px-12 py-3 text-active"><span class="rounded-full bg-white p-1">by</span> Teknologi Rekayasa Perangkat Lunak <span class="text-white">Sekolah Vokasi UGM</span></p>
+                <p class="text-sm font-semibold px-12 py-6 text-active">© 2024 Software Engineering. All Right Reserved </p>
             </nav>
         </footer>
     );

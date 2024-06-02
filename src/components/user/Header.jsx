@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import GoogleButton from "./GoogleButton";
 
 export default function Header() {
   const router = useRouter();
   const active = router.asPath;
 
   const [isClick, setIsClick] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const toggleNavbar = () => {
     setIsClick(!isClick);
@@ -17,22 +19,24 @@ export default function Header() {
   const onSuccessLogin = (response) => {
     const tokenId = response.credential; // Ini adalah ID token yang perlu Anda verifikasi
 
-    // Simpan token dalam variabel
-    const tokenData = { token: tokenId };
-
     // Kirim token sebagai bagian dari objek JSON dalam permintaan fetch
     fetch(`http://127.0.0.1:8000/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tokenData), // Kirim token dalam bentuk JSON
+      body: JSON.stringify({ token: tokenId }), // Kirim token dalam bentuk objek JSON
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log("Success:", data);
-        // Tangani respons dari backend
         // Simpan token ke localStorage atau konteks
+        setIsLogin(true);
         localStorage.setItem("token", data.token);
       })
       .catch((error) => {
@@ -41,13 +45,8 @@ export default function Header() {
   };
 
   const onFailureLogin = (response) => {
-    console.log("Login gagal: res:", response);
+    console.log("Error: ", response);
   };
-
-  const login = useGoogleLogin({
-    onSuccess: onSuccessLogin,
-    onError: onFailureLogin,
-  });
 
   return (
     <>
@@ -104,23 +103,7 @@ export default function Header() {
                 >
                   History
                 </Link>
-                {/* Login Button */}
-                <button
-                  onClick={login}
-                  class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
-                >
-                  <Image
-                    width={24}
-                    height={24}
-                    class="mr-2"
-                    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                    alt="Google Logo"
-                  />
-                  <span class="text-gray-700 font-medium">
-                    Login with Google
-                  </span>
-                </button>
-                {/* End Login Button */}
+                <GoogleButton />
               </div>
             </div>
             {/* Responsive Toggle */}
@@ -197,19 +180,7 @@ export default function Header() {
             >
               History
             </Link>
-            <div className="flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100">
-              <button onClick={login} class="flex items-center ">
-                <Image
-                  width={24}
-                  height={24}
-                  class="mr-2"
-                  src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                  alt="Google Logo"
-                />
-                <span class="text-gray-700 font-medium">Login with Google</span>
-              </button>
-            </div>
-            {/* <GoogleLogin onSuccess={onSuccessLogin} onError={onFailureLogin} /> */}
+            <GoogleButton />
           </div>
         </div>
       </nav>

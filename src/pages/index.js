@@ -1,11 +1,8 @@
 // pages/index.js
 import React from "react";
-import { Inter } from "next/font/google";
 import Header from "@/components/user/Header"
 import Hero from "@/components/user/Hero"
 import FindJob from "@/components/user/FindJob"
-import ApplyJob from "@/components/user/ApplyJob"
-import History from "@/components/user/History"
 import Footer from "@/components/user/Footer"
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Partnership from "@/components/user/Partnership";
@@ -20,8 +17,6 @@ export default function Home() {
         <Hero />
         <Partnership />
         <FindJob />
-        <ApplyJob />
-        <History />
         <Footer />
       </GoogleOAuthProvider>
     </div>
