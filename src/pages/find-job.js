@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <Header />
+        <Header active={"find-job"} />
 
         <Footer />
       </GoogleOAuthProvider>

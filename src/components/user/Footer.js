@@ -2,30 +2,30 @@ import React from "react";
 
 export default function Footer() {
     return (
-        <footer class="pt-24 bg-gradient-to-b from-primary to-background">
-            <div class="container">
-                <div class="flex flex-wrap">
-                    <div class="w-full px-4 mb-12">
-                        <img src="/images/footer_img.png" alt="footer_img" class="rounded-lg shadow-md shadow-slate-400" />
-                        <img src="/images/logoSoftLancer.svg" alt="logoSoftlancer" class="h-10 my-4" />
-                        <p class="text-active text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <footer className="pt-24 bg-gradient-to-b from-primary to-background">
+            <div className="container">
+                <div className="flex flex-wrap">
+                    <div className="w-full px-4 mb-12">
+                        <img src="/images/footer_img.png" alt="footer_img" className="rounded-lg shadow-md shadow-slate-400" />
+                        <img src="/images/logoSoftLancer.svg" alt="logoSoftlancer" className="h-10 my-4" />
+                        <p className="text-active text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Saepe dicta minus libero labore cum ducimus modi fugit aperiam ratione tenetur.</p>
-                        <div class="flex flex-wrap mt-4">
+                        <div className="flex flex-wrap mt-4">
                             {/* Twitter */}
-                            <a href="" target="_blank" class="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
+                            <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                             items-center border border-slate-300 hover:border-primary hover:bg-primary
                             hover:text-white">
-                                <svg class="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <title>X</title>
                                     <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 
                                 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
                             </a>
 
                             {/* Instagram */}
-                            <a href="" target="_blank" class="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
+                            <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                             items-center border border-slate-300 hover:border-primary hover:bg-primary
                             hover:text-white">
-                                <svg class="fill-current" role="img" width="20" viewBox="0 0 24 24"
+                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <title>Instagram</title>
                                     <path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075
@@ -46,10 +46,10 @@ export default function Footer() {
                             </a>
 
                             {/* Linkedin */}
-                            <a href="" target="_blank" class="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
+                            <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                             items-center border border-slate-300 hover:border-primary hover:bg-primary
                             hover:text-white">
-                                <svg class="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <title>LinkedIn</title>
                                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 
                                 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 
@@ -58,10 +58,10 @@ export default function Footer() {
                             </a>
 
                             {/* Youtube */}
-                            <a href="" target="_blank" class="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
+                            <a href="" target="_blank" className="bg-white text-primary w-9 h-9 mr-3 rounded-full flex justify-center
                             items-center border border-slate-300 hover:border-primary hover:bg-primary
                             hover:text-white">
-                                <svg class="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="fill-current" role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <title>YouTube</title>
                                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 
                                 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 
@@ -73,8 +73,8 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <nav class="block bg-accent1 w-full mt-5">
-                <p class="text-sm font-semibold px-12 py-6 text-active">© 2024 Software Engineering. All Right Reserved </p>
+            <nav className="block bg-accent1 w-full mt-5">
+                <p className="text-sm font-semibold px-12 py-6 text-active">© 2024 Software Engineering. All Right Reserved </p>
             </nav>
         </footer>
     );

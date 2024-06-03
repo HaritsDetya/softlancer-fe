@@ -8,7 +8,7 @@ export default function History() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <Header />
+        <Header active={"history"} />
         <Footer />
       </GoogleOAuthProvider>
     </>
