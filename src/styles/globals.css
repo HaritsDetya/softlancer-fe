@@ -24,7 +24,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  @apply bg-background
+  @apply bg-background;
+  @apply font-Poppins;
 }
 
 @layer utilities {
