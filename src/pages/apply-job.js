@@ -1,5 +1,7 @@
 import Footer from "@/components/user/Footer";
 import Header from "@/components/user/Header";
+import ApplyJob from "@/components/user/ApplyJob";
+import React from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export default function ApplyJob() {
@@ -9,8 +11,9 @@ export default function ApplyJob() {
     <>
       <GoogleOAuthProvider clientId={clientId}>
         <Header />
+        <ApplyJob />
         <Footer />
       </GoogleOAuthProvider>
     </>
-  )
+  );
 }

@@ -1,18 +1,10 @@
 import { GoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function GoogleButton() {
   const [isLogin, setIsLogin] = useState(false);
-  const [user, setUser] = useState({
-    google_id: "",
-    name: "",
-    email: "",
-    avatar: "",
-    phone_number: "",
-    is_admin: false,
-  });
+  const [user, setUser] = useState({});
 
   const fetchUserProfile = async (token) => {
     try {
@@ -28,10 +20,21 @@ export default function GoogleButton() {
       }
       const data = await res.json();
       setUser(data.data);
+
+      //Add to local storage
+      localStorage.setItem("user", JSON.stringify(data.data));
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  //UseEffect for Profile
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -39,7 +42,7 @@ export default function GoogleButton() {
       setIsLogin(true);
       fetchUserProfile(token);
     }
-  }, []);
+  }, [isLogin]);
 
   const onSuccessLogin = async (response) => {
     const tokenId = response.credential;
@@ -73,12 +76,12 @@ export default function GoogleButton() {
   return (
     <div>
       {!isLogin ? (
-        <div className="flex justify-center px-4 py-2 lg:px-0 lg:py-0">
+        <div className="flex justify-between items-center px-4 py-2 lg:px-0 lg:py-0">
           <GoogleLogin onSuccess={onSuccessLogin} onError={onFailureLogin} />
         </div>
       ) : (
-        <div className="flex justify-center px-4 py-2 lg:px-0 lg:py-0">
-          <div className="bg-light rounded-2xl py-3 px-5">
+        <div className="flex justify-between items-center py-3 px-4 bg-light rounded-2xl">
+          <div className="pe-3">
             <Image
               className="rounded-full"
               src={user.avatar !== "" ? user.avatar : "/icon/user_icon.png"}
@@ -86,8 +89,8 @@ export default function GoogleButton() {
               width={30}
               height={30}
             />
-            {user.name !== "" ? user.name : "username"}
           </div>
+          <p>{user.name !== "" ? user.name : "username"}</p>
         </div>
       )}
     </div>
