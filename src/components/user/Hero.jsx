@@ -9,21 +9,18 @@ export default function Hero() {
           <div className="w-full px-4 py-5 lg:w-1/2 mb-5 lg:my-10">
             <div className="max-w-xl mx-auto">
               <h4 className="font-extrabold text-3xl text-primary mb-2 max-w-xl">
-                Find <span className="text-white"> Freelancing </span> Jobs that
-                you’ll <span className="text-white"> actualy </span> love.
+                Find <span className="text-white"> Freelancing </span> Jobs that you’ll{" "}
+                <span className="text-white"> actualy </span> love.
               </h4>
               <h3 className="text-sm text-secondary ">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero
-                eum tempora similique consequatur. Odit praesentium provident
-                quidem eligendi, aut dolore ipsam ex aperiam error, enim, sed
-                corrupti unde impedit ab pariatur. Praesentium harum totam nobis
-                adipisci officiis sequi exercitationem mollitia sunt id,
-                veritatis dolores corporis, magni laborum assumenda quod ea.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eum tempora similique
+                consequatur. Odit praesentium provident quidem eligendi, aut dolore ipsam ex aperiam
+                error, enim, sed corrupti unde impedit ab pariatur. Praesentium harum totam nobis
+                adipisci officiis sequi exercitationem mollitia sunt id, veritatis dolores corporis,
+                magni laborum assumenda quod ea.
               </h3>
               <div className="flex flex-wrap mt-8">
-                <p className="font-semibold text-accent text-sm mr-8 mt-2">
-                  Follow Us
-                </p>
+                <p className="font-semibold text-accent text-sm mr-8 mt-2">Follow Us</p>
                 {/* Twitter  */}
                 <a
                   href=""
@@ -137,11 +134,7 @@ export default function Hero() {
           </div>
           <div className="w-full self-end px-4 lg:w-1/2">
             <div className="relative max-w-full lg:right-0">
-              <img
-                src="/images/home_image.png"
-                alt="intro_image"
-                className="max-w-full mx-auto"
-              />
+              <img src="/images/home_image.png" alt="intro_image" className="max-w-full mx-auto" />
               <div className="absolute top-7 -z-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-accent rounded-full opacity-50 filter blur-3xl lg:size-11/12"></div>
             </div>
           </div>

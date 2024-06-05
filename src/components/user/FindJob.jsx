@@ -1,5 +1,5 @@
 import React from "react";
-import JobCard from "./jobCard";
+import JobCard from "./JobCard";
 
 export default function FindJob() {
   return (
@@ -111,11 +111,7 @@ export default function FindJob() {
               </svg>
             </button>
             <div class="flex space-x-1">
-              <button
-                class="pagination-button"
-                data-slide-index="0"
-                aria-current="page"
-              >
+              <button class="pagination-button" data-slide-index="0" aria-current="page">
                 1
               </button>
               <button class="pagination-button" data-slide-index="1">

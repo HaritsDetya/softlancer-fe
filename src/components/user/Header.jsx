@@ -20,11 +20,7 @@ export default function Header({ active }) {
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="px-4">
-              <img
-                src="/images/logoSoftLancer.svg"
-                alt="logo"
-                className="h-10 my-4 pl-2"
-              />
+              <img src="/images/logoSoftLancer.svg" alt="logo" className="h-10 my-4 pl-2" />
             </Link>
             {/* Nav Link */}
             <div className="hidden lg:block">
@@ -49,16 +45,6 @@ export default function Header({ active }) {
                 >
                   Find Job
                 </Link>
-                {/* <Link
-                  href="/apply-job"
-                  className={`${
-                    active === "apply-job"
-                      ? "bg-white text-black"
-                      : "text-white hover:bg-white hover:text-black"
-                  } rounded-lg py-2 px-6 transition duration-150 ease-in-out`}
-                >
-                  Apply Job
-                </Link> */}
                 <Link
                   href="/history"
                   className={`${
@@ -79,21 +65,9 @@ export default function Header({ active }) {
                 onClick={toggleNavbar}
               >
                 {isClick ? (
-                  <Image
-                    priority={false}
-                    width={24}
-                    height={24}
-                    src="/close-menu.svg"
-                    alt="menu"
-                  />
+                  <Image priority={false} width={24} height={24} src="/close-menu.svg" alt="menu" />
                 ) : (
-                  <Image
-                    priority={false}
-                    width={24}
-                    height={24}
-                    src="/menu.svg"
-                    alt="menu"
-                  />
+                  <Image priority={false} width={24} height={24} src="/menu.svg" alt="menu" />
                 )}
               </button>
             </div>
@@ -126,16 +100,6 @@ export default function Header({ active }) {
             >
               Find Job
             </Link>
-            {/* <Link
-              href="/apply-job"
-              className={`${
-                active === "appply-job"
-                  ? "bg-white text-black"
-                  : "text-white hover:bg-white hover:text-black"
-              } block text-center rounded-lg p-2 transition duration-150 ease-in-out`}
-            >
-              Apply Job
-            </Link> */}
             <Link
               href="/history"
               className={`${

@@ -11,9 +11,7 @@ export default function history() {
     <>
       <GoogleOAuthProvider clientId={clientId}>
         <Header active={"history"} />
-        <Header />
         <History />
-        <Footer />
       </GoogleOAuthProvider>
     </>
   );
