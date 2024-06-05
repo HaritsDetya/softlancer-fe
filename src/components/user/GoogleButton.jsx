@@ -37,6 +37,7 @@ export default function GoogleButton() {
     }
   }, []);
 
+  //When Login, get User profile
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

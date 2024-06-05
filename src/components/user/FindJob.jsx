@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import JobCard from "./JobCard";
+import axios from "axios";
 
 export default function FindJob() {
+  const [project, setProject] = useState([]);
+
+  const FetchProjects = async () => {
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/api/projects");
+      const response = res.data;
+      setProject(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    FetchProjects();
+  }, []);
+
   return (
     <section id="find_job" class="bg-gradient-to-b from-background to-primary">
       <div class="container pb-10">
@@ -46,48 +63,16 @@ export default function FindJob() {
 
           {/* Jobs */}
           <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:gap-x-2 lg:grid-cols-3">
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj adsada adsa"
-              }
-            />
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
-              }
-            />
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
-              }
-            />
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
-              }
-            />
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
-              }
-            />
-            <JobCard
-              projectTitle={"BlueSky App Development"}
-              jobType={"On-site"}
-              projectDescription={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. lorem dajksdkwqbdkadssn da sdsjajdkjajsdkjan ksnkasnkaneiaiwkj sdknakmd adajdnwqinwjnakmsda dma dknawknakj"
-              }
-            />
+            {project.map((project) => (
+              <JobCard
+                key={project.id}
+                id={project.id}
+                companyLogo={project.company.company_logo}
+                projectTitle={project.project_title}
+                jobType={project.job_type}
+                projectDescription={project.project_description}
+              />
+            ))}
           </div>
         </div>
         {/* End Jobs */}

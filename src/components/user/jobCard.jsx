@@ -1,12 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 
-const JobCard = ({
-  id,
-  companyLogo,
-  projectTitle,
-  projectDescription,
-  jobType,
-}) => {
+const JobCard = ({ id, companyLogo, projectTitle, projectDescription, jobType }) => {
   // Limit projectDescription to 150 characters
   if (projectDescription.length > 150) {
     projectDescription = projectDescription.slice(0, 150) + "...";
@@ -14,12 +9,15 @@ const JobCard = ({
 
   return (
     <>
-      <Link
-        href={"/"}
-        className="bg-background rounded-lg py-3 px-4 mb-3 mr-auto max-w-sm relative"
-      >
+      <Link href={"/"} className="bg-background rounded-lg py-3 px-4 mb-3 mr-auto w-full relative">
         <div className="flex items-center">
-          <img src="/images/grab.svg" alt="grab" className="h-10 w-10" />
+          <Image
+            width={40}
+            height={40}
+            src={companyLogo}
+            alt={projectTitle}
+            className="h-10 w-10"
+          />
           <p className="text-black font-bold text-sm ml-3">{projectTitle}</p>
         </div>
         <div className="grid grid-cols-2 my-4">
