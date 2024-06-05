@@ -10,10 +10,9 @@ export default function history() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <Header />
-        <History/>
-        <Footer />
+        <Header active={"history"} />
+        <History />
       </GoogleOAuthProvider>
     </>
-  )
+  );
 }

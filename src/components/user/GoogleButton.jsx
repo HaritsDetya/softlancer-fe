@@ -1,67 +1,89 @@
 import { GoogleLogin } from "@react-oauth/google";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import AccountProfile from "./AccountProfile";
 
-const { useState, useEffect } = require("react");
-
-const GoogleButton = () => {
+export default function GoogleButton() {
   const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({});
 
+  const fetchUserProfile = async (token) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/profile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch profile");
+      }
+      const data = await res.json();
+      setUser(data.data);
+
+      //Add to local storage
+      localStorage.setItem("user", JSON.stringify(data.data));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  //UseEffect for Profile
   useEffect(() => {
-    // Periksa apakah ada token dalam localStorage
-    const token = localStorage.getItem("token");
-    if (token) {
-      // Jika ada, tandai pengguna sudah login
-      setIsLogin(true);
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
     }
   }, []);
 
-  const onSuccessLogin = (response) => {
-    const tokenId = response.credential; // Ini adalah ID token yang perlu Anda verifikasi
+  //When Login, get User profile
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLogin(true);
+      fetchUserProfile(token);
+    }
+  }, [isLogin]);
 
-    // Kirim token sebagai bagian dari objek JSON dalam permintaan fetch
-    fetch(`http://127.0.0.1:8000/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: tokenId }), // Kirim token dalam bentuk objek JSON
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Internal Server Error");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Simpan token ke localStorage atau konteks
-        setIsLogin(true);
-        localStorage.setItem("token", data.token);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+  const onSuccessLogin = async (response) => {
+    const tokenId = response.credential;
+
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: tokenId }),
       });
+
+      if (!res.ok) {
+        throw new Error("Internal Server Error");
+      }
+
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
+      setIsLogin(true);
+      fetchUserProfile(data.token);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const onFailureLogin = (response) => {
-    console.log("Error: ", response);
+    console.error("Login Failed:", response);
   };
 
   return (
-    <>
-      <div>
-        {/* Login Button */}
-        {isLogin === false ? (
-          <div className="flex justify-center px-4 py-2 lg:px-0 lg:py-0">
-            <GoogleLogin onSuccess={onSuccessLogin} onError={onFailureLogin} />
-          </div>
-        ) : (
-          <div className="flex justify-center px-4 py-2 lg:px-0 lg:py-0">
-            <p>Sudah Login</p>
-          </div>
-        )}
-        {/* End Login Button */}
-      </div>
-    </>
+    <div>
+      {!isLogin ? (
+        <div className="flex justify-between items-center px-4 py-2 lg:px-0 lg:py-0">
+          <GoogleLogin onSuccess={onSuccessLogin} onError={onFailureLogin} />
+        </div>
+      ) : (
+        <AccountProfile user={user} />
+      )}
+    </div>
   );
-};
-
-export default GoogleButton;
+}

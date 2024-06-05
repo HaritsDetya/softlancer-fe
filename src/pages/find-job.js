@@ -1,3 +1,4 @@
+import FindJob from "@/components/user/FindJob";
 import Footer from "@/components/user/Footer";
 import Header from "@/components/user/Header";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -8,10 +9,8 @@ export default function Projects() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <Header />
-
-        <Footer />
+        <Header active={"find-job"} />
       </GoogleOAuthProvider>
     </>
-  )
+  );
 }
