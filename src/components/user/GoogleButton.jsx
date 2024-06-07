@@ -9,7 +9,7 @@ export default function GoogleButton() {
 
   const fetchUserProfile = async (token) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/profile`, {
+      const res = await fetch(process.env.API_URL + `/profile`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export default function GoogleButton() {
     const tokenId = response.credential;
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/login`, {
+      const res = await fetch(process.env.API_URL + `/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

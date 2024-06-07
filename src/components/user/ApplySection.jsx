@@ -12,7 +12,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Apply() {
+export default function ApplySection() {
   return (
     <div className="bg-gradient-to-b from-primary from-0% via-accent2 via-42% to-background to-100% px-16 py-7 max-md:px-5">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
