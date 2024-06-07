@@ -6,7 +6,6 @@ import Footer from "@/components/user/Footer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Partnership from "@/components/user/Partnership";
 import Hero from "@/components/user/Hero";
-import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
