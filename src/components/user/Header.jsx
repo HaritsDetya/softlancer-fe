@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import GoogleButton from "./GoogleButton";
 
 export default function Header({ active }) {
@@ -55,7 +55,7 @@ export default function Header({ active }) {
                 >
                   History
                 </Link>
-                <GoogleButton />
+                <GoogleButton/>
               </div>
             </div>
             {/* Responsive Toggle */}
@@ -110,7 +110,7 @@ export default function Header({ active }) {
             >
               History
             </Link>
-            <GoogleButton />
+            <GoogleButton/>
           </div>
         </div>
       </nav>
