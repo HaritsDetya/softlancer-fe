@@ -45,7 +45,7 @@ export default function Apply() {
                                 ))}
                             </ul>
                         </nav>
-                        <div className="flex gap-0 font-bold text-teal-800 whitespace-nowrap">
+                        {/* <div className="flex gap-0 font-bold text-teal-800 whitespace-nowrap">
                             <div className="shrink-0 w-3 bg-teal-800 rounded-xl h-[63px]" />
                             <div className="flex gap-2.5 px-3.5 py-4 rounded-none bg-slate-300">
                                 <img
@@ -77,7 +77,7 @@ export default function Apply() {
                                 />
                                 <div className="flex-auto self-start mt-2.5">Form Apply</div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
