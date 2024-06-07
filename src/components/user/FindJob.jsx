@@ -7,7 +7,7 @@ export default function FindJob() {
 
   const FetchProjects = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/projects");
+      const res = await axios.get(process.env.API_URL + "/projects");
       const response = res.data;
       setProject(response.data);
     } catch (error) {
