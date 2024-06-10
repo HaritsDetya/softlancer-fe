@@ -3,13 +3,16 @@ import Link from "next/link";
 
 const JobCard = ({ id, companyLogo, projectTitle, projectDescription, jobType }) => {
   // Limit projectDescription to 150 characters
-  if (projectDescription.length > 150) {
+  if (projectDescription && projectDescription.length > 150) {
     projectDescription = projectDescription.slice(0, 150) + "...";
   }
 
   return (
     <>
-      <Link href={"/"} className="bg-background rounded-lg py-3 px-4 mb-3 mr-auto w-full relative">
+      <Link
+        href={`/apply-job/${id}/description`}
+        className="bg-background rounded-lg py-3 px-4 mb-3 mr-auto w-full relative"
+      >
         <div className="flex items-center">
           <Image
             width={40}

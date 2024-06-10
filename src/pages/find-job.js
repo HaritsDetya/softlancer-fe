@@ -1,4 +1,4 @@
-import FindJob from "@/components/user/FindJob";
+import FindJob from "@/components/user/JobContainer";
 import Footer from "@/components/user/Footer";
 import Header from "@/components/user/Header";
 import { GoogleOAuthProvider } from "@react-oauth/google";

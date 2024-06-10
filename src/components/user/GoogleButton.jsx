@@ -48,7 +48,6 @@ export default function GoogleButton() {
 
   const onSuccessLogin = async (response) => {
     const tokenId = response.credential;
-
     try {
       const res = await fetch(process.env.API_URL + `/login`, {
         method: "POST",

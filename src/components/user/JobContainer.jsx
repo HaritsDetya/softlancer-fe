@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import axios from "axios";
+import JobCardSkeleton from "../home/JobCardSkeleton";
 
-export default function FindJob() {
+export default function JobContainer() {
   const [project, setProject] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const FetchProjects = async () => {
     try {
@@ -12,6 +14,8 @@ export default function FindJob() {
       setProject(response.data);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,22 +67,33 @@ export default function FindJob() {
 
           {/* Jobs */}
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:gap-x-2 lg:grid-cols-3">
-            {project.map((project) => (
-              <JobCard
-                key={project.id}
-                id={project.id}
-                companyLogo={project.company.company_logo}
-                projectTitle={project.project_title}
-                jobType={project.job_type}
-                projectDescription={project.project_description}
-              />
-            ))}
+            {isLoading ? (
+              <>
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+              </>
+            ) : (
+              project.map((project) => (
+                <JobCard
+                  key={project.id}
+                  id={project.id}
+                  companyLogo={project.company.company_logo}
+                  projectTitle={project.project_title}
+                  jobType={project.job_type}
+                  projectDescription={project.project_description}
+                />
+              ))
+            )}
           </div>
         </div>
         {/* End Jobs */}
 
         {/* Pagination */}
-        <div className="flex items-center justify-center mt-2">
+        {/* <div className="flex items-center justify-center mt-2">
           <div className="flex items-center">
             <button className="pagination-button" data-slide-index="-1">
               <span className="sr-only">Previous</span>
@@ -123,7 +138,7 @@ export default function FindJob() {
               </svg>
             </button>
           </div>
-        </div>
+        </div> */}
         {/* End Pagination */}
       </div>
     </section>
