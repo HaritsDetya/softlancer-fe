@@ -10,7 +10,7 @@ const JobCard = ({ id, companyLogo, projectTitle, projectDescription, jobType })
   return (
     <>
       <Link
-        href={`/apply-job/${id}`}
+        href={`/apply-job/${id}/description`}
         className="bg-background rounded-lg py-3 px-4 mb-3 mr-auto w-full relative"
       >
         <div className="flex items-center">

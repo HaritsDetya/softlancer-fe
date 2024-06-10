@@ -1,29 +1,54 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
-
-const menu = [
-  { name: "Description", href: "#", icon: CheckCircleIcon, current: true },
-  { name: "Requirements", href: "#", icon: CheckCircleIcon, current: false },
-  { name: "Form Apply", href: "#", icon: CheckCircleIcon, current: false },
-];
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ApplySection({ project, company }) {
+export default function ApplySection({ project, company, id }) {
+  if (!project || !company) {
+    return <div className="px-16 py-7 max-md:px-5">Loading...</div>;
+  }
+
+  const router = useRouter();
+  const path = router.asPath;
+  const currentPath = path.split("/")[3];
+
+  const menu = [
+    {
+      name: "Description",
+      href: `/apply-job/${id}/description`,
+      icon: CheckCircleIcon,
+      current: currentPath === "description",
+    },
+    {
+      name: "Requirements",
+      href: `/apply-job/${id}/requirement`,
+      icon: CheckCircleIcon,
+      current: currentPath === "requirement",
+    },
+    {
+      name: "Form Apply",
+      href: `/apply-job/${id}/apply`,
+      icon: CheckCircleIcon,
+      current: currentPath === "apply",
+    },
+  ];
+
   return (
+    // Start Menu
     <div className="bg-background px-16 py-7 max-md:px-5">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
         <div className="flex flex-col w-1/5 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col text-base font-semibold tracking-tight leading-6 text-black text-opacity-60 max-md:mt-10">
             <nav className="flex flex-1 flex-col" aria-label="Sidebar">
-              {/* Menu */}
-              <ul role="list" className="-mx-2 space-y-5">
+              <div role="list" className="-mx-2 space-y-5">
                 {menu.map((item) => (
-                  <li key={item.name}>
-                    <a
+                  <div key={item.name}>
+                    <Link
                       href={item.href}
                       className={classNames(
                         item.current
@@ -32,7 +57,6 @@ export default function ApplySection({ project, company }) {
                         "group flex gap-x-3 rounded-md p-6 leading-6",
                       )}
                     >
-                      <div className="bg-active shrink-0 w-6 rounded-md" />
                       <item.icon
                         className={classNames(
                           item.current ? "text-active" : "text-black/60",
@@ -41,14 +65,14 @@ export default function ApplySection({ project, company }) {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
-                  </li>
+                    </Link>
+                  </div>
                 ))}
-              </ul>
-              {/* End Menu */}
+              </div>
             </nav>
           </div>
         </div>
+        {/* End Menu */}
         <div className="flex flex-col ml-5 w-4/5 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col grow px-8 py-14 w-full bg-white rounded-lg max-md:px-5 max-md:mt-10 max-md:max-w-full">
             <div className="max-md:max-w-full">
