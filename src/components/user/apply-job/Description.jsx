@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import ApplyJobSkeleton from "./ApplyJobSkeleton";
 
 const Description = ({ project, company, id }) => {
   if (!project || !company) {
-    return <div className="px-16 py-7 max-md:px-5">Loading...</div>;
+    return <ApplyJobSkeleton />;
   }
 
   return (

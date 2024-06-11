@@ -1,13 +1,10 @@
 import React, { useState } from "react";
+import ApplyJobSkeleton from "./ApplyJobSkeleton";
 
 const ApplyForm = ({ applyForm, projectRole }) => {
   const [role, setRole] = useState("");
   const [cvUrl, setCvUrl] = useState("");
   const [portofolioUrl, setPortofolioUrl] = useState("");
-
-  if (!projectRole) {
-    return <div className="px-16 py-7 max-md:px-5">Loading...</div>;
-  }
 
   const submit = (e) => {
     e.preventDefault();
@@ -17,6 +14,10 @@ const ApplyForm = ({ applyForm, projectRole }) => {
     // Fetch API
     applyForm(role, cvUrl, portofolioUrl);
   };
+
+  if (!projectRole) {
+    return <ApplyJobSkeleton />;
+  }
 
   return (
     // Start Menu
