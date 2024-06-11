@@ -19,11 +19,6 @@ const ApplyJobSkeleton = () => {
             </div>
           </div>
         </div>
-        <div className="mt-7 text-base leading-9 text-justify bg-gray-400 animate-pulse max-md:mr-2.5 max-md:max-w-full h-32"></div>
-        <div className="flex gap-5 justify-between self-end mt-16 text-base font-medium leading-4 max-md:mt-10 max-md:mr-2.5">
-          <div className="my-auto text-gray-bg-gray-400 bg-gray-400 animate-pulse h-6 w-20"></div>
-          <div className="justify-center px-12 py-2.5 text-white whitespace-nowrap bg-gray-200 animate-pulse rounded-xl max-md:px-5 h-10 w-24"></div>
-        </div>
       </div>
     </div>
   );

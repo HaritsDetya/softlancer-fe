@@ -75,6 +75,9 @@ export default function JobContainer() {
                 <JobCardSkeleton />
                 <JobCardSkeleton />
                 <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
+                <JobCardSkeleton />
               </>
             ) : (
               project.map((project) => (

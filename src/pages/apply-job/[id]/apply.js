@@ -18,10 +18,9 @@ export default function ApplyJob() {
       const res = await axios.get(`${process.env.API_URL}/projects/${id}`);
       if (!res.data.data) {
         router.push("/");
-      } else {
-        setData(res.data.data);
-        setProjectRole(data.project_role);
       }
+      setData(res.data.data);
+      setProjectRole(data.project_role);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -46,11 +45,9 @@ export default function ApplyJob() {
         },
       });
 
-      if (res.status === 201) {
-        router.push("/");
-      }
+      return res;
     } catch (error) {
-      console.error("Error:", error);
+      return error;
     }
   };
 
