@@ -1,27 +1,57 @@
 import React, { useState } from "react";
+import ApplyJobSkeleton from "./ApplyJobSkeleton";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ApplyForm = ({ applyForm, projectRole }) => {
-  const [role, setRole] = useState("");
-  const [cvUrl, setCvUrl] = useState("");
-  const [portofolioUrl, setPortofolioUrl] = useState("");
+  const [role, setRole] = useState();
+  const [cvUrl, setCvUrl] = useState();
+  const [portofolioUrl, setPortofolioUrl] = useState();
+  const router = useRouter();
 
-  if (!projectRole) {
-    return <div className="px-16 py-7 max-md:px-5">Loading...</div>;
-  }
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!role || !cvUrl || !portofolioUrl) {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
+      return;
     }
     // Fetch API
-    applyForm(role, cvUrl, portofolioUrl);
+    const res = applyForm(role, cvUrl, portofolioUrl);
+    const status = res.status;
+
+    if (!status === 201) {
+      toast.error(res.error);
+    }
+
+    toast.success("Success Applying Project");
+    await delay(4000);
+    router.push("/");
   };
+
+  if (!projectRole) {
+    return <ApplyJobSkeleton />;
+  }
 
   return (
     // Start Menu
     <div className="flex flex-col ml-5 w-4/5 md:ml-0 max-md:w-full">
       <div className="flex flex-col justify-between px-8 py-14 w-full bg-white rounded-lg max-md:px-5 max-md:mt-10 max-md:max-w-full">
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+
         {/* Form */}
         <form className="w-full flex flex-col justify-between">
           {/* Form Input */}
