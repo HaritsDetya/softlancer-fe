@@ -1,7 +1,7 @@
 // pages/index.js
 import React from "react";
 import Header from "@/components/user/Header";
-import FindJob from "@/components/user/FindJob";
+import FindJob from "@/components/user/JobContainer";
 import Footer from "@/components/user/Footer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Partnership from "@/components/user/Partnership";

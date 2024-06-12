@@ -22,20 +22,20 @@ export default function ActiveUserContent() {
             </div>
           </div>
         </div>
-        <div className="p-5">
+        <div className="p-5 m-5 bg-light rounded-xl">
           <div className="grid grid-cols-1 mb-6 text-active text-center">
             <div className="rounded-md overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[540px]" data-tab-for="order">
                   <thead>
-                    <tr className="font-bold">
-                      <th className="text-[12px] tracking-wide py-2 px-4 bg-abu rounded-tl-md">
+                    <tr className="font-bold rounded-t-xl">
+                      <th className="text-[12px] tracking-wide py-2 px-4 bg-abu">
                         ID
                       </th>
                       <th className="text-[12px] tracking-wide py-2 px-4 bg-abu">Name</th>
                       <th className="text-[12px] tracking-wide py-2 px-4 bg-abu">Email Address</th>
                       <th className="text-[12px] tracking-wide py-2 px-4 bg-abu">Phone</th>
-                      <th className="text-[12px] tracking-wide py-2 px-4 bg-abu rounded-tr-md">
+                      <th className="text-[12px] tracking-wide py-2 px-4 bg-abu">
                         Role
                       </th>
                     </tr>
