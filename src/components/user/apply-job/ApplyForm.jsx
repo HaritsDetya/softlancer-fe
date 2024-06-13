@@ -8,9 +8,6 @@ const ApplyForm = ({ applyForm, projectRole }) => {
   const [role, setRole] = useState();
   const [cvUrl, setCvUrl] = useState();
   const [portofolioUrl, setPortofolioUrl] = useState();
-  const router = useRouter();
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const submit = async (e) => {
     e.preventDefault();
@@ -20,15 +17,6 @@ const ApplyForm = ({ applyForm, projectRole }) => {
     }
     // Fetch API
     const res = applyForm(role, cvUrl, portofolioUrl);
-    const status = res.status;
-
-    if (!status === 201) {
-      toast.error(res.error);
-    }
-
-    toast.success("Success Applying Project");
-    await delay(4000);
-    router.push("/");
   };
 
   if (!projectRole) {
@@ -41,7 +29,7 @@ const ApplyForm = ({ applyForm, projectRole }) => {
       <div className="flex flex-col justify-between px-8 py-14 w-full bg-white rounded-lg max-md:px-5 max-md:mt-10 max-md:max-w-full">
         <ToastContainer
           position="bottom-right"
-          autoClose={3000}
+          autoClose={1500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -113,6 +101,7 @@ const ApplyForm = ({ applyForm, projectRole }) => {
             <div className="flex gap-3 text-base font-medium max-md:mr-2.5">
               <p className="my-auto text-teal-800">3 of 3 steps</p>
               <button
+                id="btn-submit"
                 type="submit"
                 onClick={submit}
                 className="justify-center px-12 py-2.5 text-white whitespace-nowrap bg-teal-800 rounded-xl max-md:px-5"
