@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { MdEdit, MdDelete } from "react-icons/md";

@@ -2,7 +2,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import PostProject from "@/components/admin/PostProject";
+import PostProject from "@/components/admin/projects-management/PostProject";
 export default function Main() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 

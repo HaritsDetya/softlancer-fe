@@ -1,7 +1,10 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { FaPlus } from "react-icons/fa";
+import { PiNotepadFill } from "react-icons/pi";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 export default function Form() {
   const router = useRouter();
@@ -109,31 +112,39 @@ export default function Form() {
               </div>
               <ul
                 role="list"
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 -mt-5"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 -mt-5"
               >
-                <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-abu1 text-center shadow">
+                <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-xl bg-abu1 text-center shadow">
                   <button
                     type="button"
-                    className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="relative block w-full py-9 text-center focus:outline-none"
                   >
-                    <svg
-                      className="mx-auto h-12 w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6"
-                      />
-                    </svg>
-                    <span className="mt-2 block text-sm font-semibold text-gray-900">
-                      Create a new database
-                    </span>
+                    <a href="/admin/project-management/add-form">
+                      <FaPlus className="mx-auto h-8 w-auto" />
+                    </a>
                   </button>
+                  <div className="bg-primary h-full items-center text-xs rounded-b-xl px-4 py-2 text-white flex">
+                    Blank form
+                  </div>
+                </li>
+                <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-xl bg-abu1 text-center shadow">
+                  <button
+                    type="button"
+                    className="relative block w-full py-9 text-center focus:outline-none"
+                  >
+                    <PiNotepadFill className="mx-auto h-8 w-auto" />
+                  </button>
+                  <div className="bg-primary h-full items-center text-xs rounded-b-xl px-4 py-2 text-white flex">
+                    Formulir Pendaftaran Grab Wallet
+                    <div className="pl-3 flex flex-row gap-3">
+                      <a href="/Edit">
+                        <MdEdit className="size-5" />
+                      </a>
+                      <a href="#">
+                        <MdDelete className="size-5" />
+                      </a>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>

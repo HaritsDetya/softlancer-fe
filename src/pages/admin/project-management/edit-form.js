@@ -2,14 +2,14 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ProjectsManagement from "@/components/admin/projects-management/ProjectsManagement";
+import EditForm from "@/components/admin/projects-management/EditForm";
 export default function Main() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ProjectsManagement/>
+        <EditForm/>
       </GoogleOAuthProvider>
     </div>
   );
