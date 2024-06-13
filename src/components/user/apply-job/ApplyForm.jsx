@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ApplyForm = ({ applyForm, projectRole }) => {
+const ApplyForm = ({ applyForm, projectRole, isLoading }) => {
   const [role, setRole] = useState();
   const [cvUrl, setCvUrl] = useState();
   const [portofolioUrl, setPortofolioUrl] = useState();
@@ -31,7 +31,7 @@ const ApplyForm = ({ applyForm, projectRole }) => {
     router.push("/");
   };
 
-  if (!projectRole) {
+  if (isLoading) {
     return <ApplyJobSkeleton />;
   }
 
@@ -39,21 +39,8 @@ const ApplyForm = ({ applyForm, projectRole }) => {
     // Start Menu
     <div className="flex flex-col ml-5 w-4/5 md:ml-0 max-md:w-full">
       <div className="flex flex-col justify-between px-8 py-14 w-full bg-white rounded-lg max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-
         {/* Form */}
-        <form className="w-full flex flex-col justify-between">
+        <form onSubmit={submit} className="w-full flex flex-col justify-between">
           {/* Form Input */}
           <div className="grid grid-cols-2 gap-3">
             <div className="grid grid-cols-1 gap-3">
@@ -114,7 +101,6 @@ const ApplyForm = ({ applyForm, projectRole }) => {
               <p className="my-auto text-teal-800">3 of 3 steps</p>
               <button
                 type="submit"
-                onClick={submit}
                 className="justify-center px-12 py-2.5 text-white whitespace-nowrap bg-teal-800 rounded-xl max-md:px-5"
               >
                 Submit

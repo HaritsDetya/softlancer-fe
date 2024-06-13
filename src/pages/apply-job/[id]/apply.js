@@ -1,5 +1,5 @@
 import Header from "@/components/user/Header";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -9,7 +9,8 @@ import ApplyForm from "@/components/user/apply-job/ApplyForm";
 
 export default function ApplyJob() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
-  const [data, setData] = React.useState({});
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
 
@@ -19,6 +20,7 @@ export default function ApplyJob() {
       if (!res.data.data) {
         router.push("/");
       }
+      setIsLoading(false);
       setData(res.data.data);
       setProjectRole(data.project_role);
     } catch (error) {
@@ -62,7 +64,7 @@ export default function ApplyJob() {
       <Header />
       <ApplyJobContainer>
         <Sidebar id={id} />
-        <ApplyForm projectRole={data.project_role} applyForm={ApplyData} />
+        <ApplyForm projectRole={data.project_role} applyForm={ApplyData} isLoading={isLoading} />
       </ApplyJobContainer>
     </GoogleOAuthProvider>
   );
