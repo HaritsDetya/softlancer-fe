@@ -27,7 +27,6 @@ export default function Sidebar() {
   return (
     <>
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-light px-6 pb-4 pt-6">
           <div className="flex h-16 shrink-0 items-center">
             <img className="h-14 w-auto" src="/images/logoSoftLancer.svg" alt="Project" />
@@ -35,11 +34,25 @@ export default function Sidebar() {
           <nav className="flex flex-1 flex-col pt-7">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
+                <div className="sm:hidden">
+                  <label htmlFor="menu" className="sr-only">
+                    Select a item
+                  </label>
+                  <select
+                    id="menu"
+                    name="menu"
+                    className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
+                    defaultValue={menu.find((item) => item.current).name}
+                  >
+                    {menu.map((item) => (
+                      <option key={item.name}>{item.name}</option>
+                    ))}
+                  </select>
+                </div>
                 <ul role="list" className="-mx-2 space-y-4">
                   {menu.map((item) => (
                     <li key={item.name}>
                       <a
-                        // id={window.location.pathname == item.href ? 'active' : ''}
                         href={item.href}
                         className={classNames(
                           item.current ? "bg-background" : "text-dark1 hover:bg-background",
