@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useGoogleLogin } from "@react-oauth/google";
 import GoogleButton from "./GoogleButton";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function Header({ active }) {
-  const router = useRouter();
-
   const [isClick, setIsClick] = useState(false);
 
   const toggleNavbar = () => {
@@ -17,6 +16,7 @@ export default function Header({ active }) {
   return (
     <>
       <nav className="bg-accent1 sticky top-0 z-[20]">
+        <ToastContainer />
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="px-4">
@@ -46,7 +46,7 @@ export default function Header({ active }) {
                   Find Job
                 </Link>
                 <Link
-                  href="/history"
+                  href="/history/waiting"
                   className={`${
                     active === "history"
                       ? "bg-white text-black"
@@ -55,7 +55,7 @@ export default function Header({ active }) {
                 >
                   History
                 </Link>
-                <GoogleButton/>
+                <GoogleButton />
               </div>
             </div>
             {/* Responsive Toggle */}
@@ -101,7 +101,7 @@ export default function Header({ active }) {
               Find Job
             </Link>
             <Link
-              href="/history"
+              href="/history/waiting"
               className={`${
                 active === "history"
                   ? "bg-white text-black"
@@ -110,7 +110,7 @@ export default function Header({ active }) {
             >
               History
             </Link>
-            <GoogleButton/>
+            <GoogleButton />
           </div>
         </div>
       </nav>

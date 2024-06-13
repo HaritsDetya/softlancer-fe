@@ -7,6 +7,10 @@ const button = [
   { name: "Decline", href: "#", current: false, icon: null },
 ];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const history = [
   {
     name: "GrabTech Frontend Innovation Project",
@@ -25,10 +29,6 @@ const history = [
     location: "On-Site",
   },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function History() {
   return (
