@@ -8,13 +8,13 @@ import { useRouter } from "next/router";
 export default function AddCompany() {
   const router = useRouter();
   const path = router.asPath;
-  const currentPath = path.split("/")[2];
+  const currentPath = path.split("/")[3];
 
   const tabs = [
     {
       name: "All Company",
-      href: "/admin/company-management/company-management",
-      current: currentPath === "company-management",
+      href: "/admin/company-management/all-company",
+      current: currentPath === "all-company",
     },
     {
       name: "Add New Company",

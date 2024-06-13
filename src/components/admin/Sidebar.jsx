@@ -13,7 +13,7 @@ export default function Sidebar() {
     { name: "Active Users", href: "/admin/active-user", current: false },
     {
       name: "Companys Management",
-      href: "/admin/company-management/company-management",
+      href: "/admin/company-management/all-company",
       current: false,
     },
     { name: "Projects Management", href: "/admin/project-management/all-projects", current: false },

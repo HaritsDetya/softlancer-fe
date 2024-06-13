@@ -1,8 +1,34 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 
 export default function PostProject() {
+  const router = useRouter();
+  const path = router.asPath;
+  const currentPath = path.split("/")[3];
+
+  const tabs = [
+    {
+      name: "All Projects",
+      href: "/admin/project-management/all-projects",
+      current: currentPath === "all-projects",
+    },
+    {
+      name: "Post Projects",
+      href: `/admin/project-management/post-projects`,
+      current: currentPath === "post-projects",
+    },
+    {
+      name: "Form",
+      href: `/admin/project-management/form`,
+      current: currentPath === "form",
+    },
+  ];
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
   return (
     <>
       <Sidebar />
@@ -24,9 +50,58 @@ export default function PostProject() {
         </div>
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
-            <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden">
-              <div className="p-5 flex justify-between items-center mb-4 border-b-[1px] border-stroke1">
-                <div className="text-xs font-semibold">All Projects</div>
+            <div className="bg-light border border-gray-100 rounded-xl overflow-hidden">
+              <div className="w-1/3">
+                <div className="sm:hidden">
+                  <label htmlFor="tabs" className="sr-only">
+                    Select a tab
+                  </label>
+                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+                  <select
+                    id="tabs"
+                    name="tabs"
+                    className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
+                    defaultValue={tabs.find((tab) => tab.current).name}
+                  >
+                    {tabs.map((tab) => (
+                      <option key={tab.name}>{tab.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="hidden sm:block">
+                  <nav
+                    className="isolate flex divide-x divide-stroke1 rounded-lg"
+                    aria-label="Tabs"
+                  >
+                    {tabs.map((tab, tabIdx) => (
+                      <a
+                        key={tab.name}
+                        href={tab.href}
+                        className={classNames(
+                          tab.current ? "text-active" : "text-light1 hover:text-gray-700",
+                          tabIdx === 0 ? "rounded-l-lg" : "",
+                          tabIdx === tabs.length - 1 ? "rounded-r-lg" : "",
+                          "group relative min-w-0 flex-1 overflow-hidden py-3 bg-transparent text-center text-xs font-medium hover:bg-background focus:z-10",
+                        )}
+                        aria-current={tab.current ? "page" : undefined}
+                      >
+                        <span>{tab.name}</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            tab.current ? "bg-primary" : "bg-transparent",
+                            "absolute inset-x-0 bottom-0 h-0.5",
+                          )}
+                        />
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </div>
+              <div className="relative -mx-5 my-5 -mt-0">
+                <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                  <div className="w-full border-t border-stroke1" />
+                </div>
               </div>
               <div className="px-5 pb-5">
                 <div className="pb-5 mb-4">
@@ -100,10 +175,10 @@ export default function PostProject() {
                   </div>
                 </div>
                 <div className="flex justify-end gap-6 pt-5">
-                  <button type="button" className="bg-white text-stroke1 rounded-md py-2 px-12">
+                  <button type="button" className="bg-white text-stroke1 rounded-md py-2 px-12 hover:bg-slate-100">
                     Cancel
                   </button>
-                  <button type="submit" className="bg-primary text-white rounded-md py-2 px-12">
+                  <button type="submit" className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active">
                     Save
                   </button>
                 </div>
