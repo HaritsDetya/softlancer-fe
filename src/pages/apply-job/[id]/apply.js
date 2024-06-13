@@ -6,12 +6,15 @@ import axios from "axios";
 import ApplyJobContainer from "@/components/user/apply-job/ApplyJobContainer";
 import Sidebar from "@/components/user/apply-job/Sidebar";
 import ApplyForm from "@/components/user/apply-job/ApplyForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ApplyJob() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [data, setData] = React.useState({});
   const router = useRouter();
   const { id } = router.query;
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const FetchData = async () => {
     try {
@@ -28,16 +31,18 @@ export default function ApplyJob() {
 
   const ApplyData = async (role, cvUrl, portofolioUrl) => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        router.push("/");
-      }
-
       const data = {
         project_role_id: role,
         cv_file: cvUrl,
         portofolio: portofolioUrl,
       };
+
+      const token = localStorage.getItem("token");
+      // If user is not login yet
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
 
       const res = await axios.post(`${process.env.API_URL}/applications`, data, {
         headers: {
@@ -45,8 +50,11 @@ export default function ApplyJob() {
         },
       });
 
-      return res;
+      toast.success("Success Applying Project");
+      await delay(2000);
+      router.push("/");
     } catch (error) {
+      toast.error("Something went wrong," + error);
       return error;
     }
   };
@@ -60,6 +68,7 @@ export default function ApplyJob() {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <Header />
+      <ToastContainer />
       <ApplyJobContainer>
         <Sidebar id={id} />
         <ApplyForm projectRole={data.project_role} applyForm={ApplyData} />
