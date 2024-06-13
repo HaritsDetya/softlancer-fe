@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { TbLogout } from "react-icons/tb";
@@ -6,23 +6,37 @@ import { TbLogout } from "react-icons/tb";
 export default function Sidebar() {
   const router = useRouter();
   const path = router.asPath;
-  const currentPath = path.split("/")[2];
+  const pathParts = path.split("/");
+  const thirdElement = pathParts[2];
+  const fourthElement = pathParts[3];
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: "/admin/main", img: "", current: false },
-    { name: "Active Users", href: "/admin/active-user", current: false },
+    { name: "Dashboard", href: "/admin/main", current: thirdElement === "main" },
+    { name: "Active Users", href: "/admin/active-user", current: thirdElement === "active-user" },
     {
       name: "Companys Management",
       href: "/admin/company-management/all-company",
-      current: false,
+      current: fourthElement === "all-company",
     },
-    { name: "Projects Management", href: "/admin/project-management/all-projects", current: false },
-    { name: "Handle applications", href: "/admin/handle-application", current: false },
+    {
+      name: "Projects Management",
+      href: "/admin/project-management/all-projects",
+      current: fourthElement === "all-projects",
+    },
+    {
+      name: "Handle applications",
+      href: "/admin/handle-application",
+      current: thirdElement === "handle-application",
+    },
   ];
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  const currentItem = menu.find((item) => item.current);
+  const defaultValue = currentItem ? currentItem.name : menu[0].name;
 
   return (
     <>
@@ -36,13 +50,13 @@ export default function Sidebar() {
               <li>
                 <div className="sm:hidden">
                   <label htmlFor="menu" className="sr-only">
-                    Select a item
+                    Select an item
                   </label>
                   <select
                     id="menu"
                     name="menu"
                     className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={menu.find((item) => item.current).name}
+                    defaultValue={defaultValue}
                   >
                     {menu.map((item) => (
                       <option key={item.name}>{item.name}</option>
