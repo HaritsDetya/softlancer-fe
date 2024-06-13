@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { TbLogout } from "react-icons/tb";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -57,9 +58,9 @@ export default function Sidebar() {
               <li className="mt-auto">
                 <a
                   href="#"
-                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-active hover:bg-background hover:text-dark1"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-active hover:text-dark1"
                 >
-                  <Cog6ToothIcon
+                  <TbLogout
                     className="h-6 w-6 shrink-0 text-active group-hover:text-dark1"
                     aria-hidden="true"
                   />

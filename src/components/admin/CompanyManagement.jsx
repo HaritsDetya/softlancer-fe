@@ -144,7 +144,7 @@ export default function CompanyManagement() {
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                   <div className="overflow-hidden shadow sm:rounded-lg">
                     <table className="min-w-full divide-y-2 divide-stroke">
-                      <thead className="bg-abu">
+                      <thead className="bg-abu text-center">
                         <tr>
                           <th
                             scope="col"
@@ -172,7 +172,7 @@ export default function CompanyManagement() {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y-2 divide-stroke bg-white">
+                      <tbody className="divide-y-2 text-center divide-stroke bg-white">
                         {company.map((companys) => (
                           <tr key={companys.id}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">

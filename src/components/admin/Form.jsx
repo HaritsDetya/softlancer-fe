@@ -107,92 +107,35 @@ export default function Form() {
                   <div className="w-full border-t border-stroke1" />
                 </div>
               </div>
-              <div className="px-5 pb-5">
-                <div className="pb-5 mb-4">
-                  <div className="flex flex-col">
-                    <div className="text-md font-semibold">New Projects</div>
-                    <div className="text-xs text-active/60">Please complete all data</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-5">
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Projects Name *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter project name"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Qualifications</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter minimum qualifications"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Project Description *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter project description"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Skills</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter the required skills"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Job Type *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <button
-                        type="text"
-                        className="w-full p-5 flex flex-wrap text-sm text-black/35 rounded-md bg-abu1 border border-stroke2"
-                      >
-                        <span className="font-medium">Choose one</span>
-                        <img src="" alt="" />
-                      </button>
-                    </form>
-                  </div>
-                </div>
-                <div className="flex justify-end gap-6 pt-5">
+              <ul
+                role="list"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 -mt-5"
+              >
+                <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-abu1 text-center shadow">
                   <button
                     type="button"
-                    className="bg-white text-stroke1 rounded-md py-2 px-12 hover:bg-slate-100"
+                    className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    Cancel
+                    <svg
+                      className="mx-auto h-12 w-12 text-gray-400"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 48 48"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6"
+                      />
+                    </svg>
+                    <span className="mt-2 block text-sm font-semibold text-gray-900">
+                      Create a new database
+                    </span>
                   </button>
-                  <button
-                    type="submit"
-                    className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

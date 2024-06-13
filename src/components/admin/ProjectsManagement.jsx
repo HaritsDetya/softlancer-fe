@@ -2,11 +2,22 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 export default function ProjectsManagement() {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
+
+  const company = [
+    {
+      id: 1,
+      logo: "/images/grab.svg",
+      company: "PT Grab Teknologi Indonesia",
+      description:
+        "PT Grab Teknologi Indonesia adalah sebuah perusahaan yang berfokus pada teknologi dan inovasi. Perusahaan ini didedikasikan untuk menyediakan solusi teknologi terkini dan mengembangkan layanan yang memudahkan kehidupan sehari-hari. Dengan tim yang berpengalaman dan berkomitmen tinggi, PT Grab Teknologi Indonesia terus memperluas jangkauan dan meningkatkan kualitas layanannya untuk mencapai visi menjadi pemimpin dalam industri teknologi di Indonesia.",
+    },
+  ];
 
   const tabs = [
     {
@@ -104,90 +115,115 @@ export default function ProjectsManagement() {
                   <div className="w-full border-t border-stroke1" />
                 </div>
               </div>
-              <div className="px-5 pb-5">
-                <div className="pb-5 mb-4">
-                  <div className="flex flex-col">
-                    <div className="text-md font-semibold">New Projects</div>
-                    <div className="text-xs text-active/60">Please complete all data</div>
-                  </div>
+              <div className="relative m-6 mb-3 rounded-lg shadow-sm">
+                <div className="absolute m-3 inset-y-0 left-0 flex items-center">
+                  <label htmlFor="filter" className="sr-only">
+                    Filter
+                  </label>
+                  <select
+                    id="filter"
+                    name="filter"
+                    autoComplete="filter"
+                    className="h-full rounded-lg ring-1 ring-primary bg-transparent py-0 pl-3 pr-7 text-active focus:outline-none focus:ring-2 focus:ring-inset focus:ring-active sm:text-sm"
+                  >
+                    <option>Filter</option>
+                    <option>Id</option>
+                    <option>Name</option>
+                    <option>Email</option>
+                    <option>Phone</option>
+                    <option>Role</option>
+                  </select>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-5">
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Projects Name *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter project name"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Qualifications</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter minimum qualifications"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Project Description *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter project description"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Skills</div>
-                    </div>
-                    <form className="flex items-center">
-                      <input
-                        type="text"
-                        placeholder="Enter the required skills"
-                        className="w-full p-5 flex flex-wrap placeholder:text-sm rounded-md bg-abu1 border border-stroke2"
-                      ></input>
-                    </form>
-                  </div>
-                  <div className="">
-                    <div className="mb-2">
-                      <div className="text-base font-medium">Job Type *</div>
-                    </div>
-                    <form className="flex items-center">
-                      <button
-                        type="text"
-                        className="w-full p-5 flex flex-wrap text-sm text-black/35 rounded-md bg-abu1 border border-stroke2"
-                      >
-                        <span className="font-medium">Choose one</span>
-                        <img src="" alt="" />
-                      </button>
-                    </form>
-                  </div>
-                </div>
-                <div className="flex justify-end gap-6 pt-5">
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  disabled
+                  className="block h-12 w-full rounded-lg border-0 py-1.5 pl-16 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-active sm:text-sm sm:leading-6 disabled:bg-white"
+                />
+                <div className="absolute m-3 inset-y-0 right-0 mr-4 flex items-center">
                   <button
                     type="button"
-                    className="bg-white text-stroke1 rounded-md py-2 px-12 hover:bg-slate-100"
+                    className="h-full rounded-lg bg-primary px-7 py-0 text-xs font-normal text-white shadow-sm hover:bg-active"
                   >
-                    Cancel
+                    Search
                   </button>
-                  <button
-                    type="submit"
-                    className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"
-                  >
-                    Save
-                  </button>
+                </div>
+              </div>
+              <div className="my-6 px-6 flow-root">
+                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <div className="overflow-hidden shadow sm:rounded-lg">
+                      <table className="min-w-full divide-y-2 divide-stroke">
+                        <thead className="bg-abu text-center">
+                          <tr>
+                            <th
+                              scope="col"
+                              className="py-3.5 pl-4 text-sm font-semibold text-primary"
+                            >
+                              Id
+                            </th>
+                            <th
+                              scope="col"
+                              className="py-3 pl-3.5 text-sm font-semibold text-primary"
+                            >
+                              Logo
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Company Name
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Description
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
+                          {company.map((companys) => (
+                            <tr key={companys.id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                {companys.id}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                <img
+                                  className="rounded-md h-auto w-[1000px]"
+                                  src={companys.logo}
+                                  alt=""
+                                />
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {companys.company}
+                              </td>
+                              <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
+                                {companys.description}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
+                                <a href="#" className="">
+                                  <MdEdit className="size-5" />
+                                  <span className="sr-only">, {company.id}</span>
+                                </a>
+                                <a href="#" className="">
+                                  <MdDelete className="size-5" />
+                                  <span className="sr-only">, {company.id}</span>
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
