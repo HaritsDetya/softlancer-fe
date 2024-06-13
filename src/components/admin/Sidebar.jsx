@@ -4,7 +4,7 @@ import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 const menu = [
   { name: "Dashboard", href: "/admin/main", img: "", current: false },
   { name: "Active Users", href: "/admin/active-user", current: false },
-  { name: "Companys Management", href: "/admin/company-management", current: false },
+  { name: "Companys Management", href: "/admin/company-management/company-management", current: false },
   { name: "Projects Management", href: "/admin/project-management", current: false },
   { name: "Handle applications", href: "/admin/handle-application", current: false },
 ];
