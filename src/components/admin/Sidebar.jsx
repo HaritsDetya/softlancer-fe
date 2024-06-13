@@ -1,19 +1,28 @@
 import { React, useState } from "react";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
-
-const menu = [
-  { name: "Dashboard", href: "/admin/main", img: "", current: false },
-  { name: "Active Users", href: "/admin/active-user", current: false },
-  { name: "Companys Management", href: "/admin/company-management/company-management", current: false },
-  { name: "Projects Management", href: "/admin/project-management", current: false },
-  { name: "Handle applications", href: "/admin/handle-application", current: false },
-];
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { useRouter } from "next/router";
 
 export default function Sidebar() {
+  const router = useRouter();
+  const path = router.asPath;
+  const currentPath = path.split("/")[2];
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const menu = [
+    { name: "Dashboard", href: "/admin/main", img: "", current: false },
+    { name: "Active Users", href: "/admin/active-user", current: false },
+    {
+      name: "Companys Management",
+      href: "/admin/company-management/company-management",
+      current: false,
+    },
+    { name: "Projects Management", href: "/admin/project-management/all-projects", current: false },
+    { name: "Handle applications", href: "/admin/handle-application", current: false },
+  ];
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <>
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
@@ -39,13 +48,6 @@ export default function Sidebar() {
                           window.location.pathname = item.href;
                         }}
                       >
-                        {/* <item.icon
-                                                    className={classNames(
-                                                        item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
-                                                        'h-6 w-6 shrink-0'
-                                                    )}
-                                                    aria-hidden="true"
-                                                /> */}
                         {item.name}
                       </a>
                     </li>
@@ -87,37 +89,6 @@ export default function Sidebar() {
           />
         </a>
       </div>
-      {/* <div className="fixed left-0 top-0 w-64 h-full bg-light py-2 pl-4 z-50 sidebar-menu transition-transform">
-                <div className="pl-5">
-                    <img src="/public/image/logoSoftLancer.svg" alt="logo" className="h-[55px] my-4" />
-                    <div className="flex flex-wrap pt-7">
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer focus-within:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Dashboard</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Active Users</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2  flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Companys Management</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Projects Management</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Handle applications</span>
-                        </div>
-                        <button type="button" className="fixed bottom-12 text-active font-bold px-4">
-                            <img src="" alt="" />
-                            <a href="">Logout</a>
-                        </button>
-                    </div>
-                </div>
-            </div> */}
     </>
   );
 }

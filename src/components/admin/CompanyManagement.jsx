@@ -4,7 +4,6 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 
 export default function CompanyManagement() {
-
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[2];
@@ -19,8 +18,16 @@ export default function CompanyManagement() {
   ];
 
   const tabs = [
-    { name: "All Company", href: "/admin/company-management/company-management", current: currentPath === 'company-management' },
-    { name: "Add New Company", href: `/admin/company-management/add-company`, current: currentPath === 'add-company' },
+    {
+      name: "All Company",
+      href: "/admin/company-management/company-management",
+      current: currentPath === "company-management",
+    },
+    {
+      name: "Add New Company",
+      href: `/admin/company-management/add-company`,
+      current: currentPath === "add-company",
+    },
   ];
 
   function classNames(...classes) {
@@ -30,7 +37,7 @@ export default function CompanyManagement() {
   return (
     <>
       <Sidebar />
-      <main id="company_management" className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
+      <main className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
             <CalendarIcon className="w-auto h-8" aria-hidden="true" />
