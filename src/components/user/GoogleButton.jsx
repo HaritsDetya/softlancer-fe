@@ -20,10 +20,10 @@ export default function GoogleButton() {
       });
 
       if (res) {
-        router.reload();
         toast.success("Logout Success");
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        router.reload();
       }
     } catch (error) {
       toast.error("Internal Server Error");
