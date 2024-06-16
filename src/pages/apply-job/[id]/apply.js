@@ -6,7 +6,7 @@ import axios from "axios";
 import ApplyJobContainer from "@/components/user/apply-job/ApplyJobContainer";
 import Sidebar from "@/components/user/apply-job/Sidebar";
 import ApplyForm from "@/components/user/apply-job/ApplyForm";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ApplyJob() {

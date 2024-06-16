@@ -37,7 +37,6 @@ export default function historyApprove() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <ToastContainer />
         <Header active={"history"} />
         <HistoryContainer>
           <HistoryNavigation current={"Approve"} />

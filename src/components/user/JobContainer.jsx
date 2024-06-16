@@ -3,26 +3,7 @@ import JobCard from "./JobCard";
 import axios from "axios";
 import JobCardSkeleton from "../home/JobCardSkeleton";
 
-export default function JobContainer() {
-  const [project, setProject] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const FetchProjects = async () => {
-    try {
-      const res = await axios.get(process.env.API_URL + "/projects");
-      const response = res.data;
-      setProject(response.data);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    FetchProjects();
-  }, []);
-
+export default function JobContainer({ projects, isLoading }) {
   return (
     <section id="find_job" className="bg-gradient-to-b from-background to-primary">
       <div className="container pb-10">
@@ -80,7 +61,7 @@ export default function JobContainer() {
                 <JobCardSkeleton />
               </>
             ) : (
-              project.map((project) => (
+              projects.map((project) => (
                 <JobCard
                   key={project.id}
                   id={project.id}

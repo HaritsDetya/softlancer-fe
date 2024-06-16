@@ -24,7 +24,7 @@ export default function historyDecline() {
 
       setHistory(res.data.data);
     } catch (error) {
-      toast.error("Something went wrong," + error);
+      toast.error("No history found");
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +37,6 @@ export default function historyDecline() {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
-        <ToastContainer />
         <Header active={"history"} />
         <HistoryContainer>
           <HistoryNavigation current={"Decline"} />
