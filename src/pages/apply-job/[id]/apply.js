@@ -68,6 +68,7 @@ export default function ApplyJob() {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <Header />
+      <ToastContainer />
       <ApplyJobContainer>
         <Sidebar id={id} />
         <ApplyForm projectRole={data.project_role} applyForm={ApplyData} />
