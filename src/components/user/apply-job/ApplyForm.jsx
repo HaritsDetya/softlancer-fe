@@ -8,9 +8,6 @@ const ApplyForm = ({ applyForm, projectRole, isLoading }) => {
   const [role, setRole] = useState();
   const [cvUrl, setCvUrl] = useState();
   const [portofolioUrl, setPortofolioUrl] = useState();
-  const router = useRouter();
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const submit = async (e) => {
     e.preventDefault();
@@ -20,15 +17,6 @@ const ApplyForm = ({ applyForm, projectRole, isLoading }) => {
     }
     // Fetch API
     const res = applyForm(role, cvUrl, portofolioUrl);
-    const status = res.status;
-
-    if (!status === 201) {
-      toast.error(res.error);
-    }
-
-    toast.success("Success Applying Project");
-    await delay(4000);
-    router.push("/");
   };
 
   if (isLoading) {
@@ -100,6 +88,7 @@ const ApplyForm = ({ applyForm, projectRole, isLoading }) => {
             <div className="flex gap-3 text-base font-medium max-md:mr-2.5">
               <p className="my-auto text-teal-800">3 of 3 steps</p>
               <button
+                id="btn-submit"
                 type="submit"
                 className="justify-center px-12 py-2.5 text-white whitespace-nowrap bg-teal-800 rounded-xl max-md:px-5"
               >
