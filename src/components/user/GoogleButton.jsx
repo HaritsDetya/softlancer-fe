@@ -1,11 +1,34 @@
 import { GoogleLogin } from "@react-oauth/google";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import AccountProfile from "./AccountProfile";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function GoogleButton() {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState({});
+  const router = useRouter();
+
+  const handleLogoutClick = () => {
+    try {
+      // Perform logout logic here
+      const res = axios.get(process.env.API_URL + "/logout", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      if (res) {
+        toast.success("Logout Success");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        router.reload();
+      }
+    } catch (error) {
+      toast.error("Internal Server Error");
+    }
+  };
 
   const fetchUserProfile = async (token) => {
     try {
@@ -29,14 +52,6 @@ export default function GoogleButton() {
     }
   };
 
-  //UseEffect for Profile
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
-
   //When Login, get User profile
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,6 +60,14 @@ export default function GoogleButton() {
       fetchUserProfile(token);
     }
   }, [isLogin]);
+
+  //UseEffect for Profile
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
   const onSuccessLogin = async (response) => {
     const tokenId = response.credential;
@@ -81,7 +104,7 @@ export default function GoogleButton() {
           <GoogleLogin onSuccess={onSuccessLogin} onError={onFailureLogin} />
         </div>
       ) : (
-        <AccountProfile user={user} />
+        <AccountProfile user={user} handleLogout={handleLogoutClick} />
       )}
     </div>
   );
