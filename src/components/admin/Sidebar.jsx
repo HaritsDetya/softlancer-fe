@@ -26,8 +26,8 @@ export default function Sidebar() {
     },
     {
       name: "Handle applications",
-      href: "/admin/handle-application",
-      current: thirdElement === "handle-application",
+      href: "/admin/handle-application/handle-application",
+      current: fourthElement === "handle-application",
     },
   ];
 

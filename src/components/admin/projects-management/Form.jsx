@@ -137,7 +137,7 @@ export default function Form() {
                   <div className="bg-primary h-full items-center text-xs rounded-b-xl px-4 py-2 text-white flex">
                     Formulir Pendaftaran Grab Wallet
                     <div className="pl-3 flex flex-row gap-3">
-                      <a href="/Edit">
+                      <a href="/admin/project-management/edit-form">
                         <MdEdit className="size-5" />
                       </a>
                       <a href="#">
