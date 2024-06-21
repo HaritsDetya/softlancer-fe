@@ -44,7 +44,7 @@ export default function EditForm() {
       <Sidebar />
       <main
         id="all-projects"
-        className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main"
+        className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main"
       >
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary">

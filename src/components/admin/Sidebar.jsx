@@ -12,7 +12,7 @@ export default function Sidebar( { id } ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: `/admin/main`, current: thirdElement === "main" },
+    { name: "Dashboard", href: `/admin/dashboard`, current: pathParts === "dashboard" },
     { name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
     {
       name: "Companys Management",
@@ -37,7 +37,7 @@ export default function Sidebar( { id } ) {
 
   return (
     <>
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-light px-6 pb-4 pt-6">
           <div className="flex h-16 shrink-0 items-center">
             <img className="h-14 w-auto" src="/images/logoSoftLancer.svg" alt="Project" />

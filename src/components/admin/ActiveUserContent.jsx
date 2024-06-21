@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 
-export default function ActiveUserContent() {
+export default function ActiveUserContent({id, name, email, phone, roles}) {
   const people = [
     {
       id: 1,
@@ -30,7 +30,7 @@ export default function ActiveUserContent() {
   return (
     <>
       <Sidebar />
-      <main className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
+      <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
             <CalendarIcon className="w-auto h-8" aria-hidden="true" />
