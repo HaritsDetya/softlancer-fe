@@ -5,10 +5,13 @@ import EditProfile from "@/components/user/profil/EditProfile";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "axios";
+import PreferencesProfile from "@/components/user/profil/PreferencesProfile";
+import ProfileContainer from "@/components/user/profil/ProfileContainer";
 
 export default function Profile() {
   const clientId = "532428073853-42sjai5bl9o19r8r31tksi0n86v25vos.apps.googleusercontent.com";
   const [user, setUser] = useState({});
+  const [refferences, setRefferences] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,6 +24,7 @@ export default function Profile() {
     if (parsedUser.phone_number === null) {
       toast.info("Please fill your phone number first");
     }
+    fetchUserRefferences();
   }, []);
 
   useEffect(() => {
@@ -77,13 +81,28 @@ export default function Profile() {
     }
   };
 
-  //Create Logic For Updating Phone Number
-
+  //Logic For fetching user refferences
+  const fetchUserRefferences = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`${process.env.API_URL}/profile-refferences`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setRefferences(res.data.data);
+    } catch (error) {
+      toast.error("Failed to fetch user refferences");
+    }
+  };
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
         <Header />
-        <EditProfile user={user} updatePhoneNumber={updatePhoneNumber} />
+        <ProfileContainer>
+          <EditProfile user={user} updatePhoneNumber={updatePhoneNumber} />
+          <PreferencesProfile refferences={refferences} />
+        </ProfileContainer>
       </GoogleOAuthProvider>
     </>
   );
