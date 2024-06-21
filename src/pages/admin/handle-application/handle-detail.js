@@ -2,14 +2,14 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ProjectsManagement from "@/components/admin/ProjectsManagement";
-export default function Main() {
-  const clientId = "532428073853-42sjai5bl9o19r8r31tksi0n86v25vos.apps.googleusercontent.com";
+import HandleDetail from "@/components/admin/HandleDetail";
+export default function HandleDetail() {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ProjectsManagement/>
+        <HandleDetail/>
       </GoogleOAuthProvider>
     </div>
   );

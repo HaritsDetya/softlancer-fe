@@ -1,23 +1,43 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
+import { TbLogout } from "react-icons/tb";
 
-const menu = [
-  { name: "Dashboard", href: "/admin/main", img: "", current: false },
-  { name: "Active Users", href: "/admin/active-user", current: false },
-  { name: "Companys Management", href: "/admin/company-management", current: false },
-  { name: "Projects Management", href: "/admin/project-management", current: false },
-  { name: "Handle applications", href: "/admin/handle-application", current: false },
-];
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export default function Sidebar() {
+export default function Sidebar( { id } ) {
+  const router = useRouter();
+  const path = router.asPath;
+  const pathParts = path.split("/");
+  const thirdElement = pathParts[2];
+  const fourthElement = pathParts[3];
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const menu = [
+    { name: "Dashboard", href: `/admin/main`, current: thirdElement === "main" },
+    { name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
+    {
+      name: "Companys Management",
+      href: `/admin/company-management/all-company`,
+      current: fourthElement === "all-company",
+    },
+    {
+      name: "Projects Management",
+      href: `/admin/project-management/all-projects`,
+      current: fourthElement === "all-projects",
+    },
+    {
+      name: "Handle applications",
+      href: `/admin/handle-application/handle-application`,
+      current: fourthElement === "handle-application",
+    },
+  ];
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <>
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-light px-6 pb-4 pt-6">
           <div className="flex h-16 shrink-0 items-center">
             <img className="h-14 w-auto" src="/images/logoSoftLancer.svg" alt="Project" />
@@ -25,11 +45,24 @@ export default function Sidebar() {
           <nav className="flex flex-1 flex-col pt-7">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
+                <div className="sm:hidden">
+                  <label htmlFor="menu" className="sr-only">
+                    Select an item
+                  </label>
+                  <select
+                    id="menu"
+                    name="menu"
+                    className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
+                  >
+                    {menu.map((item) => (
+                      <option key={item.name}>{item.name}</option>
+                    ))}
+                  </select>
+                </div>
                 <ul role="list" className="-mx-2 space-y-4">
                   {menu.map((item) => (
                     <li key={item.name}>
                       <a
-                        // id={window.location.pathname == item.href ? 'active' : ''}
                         href={item.href}
                         className={classNames(
                           item.current ? "bg-background" : "text-dark1 hover:bg-background",
@@ -39,13 +72,6 @@ export default function Sidebar() {
                           window.location.pathname = item.href;
                         }}
                       >
-                        {/* <item.icon
-                                                    className={classNames(
-                                                        item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
-                                                        'h-6 w-6 shrink-0'
-                                                    )}
-                                                    aria-hidden="true"
-                                                /> */}
                         {item.name}
                       </a>
                     </li>
@@ -55,9 +81,9 @@ export default function Sidebar() {
               <li className="mt-auto">
                 <a
                   href="#"
-                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-active hover:bg-background hover:text-dark1"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-active hover:text-dark1"
                 >
-                  <Cog6ToothIcon
+                  <TbLogout
                     className="h-6 w-6 shrink-0 text-active group-hover:text-dark1"
                     aria-hidden="true"
                   />
@@ -87,37 +113,6 @@ export default function Sidebar() {
           />
         </a>
       </div>
-      {/* <div className="fixed left-0 top-0 w-64 h-full bg-light py-2 pl-4 z-50 sidebar-menu transition-transform">
-                <div className="pl-5">
-                    <img src="/public/image/logoSoftLancer.svg" alt="logo" className="h-[55px] my-4" />
-                    <div className="flex flex-wrap pt-7">
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer focus-within:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Dashboard</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Active Users</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2  flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Companys Management</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Projects Management</span>
-                        </div>
-                        <div className="container relative group overflow-hidden py-3 my-2 flex items-center rounded-s-md duration-300 cursor-pointer active:bg-background hover:bg-background">
-                            <div className="absolute left-0 h-full w-2 cursor-pointer duration-300 group-active:bg-primary group-hover:bg-primary"></div>
-                            <span className="">Handle applications</span>
-                        </div>
-                        <button type="button" className="fixed bottom-12 text-active font-bold px-4">
-                            <img src="" alt="" />
-                            <a href="">Logout</a>
-                        </button>
-                    </div>
-                </div>
-            </div> */}
     </>
   );
 }

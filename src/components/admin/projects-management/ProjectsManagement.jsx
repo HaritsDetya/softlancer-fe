@@ -1,21 +1,39 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-import { MdDelete, MdEdit } from "react-icons/md";
-import { RiShareBoxLine } from "react-icons/ri";
+import { MdEdit, MdDelete } from "react-icons/md";
 
-export default function HandleAplication() {
+export default function ProjectsManagement({ tab, id }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
 
-  const handle = [
+  const company = [
     {
       id: 1,
-      project: "Grab Wallet",
-      name: "Anisah Salma Rafida",
-      role: "UI/UX Designer",
+      logo: "/images/grab.svg",
+      company: "PT Grab Teknologi Indonesia",
+      description:
+        "PT Grab Teknologi Indonesia adalah sebuah perusahaan yang berfokus pada teknologi dan inovasi. Perusahaan ini didedikasikan untuk menyediakan solusi teknologi terkini dan mengembangkan layanan yang memudahkan kehidupan sehari-hari. Dengan tim yang berpengalaman dan berkomitmen tinggi, PT Grab Teknologi Indonesia terus memperluas jangkauan dan meningkatkan kualitas layanannya untuk mencapai visi menjadi pemimpin dalam industri teknologi di Indonesia.",
+    },
+  ];
+
+  const tabs = [
+    {
+      name: "All Projects",
+      href: `/admin/project-management/${id}/all-projects`,
+      current: currentPath === "all-projects",
+    },
+    {
+      name: "Post Projects",
+      href: `/admin/project-management/${id}/post-projects`,
+      current: currentPath === "post-projects",
+    },
+    {
+      name: "Form",
+      href: `/admin/project-management/${id}/form`,
+      current: currentPath === "form",
     },
   ];
 
@@ -23,9 +41,13 @@ export default function HandleAplication() {
     return classes.filter(Boolean).join(" ");
   }
 
+  const getDefaultTabName = (tabs) => {
+    const currentTab = tabs.find((tab) => tab.current);
+    return currentTab ? currentTab.name : "";
+  };
+
   return (
     <>
-      <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
@@ -44,7 +66,59 @@ export default function HandleAplication() {
         </div>
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
-            <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden">
+            <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-xl overflow-hidden">
+              <div className="w-1/3">
+                <div className="sm:hidden">
+                  <label htmlFor="tabs" className="sr-only">
+                    Select a tab
+                  </label>
+                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+                  <select
+                    id="tabs"
+                    name="tabs"
+                    className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
+                    defaultValue={tabs.length > 0 ? getDefaultTabName(tabs) : ""}
+                  >
+                    {tabs.map((tab) => (
+                      <option key={tab.name}>{tab.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="hidden sm:block">
+                  <nav
+                    className="isolate flex divide-x divide-stroke1 rounded-lg"
+                    aria-label="Tabs"
+                  >
+                    {tabs.map((tab, tabIdx) => (
+                      <a
+                        key={tab.name}
+                        href={tab.href}
+                        className={classNames(
+                          tab.current ? "text-active" : "text-light1 hover:text-gray-700",
+                          tabIdx === 0 ? "rounded-l-lg" : "",
+                          tabIdx === tabs.length - 1 ? "rounded-r-lg" : "",
+                          "group relative min-w-0 flex-1 overflow-hidden py-3 bg-transparent text-center text-xs font-medium hover:bg-background focus:z-10",
+                        )}
+                        aria-current={tab.current ? "page" : undefined}
+                      >
+                        <span>{tab.name}</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            tab.current ? "bg-primary" : "bg-transparent",
+                            "absolute inset-x-0 bottom-0 h-0.5",
+                          )}
+                        />
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </div>
+              <div className="relative -mx-5 my-5 -mt-0">
+                <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                  <div className="w-full border-t border-stroke1" />
+                </div>
+              </div>
               <div className="relative m-6 mb-3 rounded-lg shadow-sm">
                 <div className="absolute m-3 inset-y-0 left-0 flex items-center">
                   <label htmlFor="filter" className="sr-only">
@@ -97,25 +171,19 @@ export default function HandleAplication() {
                               scope="col"
                               className="py-3 pl-3.5 text-sm font-semibold text-primary"
                             >
-                              Project Name
+                              Logo
                             </th>
                             <th
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
-                              Name
+                              Company Name
                             </th>
                             <th
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
-                              Role
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-3 py-3.5 text-sm font-semibold text-primary"
-                            >
-                              Status
+                              Description
                             </th>
                             <th
                               scope="col"
@@ -126,50 +194,32 @@ export default function HandleAplication() {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
-                          {handle.map((handler) => (
-                            <tr key={handler.id}>
+                          {company.map((companys) => (
+                            <tr key={companys.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                                {handler.id}
+                                {companys.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {handler.project}
+                                <img
+                                  className="rounded-md h-auto w-[1000px]"
+                                  src={companys.logo}
+                                  alt=""
+                                />
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {handler.name}
+                                {companys.company}
                               </td>
-                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
-                                {handler.role}
+                              <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
+                                {companys.description}
                               </td>
-                              <td className="whitespace-nowrap flex flex-col gap-3 text-center px-3 py-4 text-sm text-primary">
-                                <a href="">
-                                  <button
-                                    type="button"
-                                    className="rounded-full bg-white px-6 py-2.5 text-sm font-normal text-primary shadow-sm ring-1 ring-inset ring-primary hover:bg-slate-50"
-                                  >
-                                    Approve
-                                  </button>
-                                </a>
-                                <a href="">
-                                  <button
-                                    type="button"
-                                    className="rounded-full bg-white px-6 py-2.5 text-sm font-normal text-danger shadow-sm ring-1 ring-inset ring-danger hover:bg-slate-50"
-                                  >
-                                    Decline
-                                  </button>
-                                </a>
-                              </td>
-                              <td className="px-3 py-4 text-sm text-primary ">
-                                <a href="/admin/handle-application/handle-detail" className="">
-                                  <RiShareBoxLine className="size-5" />
-                                  <span className="sr-only">, {handler.id}</span>
-                                </a>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
                                 <a href="#" className="">
                                   <MdEdit className="size-5" />
-                                  <span className="sr-only">, {handler.id}</span>
+                                  <span className="sr-only">, {company.id}</span>
                                 </a>
                                 <a href="#" className="">
                                   <MdDelete className="size-5" />
-                                  <span className="sr-only">, {handler.id}</span>
+                                  <span className="sr-only">, {company.id}</span>
                                 </a>
                               </td>
                             </tr>

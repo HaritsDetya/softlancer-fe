@@ -2,15 +2,14 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ActiveUserContent from "@/components/admin/ActiveUserContent";
-
-export default function Active_User() {
+import AddForm from "@/components/admin/projects-management/AddForm";
+export default function AddForm() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ActiveUserContent/>
+        <AddForm/>
       </GoogleOAuthProvider>
     </div>
   );

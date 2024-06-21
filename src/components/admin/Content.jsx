@@ -3,7 +3,14 @@ import Sidebar from "./Sidebar";
 import "@/pages/admin/main";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
+import { FaArrowRightLong } from "react-icons/fa6";
 
+const stats = [
+  { name: "Total Project", stat: "21" },
+  { name: "Project Open", stat: "11" },
+  { name: "Project Close", stat: "13" },
+  { name: "Waiting Acceptance", stat: "13" },
+];
 export default function Content() {
   const [project, setProject] = useState([]);
 
@@ -41,7 +48,7 @@ export default function Content() {
           </div>
         </div>
         <div className="p-5">
-          <div className="w-[65%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {/* <div className="w-[65%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
               <div className="flex justify-between text-active">
                 <div>
@@ -58,7 +65,19 @@ export default function Content() {
               <div className="flex justify-between text-active">
                 <div>
                   <div className="text-6xl font-semibold mb-1">11</div>
-                  <div className="text-base font-semibold">Projects Availlable</div>
+                  <div className="text-base font-semibold">Projects Open</div>
+                </div>
+                <div>
+                  <img src="" alt="" />
+                  <a href="">tes</a>
+                </div>
+              </div>
+            </div>
+            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
+              <div className="flex justify-between text-active">
+                <div>
+                  <div className="text-6xl font-semibold mb-1">13</div>
+                  <div className="text-base font-semibold">Projects Close </div>
                 </div>
                 <div>
                   <img src="" alt="" />
@@ -78,27 +97,29 @@ export default function Content() {
                 </div>
               </div>
             </div>
-            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
-              <div className="flex justify-between text-active">
-                <div>
-                  <div className="text-6xl font-semibold mb-1">13</div>
-                  <div className="text-base font-semibold">Waiting Accepted </div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                  <a href="">tes</a>
-                </div>
+          </div> */}
+          <dl className="grid grid-cols-1 gap-5 sm:grid-cols-4">
+            {stats.map((item) => (
+              <div
+                key={item.name}
+                className="overflow-hidden rounded-2xl bg-light px-4 py-5 shadow sm:p-6"
+              >
+                <dd className="mt-1 text-5xl font-semibold tracking-tight text-active">
+                  {item.stat}
+                </dd>
+                <dt className="truncate text-sm font-bold text-active">{item.name}</dt>
               </div>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 text-active">
+            ))}
+          </dl>
+          <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 text-active">
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Users Recent</div>
-                <div className="bg-white1 px-4 py-2 rounded-xl">
+                <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
                   <button type="button" className="font-semibold">
                     See All
                   </button>
+                  <FaArrowRightLong />
                 </div>
               </div>
               <div className="overflow-x-auto">
@@ -161,10 +182,11 @@ export default function Content() {
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Project Recent</div>
-                <div className="bg-white1 px-4 py-2 rounded-xl">
+                <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
                   <button type="button" className="font-semibold">
                     See All
                   </button>
+                  <FaArrowRightLong />
                 </div>
               </div>
               <div className="overflow-x-auto">

@@ -2,15 +2,19 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ActiveUserContent from "@/components/admin/ActiveUserContent";
+import CompanyManagement from "@/components/admin/CompanyManagement";
+import { useRouter } from "next/router";
 
-export default function Active_User() {
+export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
+
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ActiveUserContent/>
+        <CompanyManagement/>
       </GoogleOAuthProvider>
     </div>
   );

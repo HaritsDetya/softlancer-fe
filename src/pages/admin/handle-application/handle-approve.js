@@ -2,15 +2,14 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ActiveUserContent from "@/components/admin/ActiveUserContent";
-
-export default function Active_User() {
+import HandleApprove from "@/components/admin/HandleApprove";
+export default function HandleApprove() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ActiveUserContent/>
+        <HandleApprove/>
       </GoogleOAuthProvider>
     </div>
   );
