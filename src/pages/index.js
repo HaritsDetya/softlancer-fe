@@ -33,7 +33,6 @@ export default function Home() {
     const userData = JSON.parse(user);
     if (userData.phone_number === null) {
       router.push("/profile");
-      toast.info("Please fill your phone number first");
     }
   }
 

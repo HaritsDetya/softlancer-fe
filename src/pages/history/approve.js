@@ -5,7 +5,7 @@ import HistoryNavigation from "@/components/user/history/HistoryNavigation";
 import HistoryContainer from "@/components/user/history/HistoryContainer";
 import HistoryCard from "@/components/user/history/HistoryCard";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HistoryCardSkeleton from "@/components/user/history/HistoryCardSkeleton";
 
@@ -24,7 +24,7 @@ export default function historyApprove() {
 
       setHistory(res.data.data);
     } catch (error) {
-      toast.error("Something went wrong," + error);
+      toast.error("No history found");
     } finally {
       setIsLoading(false);
     }
