@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
-export default function PostProject({id}) {
+export default function PostProject({ id }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
@@ -43,12 +43,16 @@ export default function PostProject({id}) {
     return classes.filter(Boolean).join(" ");
   }
 
+  const getDefaultTabName = (tabs) => {
+    const currentTab = tabs.find((tab) => tab.current);
+    return currentTab ? currentTab.name : "";
+  };
+
   const [selected, setSelected] = useState(role1[2]);
   const [select, setSelect] = useState(job1[2]);
 
   return (
     <>
-      <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
@@ -78,7 +82,7 @@ export default function PostProject({id}) {
                     id="tabs"
                     name="tabs"
                     className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={tabs.find((tab) => tab.current).name}
+                    defaultValue={tabs.length > 0 ? getDefaultTabName(tabs) : ""}
                   >
                     {tabs.map((tab) => (
                       <option key={tab.name}>{tab.name}</option>

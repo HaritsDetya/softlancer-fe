@@ -7,26 +7,26 @@ export default function Sidebar( { id } ) {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
-  const thirdElement = pathParts[3];
-  const fourthElement = pathParts[4];
+  const thirdElement = pathParts[2];
+  const fourthElement = pathParts[3];
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: `/admin/${id}/main`, current: thirdElement === "main" },
-    { name: "Active Users", href: `/admin/${id}/active-user`, current: thirdElement === "active-user" },
+    { name: "Dashboard", href: `/admin/main`, current: thirdElement === "main" },
+    { name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
     {
       name: "Companys Management",
-      href: `/admin/company-management/${id}/all-company`,
+      href: `/admin/company-management/all-company`,
       current: fourthElement === "all-company",
     },
     {
       name: "Projects Management",
-      href: `/admin/project-management/${id}/all-projects`,
+      href: `/admin/project-management/all-projects`,
       current: fourthElement === "all-projects",
     },
     {
       name: "Handle applications",
-      href: `/admin/handle-application/${id}/handle-application`,
+      href: `/admin/handle-application/handle-application`,
       current: fourthElement === "handle-application",
     },
   ];
