@@ -22,17 +22,17 @@ export default function ProjectsManagement({ tab, id }) {
   const tabs = [
     {
       name: "All Projects",
-      href: `/admin/project-management/${id}/all-projects`,
+      href: `/admin/project-management/all-projects`,
       current: currentPath === "all-projects",
     },
     {
       name: "Post Projects",
-      href: `/admin/project-management/${id}/post-projects`,
+      href: `/admin/project-management/post-projects`,
       current: currentPath === "post-projects",
     },
     {
       name: "Form",
-      href: `/admin/project-management/${id}/form`,
+      href: `/admin/project-management/form`,
       current: currentPath === "form",
     },
   ];
@@ -48,7 +48,7 @@ export default function ProjectsManagement({ tab, id }) {
 
   return (
     <>
-      <main className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
+      <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
             <CalendarIcon className="w-auto h-8" aria-hidden="true" />

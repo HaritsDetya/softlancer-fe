@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import "@/pages/admin/main";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
+import AdminNav from "./AdminNav";
 
 const stats = [
   { name: "Total Project", stat: "21" },
@@ -31,22 +31,8 @@ export default function Content() {
   return (
     <>
       <Sidebar />
-      <div className="w-full md:w-[calc(100%-256px)] md:ml-72 bg-gray-50 min-h-screen transition-all main">
-        <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
-          <div className="flex gap-3 items-center text-lg text-primary ">
-            <CalendarIcon className="w-auto h-8" aria-hidden="true" />
-            <span className="font-semibold">March 16, 2024</span>
-          </div>
-          <div className="absolute flex right-5">
-            <div className="bg-primary rounded-lg px-5 py-3.5 text-white">A</div>
-            <div className="pl-2">
-              <div className="">
-                <span className="font-semibold text-lg">Annisa Salma Rafida</span>
-              </div>
-              <span className="flex text-sm">anisahslmrrr@gmail.com</span>
-            </div>
-          </div>
-        </div>
+      <div className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+        <AdminNav/>
         <div className="p-5">
           {/* <div className="w-[65%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
