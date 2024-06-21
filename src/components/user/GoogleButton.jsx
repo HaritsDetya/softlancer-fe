@@ -40,7 +40,8 @@ export default function GoogleButton() {
         },
       });
       if (!res.ok) {
-        throw new Error("Failed to fetch profile");
+        toast.error("Failed to get user profile");
+        return;
       }
       const data = await res.json();
       setUser(data.data);
@@ -49,7 +50,7 @@ export default function GoogleButton() {
       localStorage.setItem("user", JSON.stringify(data.data));
 
       if (data.data.is_admin === 1) {
-        router.push("/admin/");
+        router.push("/admin");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -85,11 +86,12 @@ export default function GoogleButton() {
       });
 
       if (!res.ok) {
-        throw new Error("Internal Server Error");
+        toast.error("Internal Server Error");
       }
 
       const data = await res.json();
       localStorage.setItem("token", data.token);
+      toast.success("Login Success");
       setIsLogin(true);
       fetchUserProfile(data.token);
     } catch (error) {
