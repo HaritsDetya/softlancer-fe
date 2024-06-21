@@ -4,7 +4,7 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { MdEdit, MdDelete } from "react-icons/md";
 
-export default function ProjectsManagement() {
+export default function ProjectsManagement({ tab, id }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
@@ -22,17 +22,17 @@ export default function ProjectsManagement() {
   const tabs = [
     {
       name: "All Projects",
-      href: "/admin/project-management/all-projects",
+      href: `/admin/project-management/${id}/all-projects`,
       current: currentPath === "all-projects",
     },
     {
       name: "Post Projects",
-      href: `/admin/project-management/post-projects`,
+      href: `/admin/project-management/${id}/post-projects`,
       current: currentPath === "post-projects",
     },
     {
       name: "Form",
-      href: `/admin/project-management/form`,
+      href: `/admin/project-management/${id}/form`,
       current: currentPath === "form",
     },
   ];
@@ -40,6 +40,11 @@ export default function ProjectsManagement() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  const getDefaultTabName = (tabs) => {
+    const currentTab = tabs.find((tab) => tab.current);
+    return currentTab ? currentTab.name : "";
+  };
 
   return (
     <>
@@ -72,7 +77,7 @@ export default function ProjectsManagement() {
                     id="tabs"
                     name="tabs"
                     className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={tabs.find((tab) => tab.current).name}
+                    defaultValue={tabs.length > 0 ? getDefaultTabName(tabs) : ""}
                   >
                     {tabs.map((tab) => (
                       <option key={tab.name}>{tab.name}</option>

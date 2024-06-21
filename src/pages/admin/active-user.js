@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ActiveUserContent from "@/components/admin/ActiveUserContent";
 
-export default function Main() {
+export default function ActiveUserContent() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
-export default function PostProject() {
+export default function PostProject({id}) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];

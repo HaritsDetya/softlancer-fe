@@ -3,7 +3,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Form from "@/components/admin/projects-management/Form";
-export default function Main() {
+export default function Form() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   return (

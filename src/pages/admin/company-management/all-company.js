@@ -5,7 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import CompanyManagement from "@/components/admin/CompanyManagement";
 import { useRouter } from "next/router";
 
-export default function Main() {
+export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   const router = useRouter();

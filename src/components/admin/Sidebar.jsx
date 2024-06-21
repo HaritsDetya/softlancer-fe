@@ -3,30 +3,30 @@ import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { TbLogout } from "react-icons/tb";
 
-export default function Sidebar() {
+export default function Sidebar( { id } ) {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
-  const thirdElement = pathParts[2];
-  const fourthElement = pathParts[3];
+  const thirdElement = pathParts[3];
+  const fourthElement = pathParts[4];
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: "/admin/main", current: thirdElement === "main" },
-    { name: "Active Users", href: "/admin/active-user", current: thirdElement === "active-user" },
+    { name: "Dashboard", href: `/admin/${id}/main`, current: thirdElement === "main" },
+    { name: "Active Users", href: `/admin/${id}/active-user`, current: thirdElement === "active-user" },
     {
       name: "Companys Management",
-      href: "/admin/company-management/all-company",
+      href: `/admin/company-management/${id}/all-company`,
       current: fourthElement === "all-company",
     },
     {
       name: "Projects Management",
-      href: "/admin/project-management/all-projects",
+      href: `/admin/project-management/${id}/all-projects`,
       current: fourthElement === "all-projects",
     },
     {
       name: "Handle applications",
-      href: "/admin/handle-application/handle-application",
+      href: `/admin/handle-application/${id}/handle-application`,
       current: fourthElement === "handle-application",
     },
   ];
@@ -34,9 +34,6 @@ export default function Sidebar() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
-  const currentItem = menu.find((item) => item.current);
-  const defaultValue = currentItem ? currentItem.name : menu[0].name;
 
   return (
     <>
@@ -56,7 +53,6 @@ export default function Sidebar() {
                     id="menu"
                     name="menu"
                     className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={defaultValue}
                   >
                     {menu.map((item) => (
                       <option key={item.name}>{item.name}</option>
