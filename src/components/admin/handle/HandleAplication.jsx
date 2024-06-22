@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
@@ -18,10 +18,6 @@ export default function HandleAplication() {
       role: "UI/UX Designer",
     },
   ];
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   return (
     <>
