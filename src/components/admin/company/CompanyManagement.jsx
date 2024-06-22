@@ -1,7 +1,8 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 export default function CompanyManagement() {
   const router = useRouter();
@@ -11,9 +12,10 @@ export default function CompanyManagement() {
   const company = [
     {
       id: 1,
-      project: "Grab Wallet",
+      logo: "/images/grab.svg",
       company: "PT Grab Teknologi Indonesia",
-      type: "On-Site",
+      description:
+        "PT Grab Teknologi Indonesia adalah sebuah perusahaan yang berfokus pada teknologi dan inovasi. Perusahaan ini didedikasikan untuk menyediakan solusi teknologi terkini dan mengembangkan layanan yang memudahkan kehidupan sehari-hari. Dengan tim yang berpengalaman dan berkomitmen tinggi, PT Grab Teknologi Indonesia terus memperluas jangkauan dan meningkatkan kualitas layanannya untuk mencapai visi menjadi pemimpin dalam industri teknologi di Indonesia.",
     },
   ];
 
@@ -155,7 +157,7 @@ export default function CompanyManagement() {
                             scope="col"
                             className="py-3 pl-3.5 text-sm font-semibold text-primary"
                           >
-                            Projects Name
+                            Logo
                           </th>
                           <th
                             scope="col"
@@ -167,24 +169,44 @@ export default function CompanyManagement() {
                             scope="col"
                             className="px-3 py-3.5 text-sm font-semibold text-primary"
                           >
-                            Projects Type
+                            Description
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-sm font-semibold text-primary"
+                          >
+                            Action
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y-2 text-center divide-stroke bg-white">
+                      <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
                         {company.map((companys) => (
                           <tr key={companys.id}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                               {companys.id}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {companys.project}
+                              <img
+                                className="rounded-md h-auto w-[1000px]"
+                                src={companys.logo}
+                                alt=""
+                              />
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                               {companys.company}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {companys.type}
+                            <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
+                              {companys.description}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
+                              <a href="#" className="">
+                                <MdEdit className="size-5" />
+                                <span className="sr-only">, {company.id}</span>
+                              </a>
+                              <a href="#" className="">
+                                <MdDelete className="size-5" />
+                                <span className="sr-only">, {company.id}</span>
+                              </a>
                             </td>
                           </tr>
                         ))}

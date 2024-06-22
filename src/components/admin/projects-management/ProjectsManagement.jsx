@@ -12,10 +12,9 @@ export default function ProjectsManagement({ tab, id }) {
   const company = [
     {
       id: 1,
-      logo: "/images/grab.svg",
+      project: "Grab Wallet",
       company: "PT Grab Teknologi Indonesia",
-      description:
-        "PT Grab Teknologi Indonesia adalah sebuah perusahaan yang berfokus pada teknologi dan inovasi. Perusahaan ini didedikasikan untuk menyediakan solusi teknologi terkini dan mengembangkan layanan yang memudahkan kehidupan sehari-hari. Dengan tim yang berpengalaman dan berkomitmen tinggi, PT Grab Teknologi Indonesia terus memperluas jangkauan dan meningkatkan kualitas layanannya untuk mencapai visi menjadi pemimpin dalam industri teknologi di Indonesia.",
+      type: "On-Site",
     },
   ];
 
@@ -171,7 +170,7 @@ export default function ProjectsManagement({ tab, id }) {
                               scope="col"
                               className="py-3 pl-3.5 text-sm font-semibold text-primary"
                             >
-                              Logo
+                              Projects Name
                             </th>
                             <th
                               scope="col"
@@ -183,44 +182,24 @@ export default function ProjectsManagement({ tab, id }) {
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
-                              Description
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-3 py-3.5 text-sm font-semibold text-primary"
-                            >
-                              Action
+                              Projects Type
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
+                        <tbody className="divide-y-2 text-center divide-stroke bg-white">
                           {company.map((companys) => (
                             <tr key={companys.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                                 {companys.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                <img
-                                  className="rounded-md h-auto w-[1000px]"
-                                  src={companys.logo}
-                                  alt=""
-                                />
+                                {companys.project}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                                 {companys.company}
                               </td>
-                              <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
-                                {companys.description}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
-                                <a href="#" className="">
-                                  <MdEdit className="size-5" />
-                                  <span className="sr-only">, {company.id}</span>
-                                </a>
-                                <a href="#" className="">
-                                  <MdDelete className="size-5" />
-                                  <span className="sr-only">, {company.id}</span>
-                                </a>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {companys.type}
                               </td>
                             </tr>
                           ))}

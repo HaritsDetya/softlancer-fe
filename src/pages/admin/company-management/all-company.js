@@ -2,7 +2,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import CompanyManagement from "@/components/admin/CompanyManagement";
+import CompanyManagement from "@/components/admin/company/CompanyManagement";
 import { useRouter } from "next/router";
 
 export default function AllProjects() {
