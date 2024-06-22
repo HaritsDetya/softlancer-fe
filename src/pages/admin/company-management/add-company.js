@@ -2,7 +2,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import AddCompany from "@/components/admin/AddCompany";
+import AddCompany from "@/components/admin/company/AddCompany";
 import { useRouter } from "next/router";
 
 export default function AddCompanys() {

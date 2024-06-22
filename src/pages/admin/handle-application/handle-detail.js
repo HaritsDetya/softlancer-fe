@@ -2,7 +2,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import HandleDetail from "@/components/admin/HandleDetail";
+import HandleDetail from "@/components/admin/handle/HandleDetail";
 export default function Detail() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
