@@ -1,6 +1,5 @@
 // pages/index.js
 import React, { useEffect, useState } from "react";
-import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ActiveUserContent from "@/components/admin/ActiveUserContent";
 import { useRouter } from "next/router";
@@ -11,14 +10,13 @@ export default function Active_User() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const router = useRouter();
   const [admin, setAdmin] = useState(null);
-  const [users, setProject] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const FetchUsers = async () => {
+  const fetchUsers = async () => {
     try {
-      const res = await axios.get(process.env.API_URL + "/role", "/login");
-      const response = res.data;
-      setProject(response.data);
+      const res = await axios.get(process.env.API_URL + "/users");
+      setUsers(res.data);
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -26,23 +24,33 @@ export default function Active_User() {
     }
   };
 
-  // if (admin) {
-  //   const userData = JSON.parse(admin);
-  //   if (userData.phone_number === null) {
-  //     router.push("/profile");
-  //     toast.info("Please fill your phone number first");
-  //   }
-  // }
+  useEffect(() => {
+    fetchUsers();
+    const storedAdmin = localStorage.getItem("admin");
+    if (storedAdmin) {
+      try {
+        const parsedAdmin = JSON.parse(storedAdmin);
+        setAdmin(parsedAdmin);
+      } catch (error) {
+        console.error("Error parsing admin data from localStorage:", error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
-    FetchUsers();
-    setAdmin(localStorage.getItem("admin"));
-  }, []);
+    if (admin) {
+      console.log("Admin data:", admin);
+      if (admin.phone_number === null) {
+        router.push("/profile");
+        toast.info("Please fill your phone number first");
+      }
+    }
+  }, [admin, router]);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <ActiveUserContent users={users}/>
+        <ActiveUserContent users={users} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Sidebar from "./Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import AdminNav from "./AdminNav";
 
@@ -11,79 +9,18 @@ const stats = [
   { name: "Project Close", stat: "13" },
   { name: "Waiting Acceptance", stat: "13" },
 ];
-export default function Content() {
-  const [project, setProject] = useState([]);
 
-  const FetchProjects = async () => {
-    try {
-      const res = await axios.get(process.env.API_URL + "/projects");
-      const response = res.data;
-      setProject(response.data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-    FetchProjects();
-  }, []);
+export default function Content({ users, projects, isLoading }) {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <Sidebar />
       <div className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5">
-          {/* <div className="w-[65%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
-              <div className="flex justify-between text-active">
-                <div>
-                  <div className="text-6xl font-semibold mb-1">21</div>
-                  <div className="text-base font-semibold">Total project</div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                  <a href="">tes</a>
-                </div>
-              </div>
-            </div>
-            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
-              <div className="flex justify-between text-active">
-                <div>
-                  <div className="text-6xl font-semibold mb-1">11</div>
-                  <div className="text-base font-semibold">Projects Open</div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                  <a href="">tes</a>
-                </div>
-              </div>
-            </div>
-            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
-              <div className="flex justify-between text-active">
-                <div>
-                  <div className="text-6xl font-semibold mb-1">13</div>
-                  <div className="text-base font-semibold">Projects Close </div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                  <a href="">tes</a>
-                </div>
-              </div>
-            </div>
-            <div className="bg-light rounded-xl border border-gray-100 p-4 shadow-md shadow-black/5">
-              <div className="flex justify-between text-active">
-                <div>
-                  <div className="text-6xl font-semibold mb-1">13</div>
-                  <div className="text-base font-semibold">Waiting Accepted </div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                  <a href="">tes</a>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <dl className="grid grid-cols-1 gap-5 sm:grid-cols-4">
             {stats.map((item) => (
               <div
@@ -122,45 +59,19 @@ export default function Content() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">1</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Annisa Salma Rafida</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          anisahsalmarafida@mail.ugm.ac.id
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">2</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Aprilia Wulandari</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          apriliawulandari@mail.ugm.ac.id
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 rounded-bl-md border-y-stroke">
-                        <span className="text-[13px] font-medium">3</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Miftah Sabirah</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 rounded-be-md border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          miftahsabirah@mail.ugm.ac.id
-                        </span>
-                      </td>
-                    </tr>
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{user.id}</span>
+                        </td>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{user.name}</span>
+                        </td>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{user.email}</span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -191,45 +102,19 @@ export default function Content() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">1</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Grab Wallet</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          Project Grab Wallet adalah inisiatif{" "}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">1</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Grab Wallet</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          Project Grab Wallet adalah inisiatif{" "}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">1</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">Grab Wallet</span>
-                      </td>
-                      <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                        <span className="text-[13px] font-medium">
-                          Project Grab Wallet adalah inisiatif{" "}
-                        </span>
-                      </td>
-                    </tr>
+                    {projects.map((project) => (
+                      <tr key={project.id}>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{project.id}</span>
+                        </td>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{project.name}</span>
+                        </td>
+                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                          <span className="text-[13px] font-medium">{project.description}</span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

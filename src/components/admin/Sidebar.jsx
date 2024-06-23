@@ -12,10 +12,10 @@ export default function Sidebar( { id } ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: `/admin/dashboard`, current: pathParts === "dashboard" },
+    { name: "Dashboard", href: `/admin/dashboard`, current: thirdElement === "dashboard" },
     { name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
     {
-      name: "Companys Management",
+      name: "Companies Management",
       href: `/admin/company-management/all-company`,
       current: fourthElement === "all-company",
     },
