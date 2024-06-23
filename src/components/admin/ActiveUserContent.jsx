@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import AdminNav from "./AdminNav";
 
-export default function ActiveUserContent({users, isLoading}) {
+export default function ActiveUserContent({ users, isLoading }) {
   const [search, setSearch] = useState("");
 
   return (
     <>
       <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5 m-5 bg-light rounded-xl">
           <div className="grid grid-cols-1 mb-6 text-active text-center">
             <div className="relative mt-2 mb-3 rounded-lg shadow-sm">
@@ -113,6 +113,27 @@ export default function ActiveUserContent({users, isLoading}) {
                             </td>
                           </tr>
                         ))}
+                          users.map((user) => (
+                            <tr key={user.id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                {user.id}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {user.name}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {user.email}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {user.phone}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {user.roles !== null &&
+                                  user.roles.slice(0, 3).map((role) => role.role + " ")}{" "}
+                                ...
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
