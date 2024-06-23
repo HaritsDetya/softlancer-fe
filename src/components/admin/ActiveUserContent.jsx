@@ -1,38 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import axios from "axios";
-import { CalendarIcon } from "@heroicons/react/24/outline";
 import AdminNav from "./AdminNav";
 
-export default function ActiveUserContent() {
-  const [people, setPeople] = useState([]);
-  const [filter, setFilter] = useState("");
+export default function ActiveUserContent({ users, isLoading }) {
   const [search, setSearch] = useState("");
-
-  const fetchUsers = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setPeople(res.data.data);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const handleSearch = () => {
-    // const filteredUsers = people.filter((person) =>
-    //   person.name.toLowerCase().includes(search.toLowerCase()),
-    // );
-    // setPeople(filteredUsers);
-  };
 
   return (
     <>
@@ -51,8 +23,7 @@ export default function ActiveUserContent() {
                   name="filter"
                   autoComplete="filter"
                   className="h-full rounded-lg ring-1 ring-primary bg-transparent py-0 pl-3 pr-7 text-active focus:outline-none focus:ring-2 focus:ring-inset focus:ring-active sm:text-sm"
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
+                  // onChange={(e) => setFilter(e.target.value)}
                 >
                   <option value="">Filter</option>
                   <option value="id">Id</option>
@@ -73,7 +44,7 @@ export default function ActiveUserContent() {
               <div className="absolute m-3 inset-y-0 right-0 mr-4 flex items-center">
                 <button
                   type="button"
-                  onClick={() => handleSearch}
+                  onClick={(e) => handleSearch}
                   className="h-full rounded-lg bg-primary px-7 py-0 text-xs font-normal text-white shadow-sm hover:bg-active"
                 >
                   Search
@@ -120,23 +91,25 @@ export default function ActiveUserContent() {
                         </tr>
                       </thead>
                       <tbody className="divide-y-2 divide-stroke bg-white">
-                        {people &&
-                          people.map((person) => (
-                            <tr key={person.id}>
+                        {users &&
+                          users.map((user) => (
+                            <tr key={user.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                                {person.id}
+                                {user.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {person.name}
+                                {user.name}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {person.email}
+                                {user.email}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {person.phone}
+                                {user.phone}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {person.roles.join(", ")}
+                                {user.roles !== null &&
+                                  user.roles.slice(0, 3).map((role) => role.role + " ")}{" "}
+                                ...
                               </td>
                             </tr>
                           ))}

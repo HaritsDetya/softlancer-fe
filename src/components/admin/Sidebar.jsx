@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { TbLogout } from "react-icons/tb";
+import { BiSolidDashboard } from "react-icons/bi";
+import { IoMdPerson } from "react-icons/io";
+import { FaBuilding, FaHandHolding } from "react-icons/fa";
+import { PiBagSimpleFill } from "react-icons/pi";
 
-export default function Sidebar( { id } ) {
+export default function Sidebar() {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
@@ -12,19 +16,22 @@ export default function Sidebar( { id } ) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menu = [
-    { name: "Dashboard", href: `/admin/dashboard`, current: thirdElement === "dashboard" },
-    { name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
+    { icon: <BiSolidDashboard />, name: "Dashboard", href: `/admin/dashboard`, current: thirdElement === "dashboard" },
+    { icon: <IoMdPerson />, name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
     {
+      icon: <FaBuilding />,
       name: "Companies Management",
       href: `/admin/company-management/all-company`,
       current: fourthElement === "all-company",
     },
     {
+      icon: <PiBagSimpleFill />,
       name: "Projects Management",
       href: `/admin/project-management/all-projects`,
       current: fourthElement === "all-projects",
     },
     {
+      icon: <FaHandHolding />,
       name: "Handle applications",
       href: `/admin/handle-application/handle-application`,
       current: fourthElement === "handle-application",
@@ -66,12 +73,13 @@ export default function Sidebar( { id } ) {
                         href={item.href}
                         className={classNames(
                           item.current ? "bg-background" : "text-dark1 hover:bg-background",
-                          "group flex gap-x-3 rounded-md p-4 text-sm leading-6 font-semibold",
+                          "group flex gap-x-3 rounded-md p-4 text-sm leading-6 font-semibold"
                         )}
                         onClick={() => {
                           window.location.pathname = item.href;
                         }}
                       >
+                        <span className="text-black self-center">{item.icon}</span>
                         {item.name}
                       </a>
                     </li>

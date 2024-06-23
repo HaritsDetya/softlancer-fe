@@ -1,7 +1,16 @@
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import GoogleButton from "../user/GoogleButton";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function AdminNav({ admin }) {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
   return (
     <>
       <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
@@ -11,10 +20,17 @@ export default function AdminNav({ admin }) {
         </div>
         <div className="absolute flex right-5">
           <div className="pl-2">
+            <Image
+              className="rounded-full"
+              src={user.avatar !== "" ? user.avatar : "/icon/user_icon.png"}
+              alt="User Avatar"
+              width={30}
+              height={30}
+            />
             <div className="">
-              <span className="font-semibold text-lg">Annisa Salma Rafida</span>
+              <span className="font-semibold text-lg">{user.name}</span>
             </div>
-            <span className="flex text-sm">anisahslmrrr@gmail.com</span>
+            <span className="flex text-sm">{user.email}</span>
           </div>
         </div>
       </div>
