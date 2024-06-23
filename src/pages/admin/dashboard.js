@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import axios from 'axios';
 
 export default function Main() {
-  const clientId = process.env.GOOGLE_CLIENT_ID; // Use NEXT_PUBLIC_ prefix for env variables in Next.js
+  const clientId = process.env.GOOGLE_CLIENT_ID;
   const router = useRouter();
   const [admin, setAdmin] = useState(null);
   const [users, setUsers] = useState([]);

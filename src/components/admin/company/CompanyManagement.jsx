@@ -41,7 +41,7 @@ export default function CompanyManagement() {
     <>
       <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5 m-5 bg-light rounded-xl">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="w-1/3">
