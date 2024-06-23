@@ -28,14 +28,22 @@ export default function Active_User() {
     fetchUsers();
     const storedAdmin = localStorage.getItem("admin");
     if (storedAdmin) {
-      setAdmin(JSON.parse(storedAdmin));
+      try {
+        const parsedAdmin = JSON.parse(storedAdmin);
+        setAdmin(parsedAdmin);
+      } catch (error) {
+        console.error("Error parsing admin data from localStorage:", error);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (admin && admin.phone_number === null) {
-      router.push("/profile");
-      toast.info("Please fill your phone number first");
+    if (admin) {
+      console.log("Admin data:", admin);
+      if (admin.phone_number === null) {
+        router.push("/profile");
+        toast.info("Please fill your phone number first");
+      }
     }
   }, [admin, router]);
 
