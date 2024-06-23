@@ -9,33 +9,34 @@ import axios from "axios";
 
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
-  const [data, setData] = React.useState({});
-  const router = useRouter();
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const FetchData = async () => {
+  const fetchDataProjects = async () => {
     try {
-      const res = await axios.get(`${process.env.API_URL}/projects`);
-      if (!res.data.data) {
-        router.push("/404");
-      } else {
-        setData(res.data.data);
-      }
+      const token = localStorage.getItem("token");
+      const res = await axios.get(process.env.API_URL + "/projects", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setProjects(res.data.data);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error fetching data projects:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (id) {
-      FetchData();
-    }
-  }, [id]);
+    fetchDataProjects();
+  }, []);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar id={id} />
-        <ProjectsManagement project={data} company={data.company} />
+        <Sidebar />
+        <ProjectsManagement projects={projects} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

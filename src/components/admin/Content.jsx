@@ -42,7 +42,7 @@ export default function Content({ users, projects, isLoading }) {
                   <FaArrowRightLong />
                 </div>
               </div>
-              <div className="overflow-x-auto">
+              <div className="overflow-scroll max-h-80">
                 <table className="w-full min-w-[540px]" data-tab-for="order">
                   <thead>
                     <tr className="font-bold">
@@ -84,7 +84,7 @@ export default function Content({ users, projects, isLoading }) {
                   <FaArrowRightLong />
                 </div>
               </div>
-              <div className="overflow-x-auto">
+              <div className="overflow-scroll max-h-80">
                 <table className="w-full min-w-[540px]" data-tab-for="order">
                   <thead>
                     <tr className="font-bold">
