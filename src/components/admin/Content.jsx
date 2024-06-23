@@ -11,9 +11,6 @@ const stats = [
 ];
 
 export default function Content({ users, projects, isLoading }) {
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -59,7 +56,8 @@ export default function Content({ users, projects, isLoading }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((user) => (
+                    {users &&
+                    users.map((user) => (
                       <tr key={user.id}>
                         <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
                           <span className="text-[13px] font-medium">{user.id}</span>
@@ -102,16 +100,17 @@ export default function Content({ users, projects, isLoading }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {projects.map((project) => (
+                    {projects &&
+                    projects.map((project) => (
                       <tr key={project.id}>
                         <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
                           <span className="text-[13px] font-medium">{project.id}</span>
                         </td>
                         <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{project.name}</span>
+                          <span className="text-[13px] font-medium">{project.project_title}</span>
                         </td>
                         <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{project.description}</span>
+                          <span className="text-[13px] font-medium">{project.project_description}</span>
                         </td>
                       </tr>
                     ))}

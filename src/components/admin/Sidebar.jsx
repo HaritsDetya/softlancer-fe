@@ -6,18 +6,30 @@ import { BiSolidDashboard } from "react-icons/bi";
 import { IoMdPerson } from "react-icons/io";
 import { FaBuilding, FaHandHolding } from "react-icons/fa";
 import { PiBagSimpleFill } from "react-icons/pi";
+import { toast } from "react-toastify";
 
-export default function Sidebar() {
+export default function Sidebar({}) {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
   const thirdElement = pathParts[2];
   const fourthElement = pathParts[3];
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [setSidebarOpen] = useState(false);
+  const [user] = useState({});
 
   const menu = [
-    { icon: <BiSolidDashboard />, name: "Dashboard", href: `/admin/dashboard`, current: thirdElement === "dashboard" },
-    { icon: <IoMdPerson />, name: "Active Users", href: `/admin/active-user`, current: thirdElement === "active-user" },
+    {
+      icon: <BiSolidDashboard />,
+      name: "Dashboard",
+      href: `/admin/dashboard`,
+      current: thirdElement === "dashboard",
+    },
+    {
+      icon: <IoMdPerson />,
+      name: "Active Users",
+      href: `/admin/active-user`,
+      current: thirdElement === "active-user",
+    },
     {
       icon: <FaBuilding />,
       name: "Companies Management",
@@ -37,6 +49,26 @@ export default function Sidebar() {
       current: fourthElement === "handle-application",
     },
   ];
+
+  const handleLogoutClick = () => {
+    try {
+      // Perform logout logic here
+      const res = axios.get(process.env.API_URL + "/logout", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      if (res) {
+        toast.success("Logout Success");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        router.reload();
+      }
+    } catch (error) {
+      toast.error("Internal Server Error");
+    }
+  };
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -73,7 +105,7 @@ export default function Sidebar() {
                         href={item.href}
                         className={classNames(
                           item.current ? "bg-background" : "text-dark1 hover:bg-background",
-                          "group flex gap-x-3 rounded-md p-4 text-sm leading-6 font-semibold"
+                          "group flex gap-x-3 rounded-md p-4 text-sm leading-6 font-semibold",
                         )}
                         onClick={() => {
                           window.location.pathname = item.href;

@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 
 export default function Active_User() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
-  const [admin, setAdmin] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,15 +29,6 @@ export default function Active_User() {
 
   useEffect(() => {
     fetchUsers();
-    // const storedAdmin = localStorage.getItem("admin");
-    // if (storedAdmin) {
-    //   try {
-    //     const parsedAdmin = JSON.parse(storedAdmin);
-    //     setAdmin(parsedAdmin);
-    //   } catch (error) {
-    //     console.error("Error parsing admin data from localStorage:", error);
-    //   }
-    // }
   }, []);
 
   return (

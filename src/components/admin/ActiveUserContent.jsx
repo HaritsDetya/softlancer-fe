@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import axios from "axios";
 import AdminNav from "./AdminNav";
 
 export default function ActiveUserContent({ users, isLoading }) {
@@ -92,27 +91,28 @@ export default function ActiveUserContent({ users, isLoading }) {
                       </thead>
                       <tbody className="divide-y-2 divide-stroke bg-white">
                         {users &&
-                          users.map((user) => (
-                            <tr key={user.id}>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                                {user.id}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {user.name}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {user.email}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {user.phone}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {user.roles !== null &&
-                                  user.roles.slice(0, 3).map((role) => role.role + " ")}{" "}
-                                ...
-                              </td>
-                            </tr>
-                          ))}
+                        users.map((user) => (
+                          <tr key={user.id}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                              {user.id}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                              {user.name}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                              {user.email}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                              {user.phone_number}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                              {user.roles !== null &&
+                                  user.roles.slice(0, 3).map(
+                                      (role) => role.role + " "
+                                  )} ...
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
