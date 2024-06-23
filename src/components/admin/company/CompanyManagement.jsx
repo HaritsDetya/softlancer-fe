@@ -5,20 +5,10 @@ import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AdminNav from "../AdminNav";
 
-export default function CompanyManagement() {
+export default function CompanyManagement({companies, isLoading}) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
-
-  const company = [
-    {
-      id: 1,
-      logo: "/images/grab.svg",
-      company: "PT Grab Teknologi Indonesia",
-      description:
-        "PT Grab Teknologi Indonesia adalah sebuah perusahaan yang berfokus pada teknologi dan inovasi. Perusahaan ini didedikasikan untuk menyediakan solusi teknologi terkini dan mengembangkan layanan yang memudahkan kehidupan sehari-hari. Dengan tim yang berpengalaman dan berkomitmen tinggi, PT Grab Teknologi Indonesia terus memperluas jangkauan dan meningkatkan kualitas layanannya untuk mencapai visi menjadi pemimpin dalam industri teknologi di Indonesia.",
-    },
-  ];
 
   const tabs = [
     {
@@ -167,32 +157,33 @@ export default function CompanyManagement() {
                         </tr>
                       </thead>
                       <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
-                        {company.map((companys) => (
-                          <tr key={companys.id}>
+                        {companies &&
+                        companies.map((company) => (
+                          <tr key={company.id}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                              {companys.id}
+                              {company.id}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                               <img
                                 className="rounded-md h-auto w-[1000px]"
-                                src={companys.logo}
+                                src={company.company_logo}
                                 alt=""
                               />
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {companys.company}
+                              {company.company_name}
                             </td>
                             <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
-                              {companys.description}
+                              {company.company_description}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
                               <a href="#" className="">
                                 <MdEdit className="size-5" />
-                                <span className="sr-only">, {company.id}</span>
+                                <span className="sr-only">, {companies.id}</span>
                               </a>
                               <a href="#" className="">
                                 <MdDelete className="size-5" />
-                                <span className="sr-only">, {company.id}</span>
+                                <span className="sr-only">, {companies.id}</span>
                               </a>
                             </td>
                           </tr>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import axios from "axios";
 import AdminNav from "./AdminNav";
 
 export default function ActiveUserContent({users, isLoading}) {
@@ -104,7 +103,7 @@ export default function ActiveUserContent({users, isLoading}) {
                               {user.email}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {user.phone}
+                              {user.phone_number}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                               {user.roles !== null &&
