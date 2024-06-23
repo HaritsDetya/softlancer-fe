@@ -29,13 +29,11 @@ export default function AllProjects() {
   useEffect(() => {
     fetchCompanies();
   }, []);
-  const router = useRouter();
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
         <CompanyManagement companies={companies} isLoading={isLoading}/>
-        <CompanyManagement />
       </GoogleOAuthProvider>
     </div>
   );

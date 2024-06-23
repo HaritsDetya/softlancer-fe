@@ -1,9 +1,7 @@
 // pages/index.js
 import React, { useEffect, useState } from "react";
-import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ProjectsManagement from "@/components/admin/projects-management/ProjectsManagement";
-import { useRouter } from "next/router";
 import Sidebar from "@/components/admin/Sidebar";
 import axios from "axios";
 
@@ -12,7 +10,7 @@ export default function AllProjects() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchDataProjects = async () => {
+  const fetchProjects = async () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(process.env.API_URL + "/projects", {
@@ -29,7 +27,7 @@ export default function AllProjects() {
   };
 
   useEffect(() => {
-    fetchDataProjects();
+    fetchProjects();
   }, []);
 
   return (
