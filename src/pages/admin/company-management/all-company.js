@@ -9,12 +9,11 @@ export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
   const router = useRouter();
-  const { id } = router.query;
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <CompanyManagement/>
+        <CompanyManagement />
       </GoogleOAuthProvider>
     </div>
   );

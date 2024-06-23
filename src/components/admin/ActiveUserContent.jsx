@@ -11,8 +11,13 @@ export default function ActiveUserContent() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(process.env.API_URL + "/users");
-      setPeople(res.data);
+      const token = localStorage.getItem("token");
+      const res = await axios.get(process.env.API_URL + "/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setPeople(res.data.data);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -22,18 +27,18 @@ export default function ActiveUserContent() {
     fetchUsers();
   }, []);
 
-  // const handleSearch = () => {
-  //   const filteredUsers = people.filter((person) =>
-  //     person.name.toLowerCase().includes(search.toLowerCase()),
-  //   );
-  //   setPeople(filteredUsers);
-  // };
+  const handleSearch = () => {
+    // const filteredUsers = people.filter((person) =>
+    //   person.name.toLowerCase().includes(search.toLowerCase()),
+    // );
+    // setPeople(filteredUsers);
+  };
 
   return (
     <>
       <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5 m-5 bg-light rounded-xl">
           <div className="grid grid-cols-1 mb-6 text-active text-center">
             <div className="relative mt-2 mb-3 rounded-lg shadow-sm">
@@ -68,7 +73,7 @@ export default function ActiveUserContent() {
               <div className="absolute m-3 inset-y-0 right-0 mr-4 flex items-center">
                 <button
                   type="button"
-                  onClick={handleSearch}
+                  onClick={() => handleSearch}
                   className="h-full rounded-lg bg-primary px-7 py-0 text-xs font-normal text-white shadow-sm hover:bg-active"
                 >
                   Search
@@ -115,25 +120,26 @@ export default function ActiveUserContent() {
                         </tr>
                       </thead>
                       <tbody className="divide-y-2 divide-stroke bg-white">
-                        {people.map((person) => (
-                          <tr key={person.id}>
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                              {person.id}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {person.name}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {person.email}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {person.phone}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {person.roles.join(", ")}
-                            </td>
-                          </tr>
-                        ))}
+                        {people &&
+                          people.map((person) => (
+                            <tr key={person.id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                {person.id}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {person.name}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {person.email}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {person.phone}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {person.roles.join(", ")}
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
