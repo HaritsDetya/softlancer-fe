@@ -53,7 +53,7 @@ const PreferencesProfile = ({ refferences }) => {
     <>
       {/* Prefferences */}
       <div className="w-full h-full">
-        <div className="grid grid-cols-2 gap-2 w-full text-black whitespace-nowrap rounded-xl px-10 py-9 bg-light max-md:max-w-full">
+        <div className="grid grid-cols-2 gap-2 w-full text-black whitespace-nowrap rounded-xl px-10 py-7 bg-light max-md:max-w-full">
           <p className="font-semibold col-span-2">Preferences</p>
           {refferences.map((refference) => (
             <div

@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "axios";
 import PreferencesProfile from "@/components/user/profil/PreferencesProfile";
-import ProfileContainer from "@/components/user/profil/ProfileContainer";
 
 export default function Profile() {
   const clientId = "532428073853-42sjai5bl9o19r8r31tksi0n86v25vos.apps.googleusercontent.com";
@@ -95,14 +94,15 @@ export default function Profile() {
       toast.error("Failed to fetch user refferences");
     }
   };
+
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
         <Header />
-        <ProfileContainer>
+        <div className="grid grid-cols-2 gap-x-2 gap-y-2 px-20 py-11 bg-background max-md:px-5">
           <EditProfile user={user} updatePhoneNumber={updatePhoneNumber} />
           <PreferencesProfile refferences={refferences} />
-        </ProfileContainer>
+        </div>
       </GoogleOAuthProvider>
     </>
   );
