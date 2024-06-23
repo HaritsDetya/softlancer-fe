@@ -11,11 +11,10 @@ export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [data, setData] = React.useState({});
   const router = useRouter();
-  const { id } = router.query;
 
   const FetchData = async () => {
     try {
-      const res = await axios.get(`${process.env.API_URL}/projects/${id}`);
+      const res = await axios.get(`${process.env.API_URL}/projects`);
       if (!res.data.data) {
         router.push("/404");
       } else {
@@ -35,8 +34,8 @@ export default function AllProjects() {
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar id={id}/>
-        <ProjectsManagement project={data} company={data.company}/>
+        <Sidebar id={id} />
+        <ProjectsManagement project={data} company={data.company} />
       </GoogleOAuthProvider>
     </div>
   );

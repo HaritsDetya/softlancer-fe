@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CompanyManagement from "@/components/admin/company/CompanyManagement";
+import { useRouter } from "next/router";
 
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
@@ -28,11 +29,13 @@ export default function AllProjects() {
   useEffect(() => {
     fetchCompanies();
   }, []);
+  const router = useRouter();
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
         <CompanyManagement companies={companies} isLoading={isLoading}/>
+        <CompanyManagement />
       </GoogleOAuthProvider>
     </div>
   );

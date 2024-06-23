@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export default function EditProfile({ user, updatePhoneNumber }) {
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleUpdate = (e) => {
+  const handleUpdate = () => {
     if (phoneNumber === "") {
       return toast.error("Please enter your phone number");
     }
@@ -14,7 +14,7 @@ export default function EditProfile({ user, updatePhoneNumber }) {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-x-2 gap-y-2 px-20 py-11 bg-background max-md:px-5">
+    <>
       <div className="col-span-2 px-10 py-10 w-full text-black rounded-xl bg-light max-md:px-5 max-md:mt-3.5 max-md:max-w-full">
         <div className="flex items-center sm:space-x-5">
           <Image
@@ -84,40 +84,29 @@ export default function EditProfile({ user, updatePhoneNumber }) {
             ></input>
           </div>
         </div>
-      </div>
-
-      {/* Prefferences */}
-      <div className="w-full h-full flex flex-col">
-        <div className="flex flex-col w-full text-black whitespace-nowrap rounded-xl px-16 py-9 bg-light max-md:px-5 max-md:mt-3.5 max-md:max-w-full">
-          <p className="self-start text-base font-semibold leading-5">Preferences</p>
-          <button className="justify-center items-center self-center px-16 py-4 text-xl font-medium rounded-3xl bg-accent3/35 max-md:px-5">
-            +
+        {/* Menu */}
+        <div className="flex gap-3 w-full text-sm font-medium leading-4 text-white capitalize">
+          {user.phone_number ? (
+            <>
+              <button className="justify-center items-center px-16 py-5 whitespace-nowrap rounded-xl bg-accent3 max-md:px-5">
+                Edit
+              </button>
+              <button className="justify-center px-14 py-5 rounded-xl bg-accent3 max-md:pr-6 max-md:pl-5">
+                Cancel
+              </button>
+            </>
+          ) : (
+            <></>
+          )}
+          <button
+            onClick={(e) => handleUpdate(e)}
+            className="justify-center items-center px-16 py-5 whitespace-nowrap rounded-xl bg-accent3 max-md:px-5"
+          >
+            Save
           </button>
         </div>
       </div>
-
-      {/* Menu */}
-      <div className="flex gap-3 mt-9 max-w-full text-sm font-medium leading-4 text-white capitalize w-[532px] max-md:flex-wrap">
-        {user.phone_number ? (
-          <>
-            <button className="justify-center items-center px-16 py-5 whitespace-nowrap rounded-xl bg-accent3 max-md:px-5">
-              Edit
-            </button>
-            <button className="justify-center px-14 py-5 rounded-xl bg-accent3 max-md:pr-6 max-md:pl-5">
-              Cancel
-            </button>
-          </>
-        ) : (
-          <></>
-        )}
-        <button
-          onClick={(e) => handleUpdate(e)}
-          className="justify-center items-center px-16 py-5 whitespace-nowrap rounded-xl bg-accent3 max-md:px-5"
-        >
-          Save
-        </button>
-      </div>
-    </div>
+    </>
     // End Menu
   );
 }

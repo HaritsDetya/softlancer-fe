@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { FaFolder } from "react-icons/fa";
 import { HiFolderArrowDown } from "react-icons/hi2";
 import { useRouter } from "next/router";
-import AdminNav from "../AdminNav";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddCompany() {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
+
+  const [companyName, setCompanyName] = useState("");
+  const [companyDescription, setCompanyDescription] = useState("");
+  const [companyLogo, setCompanyLogo] = useState(null);
 
   const tabs = [
     {
@@ -27,13 +33,50 @@ export default function AddCompany() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("company_name", companyName);
+    formData.append("company_description", companyDescription);
+    formData.append("company_logo", companyLogo);
+
+    try {
+      const response = await axios.post(`${process.env.API_URL}/company`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      toast.success("Company added successfully!");
+      router.push("/admin/company-management/all-company");
+    } catch (error) {
+      toast.error("An error occurred while adding the" + error);
+    }
+  };
+
   return (
     <>
       <Sidebar />
-      <main
-        className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main"
-      >
-        <AdminNav/>
+      <ToastContainer />
+      <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+        <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+          <div className="flex text-lg text-primary ">
+            <CalendarIcon className="w-auto h-8" aria-hidden="true" />
+            <span className="font-semibold">March 16, 2024</span>
+          </div>
+          <div className="absolute flex right-5">
+            <div className="bg-primary rounded-lg px-5 py-3.5 text-white">A</div>
+            <div className="pl-2">
+              <div className="">
+                <span className="font-semibold text-lg">Annisa Salma Rafida</span>
+              </div>
+              <span className="flex text-sm">anisahslmrrr@gmail.com</span>
+            </div>
+          </div>
+        </div>
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden p-7">
@@ -90,6 +133,7 @@ export default function AddCompany() {
                     <div className="w-full border-t border-stroke1" />
                   </div>
                 </div>
+                {/* Form Input */}
                 <form className="flex items-center">
                   <div className="w-full flex flex-wrap rounded-md bg-abu1 border border-stroke2">
                     <div className="w-full flex flex-row gap-x-2 items-center p-5 border-b-[1px] border-stroke2">
@@ -109,6 +153,7 @@ export default function AddCompany() {
                           name="file-upload"
                           type="file"
                           className="sr-only file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+                          onChange={(e) => setCompanyLogo(e.target.files[0])}
                         />
                       </label>
                     </div>
@@ -122,6 +167,8 @@ export default function AddCompany() {
                 <form className="flex items-center">
                   <input
                     type="text"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
                     className="w-full h-14 p-5 flex flex-wrap rounded-md bg-abu1 border border-stroke2"
                   ></input>
                 </form>
@@ -133,6 +180,8 @@ export default function AddCompany() {
                 <form className="flex items-center">
                   <input
                     type="text"
+                    value={companyDescription}
+                    onChange={(e) => setCompanyDescription(e.target.value)}
                     className="w-full h-28 p-5 flex flex-wrap rounded-md bg-abu1 border border-stroke2"
                   ></input>
                 </form>
@@ -141,11 +190,13 @@ export default function AddCompany() {
                 <button
                   type="button"
                   className="bg-white text-stroke1 rounded-md py-2 px-12 hover:bg-slate-100"
+                  onClick={() => router.push("/admin/company-management/all-company")}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
+                  onClick={handleSubmit}
                   className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"
                 >
                   Save
