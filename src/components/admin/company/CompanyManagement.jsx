@@ -167,7 +167,6 @@ export default function CompanyManagement({companies, isLoading}) {
                               <img
                                 className="rounded-md h-auto w-[1000px]"
                                 src={company.company_logo}
-                                alt=""
                               />
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">

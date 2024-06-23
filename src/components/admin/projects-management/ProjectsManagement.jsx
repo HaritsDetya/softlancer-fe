@@ -1,23 +1,21 @@
 import React from "react";
 import Sidebar from "../Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-import { MdEdit, MdDelete } from "react-icons/md";
 import AdminNav from "../AdminNav";
 
-export default function ProjectsManagement({ tab, id }) {
+export default function ProjectsManagement({ projects }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
 
-  const company = [
-    {
-      id: 1,
-      project: "Grab Wallet",
-      company: "PT Grab Teknologi Indonesia",
-      type: "On-Site",
-    },
-  ];
+  // const projects = [
+  //   {
+  //     id: 1,
+  //     project_title: "Grab Wallet",
+  //     company: "PT Grab Teknologi Indonesia",
+  //     job_type: "On-Site",
+  //   },
+  // ];
 
   const tabs = [
     {
@@ -174,19 +172,20 @@ export default function ProjectsManagement({ tab, id }) {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 text-center divide-stroke bg-white">
-                          {company.map((companys) => (
-                            <tr key={companys.id}>
+                          {projects &&
+                          projects.map((project) => (
+                            <tr key={project.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                                {companys.id}
+                                {project.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.project}
+                                {project.project_title}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.company}
+                                {project.company}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.type}
+                                {project.job_type} ...
                               </td>
                             </tr>
                           ))}
