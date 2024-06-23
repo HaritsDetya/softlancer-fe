@@ -10,31 +10,24 @@ import axios from "axios";
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [data, setData] = React.useState({});
-  const router = useRouter();
 
   const FetchData = async () => {
     try {
       const res = await axios.get(`${process.env.API_URL}/projects`);
-      if (!res.data.data) {
-        router.push("/404");
-      } else {
-        setData(res.data.data);
-      }
+      setData(res.data.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   useEffect(() => {
-    if (id) {
-      FetchData();
-    }
-  }, [id]);
+    FetchData();
+  }, []);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar id={id} />
+        <Sidebar />
         <ProjectsManagement project={data} company={data.company} />
       </GoogleOAuthProvider>
     </div>

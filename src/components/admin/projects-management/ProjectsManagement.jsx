@@ -5,19 +5,10 @@ import { useRouter } from "next/router";
 import { MdEdit, MdDelete } from "react-icons/md";
 import AdminNav from "../AdminNav";
 
-export default function ProjectsManagement({ tab, id }) {
+export default function ProjectsManagement({ company, project }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
-
-  const company = [
-    {
-      id: 1,
-      project: "Grab Wallet",
-      company: "PT Grab Teknologi Indonesia",
-      type: "On-Site",
-    },
-  ];
 
   const tabs = [
     {
@@ -49,7 +40,7 @@ export default function ProjectsManagement({ tab, id }) {
   return (
     <>
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav />
+        <Adm inNav />
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-xl overflow-hidden">
