@@ -4,28 +4,27 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import AdminNav from "../AdminNav";
 
-export default function HandleDetail({handlee, role}) {
-
+export default function HandleDetail({ handlee }) {
   const handle = [
     {
       role: "Front-end",
-      detail:
+      project_description:
         "Project Grab Wallet adalah inisiatif terbaru dari Grab yang bertujuan untuk merevolusi pengalaman pembayaran digital bagi pengguna di seluruh wilayah layanan. Fokus utama proyek ini adalah untuk menciptakan sebuah dompet digital yang canggih, aman, dan mudah digunakan, yang memungkinkan pengguna untuk melakukan berbagai transaksi secara efisien dan nyaman. Tim pengembangan Grab Wallet akan bekerja secara intensif untuk menghadirkan fitur-fitur inovatif seperti pembayaran tanpa kontak, integrasi dengan layanan finansial lainnya, dan kemampuan untuk menyimpan beragam jenis kartu pembayaran.",
-      qualifications: [
+      project_qualification: [
         "Enrolled in a Bachelor's degree program in Computer Science, Software Engineering, Web Development, or related field at an accredited institution.",
         "Demonstrated passion for frontend development through personal projects, coursework, or extracurricular activities.",
         "Proficiency in HTML, CSS, and JavaScript, with the ability to showcase practical knowledge through projects or assignments.",
         "Strong willingness to learn and adapt to new technologies, frameworks, and best practices in frontend development.",
         "Excellent communication and teamwork skills, with the ability to collaborate effectively with peers and stakeholders on projects and assignments.",
       ],
-      skills: [
+      project_skill: [
         "Proficiency in HTML, CSS, and JavaScript.",
         "Experience with responsive and mobile-first design principles.",
         "Knowledge of frontend build tools such as Webpack or Gulp.",
         "Familiarity with version control systems such as Git.",
         "Excellent communication and collaboration skills, with the ability to work effectively in a team environment.",
       ],
-      cv: "https://www.anisahsalmarr-curriculum_vitae.com/",
+      cv_file: "https://www.anisahsalmarr-curriculum_vitae.com/",
       portofolio: "https://www.anisahsalmarr-curriculum_vitae.com/",
     },
   ];
@@ -38,12 +37,12 @@ export default function HandleDetail({handlee, role}) {
     <>
       <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             {handle.map((detail, index) => (
               <div
-                key={index}
+                key={detail.id && index}
                 className="bg-light p-6 border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden"
               >
                 <div className="px-4 sm:px-0">
@@ -58,7 +57,7 @@ export default function HandleDetail({handlee, role}) {
                     <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
                       <dt className="text-base font-semibold leading-6 text-active">Grab Wallet</dt>
                       <dd className="mt-1 text-justify text-sm leading-6 text-gray-700 sm:mt-2">
-                        {detail.detail}
+                        {detail.project_description}
                       </dd>
                     </div>
                     <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
@@ -67,7 +66,7 @@ export default function HandleDetail({handlee, role}) {
                       </dt>
                       <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
                         <ol className="list-decimal pl-5">
-                          {detail.qualifications.map((qualification, index) => (
+                          {detail.project_qualification.map((qualification, index) => (
                             <li key={index}>{qualification}</li>
                           ))}
                         </ol>
@@ -77,7 +76,7 @@ export default function HandleDetail({handlee, role}) {
                       <dt className="text-base font-semibold leading-6 text-active">Skills</dt>
                       <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
                         <ol className="list-decimal pl-5">
-                          {detail.skills.map((skill, index) => (
+                          {detail.project_skill.map((skill, index) => (
                             <li key={index}>{skill}</li>
                           ))}
                         </ol>
@@ -88,7 +87,7 @@ export default function HandleDetail({handlee, role}) {
                         Curriculum Vitae
                       </dt>
                       <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                        <a href="">{detail.cv}</a>
+                        <a href="">{detail.cv_file}</a>
                       </dd>
                       <dt className="text-base pt-3 font-semibold leading-6 text-active">
                         Portofolio
@@ -107,12 +106,14 @@ export default function HandleDetail({handlee, role}) {
                         Approve
                       </button>
                     </a>
-                    <button
-                      type="button"
-                      className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-danger shadow-sm ring-1 ring-inset ring-danger hover:bg-gray-100"
-                    >
-                      Decline
-                    </button>
+                    <a href="/admin/hancle-application/handle-application">
+                      <button
+                        type="button"
+                        className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-danger shadow-sm ring-1 ring-inset ring-danger hover:bg-gray-100"
+                      >
+                        Decline
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 // pages/index.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import HandleApprove from "@/components/admin/handle/HandleApprove";

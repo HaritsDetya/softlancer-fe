@@ -18,21 +18,19 @@ export default function AdminNav({ admin }) {
           <CalendarIcon className="w-auto h-8" aria-hidden="true" />
           <span className="font-semibold">March 16, 2024</span>
         </div>
-        <div className="absolute flex flex-row right-5">
-          <div className="pl-2">
-            <div>
-              <Image
-                className="rounded-full"
-                src={user.avatar !== "" ? user.avatar : "/icon/user_icon.png"}
-                alt="User Avatar"
-                width={30}
-                height={30}
-              />
-            </div>
-            <div className="flex flex-col">
+        <div className="absolute group flex-shrink-0 right-5">
+          <div className="flex items-center">
+            <Image
+              className="inline-block h-9 w-9 rounded-full"
+              src={user.avatar !== "" ? user.avatar : "/icon/user_icon.png"}
+              alt="User Avatar"
+              width={30}
+              height={30}
+            />
+            <div className="flex flex-col ml-5 justify-center">
               <span className="font-semibold text-lg">{user.name}</span>
+              <span className="font-normal text-sm">{user.email}</span>
             </div>
-            <span className="flex text-sm">{user.email}</span>
           </div>
         </div>
       </div>

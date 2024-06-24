@@ -96,7 +96,19 @@ export default function HandleAplication({handle, project}) {
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
-                              Role
+                              Project Role
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Curriculum Vitae
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Portfolio
                             </th>
                             <th
                               scope="col"
@@ -113,8 +125,8 @@ export default function HandleAplication({handle, project}) {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
-                          {handle.map((handler, projects) => (
-                            <tr key={handler.id + project.id}>
+                          {handle.map((handler) => (
+                            <tr key={handler.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                                 {handler.id}
                               </td>
@@ -125,7 +137,13 @@ export default function HandleAplication({handle, project}) {
                                 {handler.user.name}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
-                                {projects.role}
+                                {handler.role}
+                              </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.cv_file}
+                              </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.portofolio}
                               </td>
                               <td className="whitespace-nowrap flex flex-col gap-3 text-center px-3 py-4 text-sm text-primary">
                                 <a href="">
