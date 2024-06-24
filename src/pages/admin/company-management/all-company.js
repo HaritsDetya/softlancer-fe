@@ -4,11 +4,13 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import CompanyManagement from "@/components/admin/company/CompanyManagement";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [companies, setCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   const FetchCompanies = async () => {
     try {
@@ -26,6 +28,22 @@ export default function AllProjects() {
     }
   };
 
+  const handleDelete = async (closeDialog, selectedCompany) => {
+    try {
+      // Perform the delete action here
+      const token = localStorage.getItem("token");
+      const res = await axios.delete(`${process.env.API_URL}/company/${selectedCompany.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      router.reload();
+    } catch (error) {
+      toast.error("An error occurred while deleting the company.");
+    }
+  };
+
   useEffect(() => {
     FetchCompanies();
   }, []);
@@ -33,7 +51,11 @@ export default function AllProjects() {
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <CompanyManagement companies={companies} isLoading={isLoading} />
+        <CompanyManagement
+          handleDelete={handleDelete}
+          companies={companies}
+          isLoading={isLoading}
+        />
       </GoogleOAuthProvider>
     </div>
   );
