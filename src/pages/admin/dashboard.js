@@ -1,16 +1,26 @@
 // pages/index.js
 import React, { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Content from "@/components/admin/Content";
 import { useRouter } from "next/router";
-import axios from 'axios';
+import axios from "axios";
 
 export default function Main() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [users, setUsers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    if (!token || user.is_admin === 0) {
+      router.push("/");
+    }
+    fetchDataUsers();
+    fetchDataProjects();
+  }, []);
 
   const fetchDataUsers = async () => {
     try {
@@ -30,11 +40,11 @@ export default function Main() {
 
   const fetchDataProjects = async () => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const res = await axios.get(process.env.API_URL + "/projects", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setProjects(res.data.data);
     } catch (error) {
@@ -42,12 +52,7 @@ export default function Main() {
     } finally {
       setIsLoading(false);
     }
-  }
-
-  useEffect(() => {
-    fetchDataUsers();
-    fetchDataProjects();
-  }, []);
+  };
 
   return (
     <div className="font-poppins">

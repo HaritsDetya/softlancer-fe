@@ -5,9 +5,6 @@ import { useRouter } from "next/router";
 import AdminNav from "../AdminNav";
 
 export default function HandleApprove() {
-  const router = useRouter();
-  const path = router.asPath;
-  const currentPath = path.split("/")[3];
 
   const details = [
     {

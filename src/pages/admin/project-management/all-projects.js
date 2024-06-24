@@ -15,8 +15,6 @@ export default function AllProjects() {
       setData(res.data.data);
     } catch (error) {
       console.error("Error fetching data projects:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
