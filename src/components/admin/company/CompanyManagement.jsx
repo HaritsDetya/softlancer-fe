@@ -43,7 +43,7 @@ export default function CompanyManagement({companies, isLoading}) {
                   id="tabs"
                   name="tabs"
                   className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                  defaultValue={tabs.find((tab) => tab.current).name}
+                  defaultValue={tabs.find((tab) => tab.current)?.name || tabs[0].name}
                 >
                   {tabs.map((tab) => (
                     <option key={tab.name}>{tab.name}</option>

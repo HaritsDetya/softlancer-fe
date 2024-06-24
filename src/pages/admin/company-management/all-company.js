@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CompanyManagement from "@/components/admin/company/CompanyManagement";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
