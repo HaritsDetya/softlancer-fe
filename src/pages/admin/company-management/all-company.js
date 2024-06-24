@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CompanyManagement from "@/components/admin/company/CompanyManagement";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -22,6 +21,7 @@ export default function AllProjects() {
         },
       });
       setCompanies(res.data.data);
+      console.log(res.data.data);
     } catch (error) {
       toast.error("Something went wrong," + error);
     } finally {

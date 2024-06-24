@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["lh3.googleusercontent.com", "via.placeholder.com"],
+    domains: ["lh3.googleusercontent.com", "via.placeholder.com", "localhost"],
   },
   env: {
     APP_URL: "http://localhost:3000",

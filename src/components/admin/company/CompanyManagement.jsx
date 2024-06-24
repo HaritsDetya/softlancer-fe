@@ -6,6 +6,7 @@ import AdminNav from "../AdminNav";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Link from "next/link";
 
 export default function CompanyManagement({ companies, isLoading, handleDelete }) {
   const router = useRouter();
@@ -191,10 +192,10 @@ export default function CompanyManagement({ companies, isLoading, handleDelete }
                                 {company.company_description}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
-                                <a href="#" className="">
+                                <Link href={`edit/${company.id}`} className="">
                                   <MdEdit className="size-5" />
                                   <span className="sr-only">, {companies.id}</span>
-                                </a>
+                                </Link>
                                 <button className="" onClick={() => openDialog(company)}>
                                   <MdDelete className="size-5" />
                                   <span className="sr-only">, {companies.id}</span>
