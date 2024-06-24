@@ -9,7 +9,7 @@ export default function EditProfile({ user, updatePhoneNumber }) {
     if (phoneNumber === "") {
       return toast.error("Please enter your phone number");
     }
-
+    
     updatePhoneNumber(phoneNumber);
   };
 

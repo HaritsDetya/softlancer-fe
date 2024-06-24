@@ -152,6 +152,7 @@ export default function AddCompany() {
                           id="file-upload"
                           name="file-upload"
                           type="file"
+                          accept="image/*"
                           className="sr-only file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
                           onChange={(e) => setCompanyLogo(e.target.files[0])}
                         />

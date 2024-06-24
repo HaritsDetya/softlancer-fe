@@ -4,8 +4,9 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AdminNav from "../AdminNav";
+import Image from "next/image";
 
-export default function CompanyManagement({companies, isLoading}) {
+export default function CompanyManagement({ companies, isLoading }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
@@ -158,35 +159,35 @@ export default function CompanyManagement({companies, isLoading}) {
                       </thead>
                       <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
                         {companies &&
-                        companies.map((company) => (
-                          <tr key={company.id}>
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                              {company.id}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              <img
-                                className="rounded-md h-auto w-[1000px]"
-                                src={company.company_logo}
-                              />
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {company.company_name}
-                            </td>
-                            <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
-                              {company.company_description}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
-                              <a href="#" className="">
-                                <MdEdit className="size-5" />
-                                <span className="sr-only">, {companies.id}</span>
-                              </a>
-                              <a href="#" className="">
-                                <MdDelete className="size-5" />
-                                <span className="sr-only">, {companies.id}</span>
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
+                          companies.map((company) => (
+                            <tr key={company.id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                {company.id}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                <img
+                                  className="rounded-md w-[250px] h-[150px]"
+                                  src={company.company_logo}
+                                />
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {company.company_name}
+                              </td>
+                              <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
+                                {company.company_description}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
+                                <a href="#" className="">
+                                  <MdEdit className="size-5" />
+                                  <span className="sr-only">, {companies.id}</span>
+                                </a>
+                                <a href="#" className="">
+                                  <MdDelete className="size-5" />
+                                  <span className="sr-only">, {companies.id}</span>
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
