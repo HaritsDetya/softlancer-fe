@@ -6,19 +6,23 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
 import AdminNav from "../AdminNav";
 
-export default function HandleAplication() {
-  const router = useRouter();
-  const path = router.asPath;
-  const currentPath = path.split("/")[3];
+export default function HandleAplication({handle, project}) {
 
-  const handle = [
-    {
-      id: 1,
-      project: "Grab Wallet",
-      name: "Anisah Salma Rafida",
-      role: "UI/UX Designer",
-    },
-  ];
+  // const handle = [
+  //   {
+  //     id: 1,
+  //     project_title: "Grab Wallet",
+  //     name: "Anisah Salma Rafida",
+  //     role: "UI/UX Designer",
+  //   },
+  // ];
+
+  // const combinedData = handle.map(handler => {
+  //   return {
+  //     ...handler,
+  //     projects: project.find(project => project.id === handler.id) || { projects: 'No Role' }
+  //   };
+  // });
 
   return (
     <>
@@ -109,19 +113,19 @@ export default function HandleAplication() {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
-                          {handle.map((handler) => (
-                            <tr key={handler.id}>
+                          {handle.map((handler, projects) => (
+                            <tr key={handler.id + project.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                                 {handler.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {handler.project}
+                                {handler.project.project_title}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {handler.name}
+                                {handler.user.name}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
-                                {handler.role}
+                                {projects.role}
                               </td>
                               <td className="whitespace-nowrap flex flex-col gap-3 text-center px-3 py-4 text-sm text-primary">
                                 <a href="">
