@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { FaFolder } from "react-icons/fa";
 import { HiFolderArrowDown } from "react-icons/hi2";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-export default function AddCompany() {
+export default function UpdateCompanyForm({ id, data, isLoading }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
@@ -34,33 +33,53 @@ export default function AddCompany() {
     return classes.filter(Boolean).join(" ");
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("company_name", companyName);
-    formData.append("company_description", companyDescription);
-    formData.append("company_logo", companyLogo);
-
+  const handleUpdate = async () => {
     try {
-      const response = await axios.post(`${process.env.API_URL}/company`, formData, {
+      const formData = new FormData();
+      formData.append("company_name", companyName);
+      formData.append("company_description", companyDescription);
+
+      if (companyLogo !== null) {
+        formData.append("company_logo", companyLogo);
+      }
+
+      const token = localStorage.getItem("token");
+      const res = await axios.post(`${process.env.API_URL}/company/${id}`, formData, {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
-      toast.success("Company added successfully!");
+      //Remove all data
+      setCompanyName("");
+      setCompanyDescription("");
+      setCompanyLogo(null);
+
+      console.log(res.data);
+
+      toast.success("Company updated successfully");
       router.push("/admin/company-management/all-company");
     } catch (error) {
-      toast.error("An error occurred while adding the" + error);
+      return toast.error("Something went wrong" + error);
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      setCompanyName(data.company_name);
+      setCompanyDescription(data.company_description);
+      setCompanyLogo(data.company_logo);
+    }
+  }, [data]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <>
       <Sidebar />
-      <ToastContainer />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <div className="py-10 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
           <div className="flex text-lg text-primary ">
@@ -91,7 +110,10 @@ export default function AddCompany() {
                       id="tabs"
                       name="tabs"
                       className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                      defaultValue={tabs.find((tab) => tab.current).name}
+                      defaultValue={
+                        tabs.find((tab) => tab.current)?.name ||
+                        "/admin/company-management/all-company"
+                      }
                     >
                       {tabs.map((tab) => (
                         <option key={tab.name}>{tab.name}</option>
@@ -197,7 +219,7 @@ export default function AddCompany() {
                 </button>
                 <button
                   type="submit"
-                  onClick={handleSubmit}
+                  onClick={(e) => handleUpdate(e)}
                   className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"
                 >
                   Save

@@ -47,10 +47,6 @@ export default function Profile() {
   const updatePhoneNumber = async (phoneNumber) => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        toast.info("Please login first");
-        return;
-      }
 
       const data = {
         phone_number: phoneNumber,
@@ -62,21 +58,19 @@ export default function Profile() {
         },
       });
 
-      if (!res.ok) {
-        toast.error("Failed to update phone number");
-        return;
-      }
-
       const user = localStorage.getItem("user");
+
       if (user && phoneNumber) {
         const updatedUser = JSON.parse(user);
         updatedUser.phone_number = phoneNumber;
         localStorage.setItem("user", JSON.stringify(updatedUser));
       }
 
-      return toast.success("Phone number updated successfully");
-    } catch {
-      return toast.error("Failed to update phone number");
+      toast.success("Phone number updated successfully");
+      return;
+    } catch (error) {
+      toast.error("Failed to update phone number");
+      return;
     }
   };
 

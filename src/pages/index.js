@@ -29,12 +29,12 @@ export default function Home() {
     }
   };
 
-  if (user) {
-    const userData = JSON.parse(user);
-    if (userData.phone_number === null) {
-      router.push("/profile");
-    }
-  }
+  // if (user) {
+  //   const userData = JSON.parse(user);
+  //   if (userData.phone_number === null) {
+  //     router.push("/profile");
+  //   }
+  // }
 
   useEffect(() => {
     FetchProjects();
