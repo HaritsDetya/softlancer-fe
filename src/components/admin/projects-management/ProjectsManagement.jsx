@@ -125,9 +125,9 @@ export default function ProjectsManagement({ company, projects }) {
                 </div>
               </div>
               <div className="my-6 px-6 flow-root">
-                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
                   <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <div className="overflow-hidden shadow sm:rounded-lg">
+                    <div className="overflow-auto shadow sm:rounded-lg max-w-full mx-auto">
                       <table className="min-w-full divide-y-2 divide-stroke">
                         <thead className="bg-abu text-center">
                           <tr>

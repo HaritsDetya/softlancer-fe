@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Sidebar({ id }) {
+export default function TabsProjects({ id }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
