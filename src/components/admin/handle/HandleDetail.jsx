@@ -4,12 +4,9 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import AdminNav from "../AdminNav";
 
-export default function HandleDetail() {
-  const router = useRouter();
-  const path = router.asPath;
-  const currentPath = path.split("/")[3];
+export default function HandleDetail({handlee, role}) {
 
-  const details = [
+  const handle = [
     {
       role: "Front-end",
       detail:
@@ -44,7 +41,7 @@ export default function HandleDetail() {
         <AdminNav/>
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
-            {details.map((detail, index) => (
+            {handle.map((detail, index) => (
               <div
                 key={index}
                 className="bg-light p-6 border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden"

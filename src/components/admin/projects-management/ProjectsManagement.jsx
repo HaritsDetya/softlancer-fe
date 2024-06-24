@@ -30,11 +30,6 @@ export default function ProjectsManagement({ company, projects }) {
     return classes.filter(Boolean).join(" ");
   }
 
-  const getDefaultTabName = (tabs) => {
-    const currentTab = tabs.find((tab) => tab.current);
-    return currentTab ? currentTab.name : "";
-  };
-
   return (
     <>
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
@@ -52,7 +47,7 @@ export default function ProjectsManagement({ company, projects }) {
                     id="tabs"
                     name="tabs"
                     className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={tabs.length > 0 ? getDefaultTabName(tabs) : ""}
+                    defaultValue={tabs.find((tab) => tab.current)?.name || tabs[0].name}
                   >
                     {tabs.map((tab) => (
                       <option key={tab.name}>{tab.name}</option>
@@ -173,10 +168,10 @@ export default function ProjectsManagement({ company, projects }) {
                                   {project.project_title}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                  {project.company}
+                                  {project.company.company_name}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                  {project.job_type} ...
+                                  {project.job_type}
                                 </td>
                               </tr>
                             ))}
