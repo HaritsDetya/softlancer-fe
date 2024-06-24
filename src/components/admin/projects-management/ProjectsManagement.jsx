@@ -1,8 +1,6 @@
 import React from "react";
 import Sidebar from "../Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-import { MdEdit, MdDelete } from "react-icons/md";
 import AdminNav from "../AdminNav";
 
 export default function ProjectsManagement({ company, project }) {
@@ -165,22 +163,23 @@ export default function ProjectsManagement({ company, project }) {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 text-center divide-stroke bg-white">
-                          {company.map((companys) => (
-                            <tr key={companys.id}>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                                {companys.id}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.project}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.company}
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                                {companys.type}
-                              </td>
-                            </tr>
-                          ))}
+                          {projects &&
+                            projects.map((project) => (
+                              <tr key={project.id}>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                  {project.id}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                  {project.project_title}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                  {project.company}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                  {project.job_type} ...
+                                </td>
+                              </tr>
+                            ))}
                         </tbody>
                       </table>
                     </div>

@@ -108,7 +108,7 @@ export default function ActiveUserContent({ users, isLoading }) {
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                               {user.roles !== null &&
                                   user.roles.slice(0, 3).map(
-                                      (role) => role.role + " "
+                                      (role) => role.role + ", "
                                   )} ...
                             </td>
                           </tr>
