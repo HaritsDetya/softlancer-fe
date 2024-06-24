@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AdminNav from "../AdminNav";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import axios from "axios";
+import Link from "next/link";
 
-export default function CompanyManagement({companies, isLoading}) {
+export default function CompanyManagement({ companies, isLoading, handleDelete }) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   const tabs = [
     {
@@ -26,6 +32,16 @@ export default function CompanyManagement({companies, isLoading}) {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  const openDialog = (company) => {
+    setSelectedCompany(company);
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setSelectedCompany(null);
+    setIsDialogOpen(false);
+  };
 
   return (
     <>
@@ -158,35 +174,35 @@ export default function CompanyManagement({companies, isLoading}) {
                       </thead>
                       <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
                         {companies &&
-                        companies.map((company) => (
-                          <tr key={company.id}>
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
-                              {company.id}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              <img
-                                className="rounded-md h-auto w-[1000px]"
-                                src={company.company_logo}
-                              />
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
-                              {company.company_name}
-                            </td>
-                            <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
-                              {company.company_description}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
-                              <a href="#" className="">
-                                <MdEdit className="size-5" />
-                                <span className="sr-only">, {companies.id}</span>
-                              </a>
-                              <a href="#" className="">
-                                <MdDelete className="size-5" />
-                                <span className="sr-only">, {companies.id}</span>
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
+                          companies.map((company) => (
+                            <tr key={company.id}>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                                {company.id}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                <img
+                                  className="rounded-md w-[250px] h-[150px] object-cover"
+                                  src={company.company_logo}
+                                />
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                                {company.company_name}
+                              </td>
+                              <td className="whitespace-normal text-justify px-3 py-4 text-sm text-primary">
+                                {company.company_description}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
+                                <Link href={`edit/${company.id}`} className="">
+                                  <MdEdit className="size-5" />
+                                  <span className="sr-only">, {companies.id}</span>
+                                </Link>
+                                <button className="" onClick={() => openDialog(company)}>
+                                  <MdDelete className="size-5" />
+                                  <span className="sr-only">, {companies.id}</span>
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </div>
@@ -195,6 +211,29 @@ export default function CompanyManagement({companies, isLoading}) {
             </div>
           </div>
         </div>
+        {/* Dialog Confirmation */}
+        {isDialogOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <h2 className="text-lg font-semibold">Confirm Delete</h2>
+              <p>Are you sure you want to delete this company?</p>
+              <div className="mt-4 flex justify-end gap-2">
+                <button
+                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                  onClick={closeDialog}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                  onClick={(e) => handleDelete(closeDialog, selectedCompany)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </>
   );

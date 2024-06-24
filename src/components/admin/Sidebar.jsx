@@ -53,18 +53,16 @@ export default function Sidebar({}) {
   const handleLogoutClick = () => {
     try {
       // Perform logout logic here
-      const res = axios.get(process.env.API_URL + "/logout", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      // const res = axios.get(process.env.API_URL + "/logout", {
+      //   headers: {
+      //     Authorization: `Bearer ${user.token}`,
+      //   },
+      // });
 
-      if (res) {
-        toast.success("Logout Success");
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        router.reload();
-      }
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      toast.success("Logout Success");
+      router.push("/");
     } catch (error) {
       toast.error("Internal Server Error");
     }
@@ -119,8 +117,8 @@ export default function Sidebar({}) {
                 </ul>
               </li>
               <li className="mt-auto">
-                <a
-                  href="#"
+                <button
+                  onClick={(e) => handleLogoutClick()}
                   className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-active hover:text-dark1"
                 >
                   <TbLogout
@@ -128,7 +126,7 @@ export default function Sidebar({}) {
                     aria-hidden="true"
                   />
                   Log Out
-                </a>
+                </button>
               </li>
             </ul>
           </nav>

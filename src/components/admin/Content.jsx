@@ -11,7 +11,6 @@ const stats = [
 ];
 
 export default function Content({ users, projects, isLoading }) {
-
   return (
     <>
       <Sidebar />
@@ -57,19 +56,19 @@ export default function Content({ users, projects, isLoading }) {
                   </thead>
                   <tbody>
                     {users &&
-                    users.map((user) => (
-                      <tr key={user.id}>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{user.id}</span>
-                        </td>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{user.name}</span>
-                        </td>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{user.email}</span>
-                        </td>
-                      </tr>
-                    ))}
+                      users.map((user) => (
+                        <tr key={user.id}>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">{user.id}</span>
+                          </td>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">{user.name}</span>
+                          </td>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">{user.email}</span>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -101,19 +100,21 @@ export default function Content({ users, projects, isLoading }) {
                   </thead>
                   <tbody>
                     {projects &&
-                    projects.map((project) => (
-                      <tr key={project.id}>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{project.id}</span>
-                        </td>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{project.project_title}</span>
-                        </td>
-                        <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
-                          <span className="text-[13px] font-medium">{project.project_description}</span>
-                        </td>
-                      </tr>
-                    ))}
+                      projects.map((project) => (
+                        <tr key={project.id}>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">{project.id}</span>
+                          </td>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">{project.project_title}</span>
+                          </td>
+                          <td className="py-2 px-4 border-y-[3px] bg-white1 border-y-stroke">
+                            <span className="text-[13px] font-medium">
+                              {project.project_description}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

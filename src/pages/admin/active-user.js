@@ -2,14 +2,22 @@
 import React, { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ActiveUserContent from "@/components/admin/ActiveUserContent";
-import { useRouter } from "next/router";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function Active_User() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    if (!token || user.is_admin === 0) {
+      router.push("/");
+    }
+  }, []);
 
   const fetchUsers = async () => {
     try {

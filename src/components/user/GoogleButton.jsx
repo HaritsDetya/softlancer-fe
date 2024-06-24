@@ -48,10 +48,6 @@ export default function GoogleButton() {
 
       //Add to local storage
       localStorage.setItem("user", JSON.stringify(data.data));
-
-      if (data.data.is_admin === 1) {
-        router.push("/admin/dashboard");
-      }
     } catch (error) {
       console.error("Error:", error);
     }
