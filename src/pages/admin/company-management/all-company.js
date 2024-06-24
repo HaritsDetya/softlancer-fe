@@ -38,6 +38,7 @@ export default function AllProjects() {
         },
       });
 
+      toast.success("Company deleted successfully.");
       router.reload();
     } catch (error) {
       toast.error("An error occurred while deleting the company.");

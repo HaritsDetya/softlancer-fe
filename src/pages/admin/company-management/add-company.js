@@ -8,8 +8,6 @@ import { useRouter } from "next/router";
 export default function AddCompanys() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
-  const router = useRouter();
-
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
