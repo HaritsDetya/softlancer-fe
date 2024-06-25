@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -44,6 +43,7 @@ export default function TabsProjects({ id }) {
             name="tabs"
             className="block w-fu bll rounded-md border-background focus:border-primary focus:ring-primary"
             defaultValue={tabs.find((tab) => tab.current)?.name || tabs[0].name}
+            onChange={(e) => router.push(tabs.find(tab => tab.name === e.target.value).href)}
           >
             {tabs.map((tab) => (
               <option key={tab.name}>{tab.name}</option>
