@@ -2,18 +2,20 @@
 import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import HandleAplication from "@/components/admin/handle/HandleAplication";
+import HandleDetail from "@/components/admin/handle/HandleDetail";
 import axios from "axios";
 import Sidebar from "@/components/admin/Sidebar";
-export default function Aplication() {
+import { useRouter } from "next/router";
+export default function Detail() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [handle, setHandle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id } = useRouter().query;
 
   const fetchHandle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/applications", {
+      const res = await axios.get(process.env.API_URL + `/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -27,14 +29,16 @@ export default function Aplication() {
   };
 
   useEffect(() => {
-    fetchHandle();
-  }, []);
+    if (id) {
+      fetchHandle();
+    }
+  }, [id]);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar/>
-        <HandleAplication handle={handle} isLoading={isLoading}/>
+        <Sidebar />
+        <HandleDetail id={id} handle={handle} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

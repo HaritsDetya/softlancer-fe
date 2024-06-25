@@ -8,13 +8,12 @@ import { FaBuilding, FaHandHolding } from "react-icons/fa";
 import { PiBagSimpleFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 
-export default function Sidebar({ active }) {
+export default function Sidebar({ id}) {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
   const thirdElement = pathParts[2];
   const fourthElement = pathParts[3];
-  const [setSidebarOpen] = useState(false); // Correctly initializing sidebarOpen
 
   const menu = [
     {
@@ -46,9 +45,9 @@ export default function Sidebar({ active }) {
     {
       icon: <FaHandHolding />,
       name: "Handle applications",
-      href: `/admin/handle-application/handle-application`,
+      href: `/admin/handle-application/${id}/handle-application`,
       current: thirdElement === "handle-application" && ["handle-application", "handle-detail", "handle-approve".includes(fourthElement)],
-      subMenuPaths: ["handle-application", "handle-detail", "handle-approve"],
+      subMenuPaths: ["handle-application", `handle-detail`, `handle-approve`],
     },
   ];
 
@@ -69,7 +68,7 @@ export default function Sidebar({ active }) {
 
   return (
     <>
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
+      <div className="fixed inset-y-0 z-50 flex w-64 flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-light px-6 pb-4 pt-6">
           <div className="flex h-16 shrink-0 items-center">
             <img className="h-14 w-auto" src="/images/logoSoftLancer.svg" alt="Project" />
@@ -127,25 +126,6 @@ export default function Sidebar({ active }) {
             </ul>
           </nav>
         </div>
-      </div>
-      <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-indigo-600 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-        <button
-          type="button"
-          className="-m-2.5 p-2.5 text-indigo-200 lg:hidden"
-          onClick={() => setSidebarOpen(true)}
-        >
-          <span className="sr-only">Open sidebar</span>
-          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-        </button>
-        <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
-        <a href="#">
-          <span className="sr-only">Your profile</span>
-          <img
-            className="h-8 w-8 rounded-full bg-indigo-700"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-        </a>
       </div>
     </>
   );
