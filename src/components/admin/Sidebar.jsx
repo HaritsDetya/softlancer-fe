@@ -8,14 +8,13 @@ import { FaBuilding, FaHandHolding } from "react-icons/fa";
 import { PiBagSimpleFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 
-export default function Sidebar({}) {
+export default function Sidebar({ active }) {
   const router = useRouter();
   const path = router.asPath;
   const pathParts = path.split("/");
   const thirdElement = pathParts[2];
   const fourthElement = pathParts[3];
-  const [setSidebarOpen] = useState(false);
-  const [user] = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Correctly initializing sidebarOpen
 
   const menu = [
     {
@@ -34,13 +33,15 @@ export default function Sidebar({}) {
       icon: <FaBuilding />,
       name: "Companies Management",
       href: `/admin/company-management/all-company`,
-      current: fourthElement === "all-company",
+      current: thirdElement === "company-management" && ["all-company", "add-company"].includes(fourthElement),
+      subMenuPaths: ["all-company", "add-company"], 
     },
     {
       icon: <PiBagSimpleFill />,
       name: "Projects Management",
       href: `/admin/project-management/all-projects`,
-      current: fourthElement === "all-projects",
+      current: thirdElement === "project-management" && ["all-projects", "post-projects", "form"].includes(fourthElement),
+      subMenuPaths: ["all-projects", "post-projects", "form"],
     },
     {
       icon: <FaHandHolding />,
@@ -52,13 +53,6 @@ export default function Sidebar({}) {
 
   const handleLogoutClick = () => {
     try {
-      // Perform logout logic here
-      // const res = axios.get(process.env.API_URL + "/logout", {
-      //   headers: {
-      //     Authorization: `Bearer ${user.token}`,
-      //   },
-      // });
-
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       toast.success("Logout Success");
@@ -102,11 +96,12 @@ export default function Sidebar({}) {
                       <a
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-background" : "text-dark1 hover:bg-background",
+                          item.current ? "bg-background text-dark1" : "text-dark1 hover:bg-background",
                           "group flex gap-x-3 rounded-md p-4 text-sm leading-6 font-semibold",
                         )}
-                        onClick={() => {
-                          window.location.pathname = item.href;
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(item.href);
                         }}
                       >
                         <span className="text-black self-center">{item.icon}</span>
