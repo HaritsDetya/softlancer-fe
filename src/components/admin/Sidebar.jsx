@@ -47,7 +47,8 @@ export default function Sidebar({ active }) {
       icon: <FaHandHolding />,
       name: "Handle applications",
       href: `/admin/handle-application/handle-application`,
-      current: fourthElement === "handle-application",
+      current: thirdElement === "handle-application" && ["handle-application", "handle-detail", "handle-approve".includes(fourthElement)],
+      subMenuPaths: ["handle-application", "handle-detail", "handle-approve"],
     },
   ];
 

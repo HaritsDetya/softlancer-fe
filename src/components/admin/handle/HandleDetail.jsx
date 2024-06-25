@@ -29,13 +29,8 @@ export default function HandleDetail({ handlee }) {
     },
   ];
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
-
   return (
     <>
-      <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <AdminNav />
         <div className="p-5">
@@ -45,59 +40,64 @@ export default function HandleDetail({ handlee }) {
                 key={detail.id && index}
                 className="bg-light p-6 border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden"
               >
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-base font-semibold leading-7 text-active">Project Role</h3>
-                  <p className="mt-1 max-w-2xl text-sm leading-6 text-black">
-                    <span className="inline-block mr-2 h-2 w-2 flex-shrink-0 rounded-full bg-active"></span>
-                    {detail.role}
-                  </p>
-                </div>
-                <div className="mt-6">
+                <div>
                   <dl className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
-                      <dt className="text-base font-semibold leading-6 text-active">Grab Wallet</dt>
-                      <dd className="mt-1 text-justify text-sm leading-6 text-gray-700 sm:mt-2">
-                        {detail.project_description}
-                      </dd>
-                    </div>
-                    <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
-                      <dt className="text-base font-semibold leading-6 text-active">
-                        Qualifications
+                    <div className="sm:col-span-2 sm:px-0">
+                      <dt className="border-b border-stroke1 text-base font-semibold leading-6 text-active">
+                        Student Data
                       </dt>
-                      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                        <ol className="list-decimal pl-5">
-                          {detail.project_qualification.map((qualification, index) => (
-                            <li key={index}>{qualification}</li>
-                          ))}
-                        </ol>
-                      </dd>
+                      <div className=" text-active my-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt className="text-sm font-medium">Project Role</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          : {detail.role}
+                        </dd>
+                        <dt className="text-sm font-medium">Name</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          : {detail.name}
+                        </dd>
+                        <dt className="text-sm font-medium">Curriculum Vitae</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          : {detail.cv_file}
+                        </dd>
+                        <dt className="text-sm font-medium">Portofolio</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          : {detail.portofolio}
+                        </dd>
+                      </div>
                     </div>
-                    <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
-                      <dt className="text-base font-semibold leading-6 text-active">Skills</dt>
-                      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                        <ol className="list-decimal pl-5">
-                          {detail.project_skill.map((skill, index) => (
-                            <li key={index}>{skill}</li>
-                          ))}
-                        </ol>
-                      </dd>
-                    </div>
-                    <div className="border-t border-stroke1 px-4 py-6 sm:col-span-2 sm:px-0">
-                      <dt className="text-base font-semibold leading-6 text-active">
-                        Curriculum Vitae
+                    <div className="py-4 sm:col-span-2 sm:px-0">
+                      <dt className="border-b border-stroke1 text-base font-semibold leading-6 text-active">
+                        Grab Wallet
                       </dt>
-                      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                        <a href="">{detail.cv_file}</a>
-                      </dd>
-                      <dt className="text-base pt-3 font-semibold leading-6 text-active">
-                        Portofolio
-                      </dt>
-                      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                        <a href="">{detail.portofolio}</a>
-                      </dd>
+                      <div className=" text-active my-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt className="text-sm font-medium">Project Name</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          : {detail.project_title}
+                        </dd>
+                        <dt className="text-sm font-medium"></dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          {detail.project_description}
+                        </dd>
+                        <dt className="text-sm font-medium">Qualifications</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          <ol className="list-decimal pl-5">
+                            {detail.project_qualification.map((qualification, index) => (
+                              <li key={index}>{qualification}</li>
+                            ))}
+                          </ol>
+                        </dd>
+                        <dt className="text-sm font-medium">Skills</dt>
+                        <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
+                          <ol className="list-decimal pl-5">
+                            {detail.project_skill.map((skill, index) => (
+                              <li key={index}>{skill}</li>
+                            ))}
+                          </ol>
+                        </dd>
+                      </div>
                     </div>
                   </dl>
-                  <div className="flex justify-end gap-6 pt-5">
+                  <div className="flex gap-6 pt-5">
                     <a href="/admin/handle-application/handle-approve">
                       <button
                         type="button"

@@ -4,27 +4,10 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
 import AdminNav from "../AdminNav";
 
-export default function HandleAplication({handle, project}) {
-
-  // const handle = [
-  //   {
-  //     id: 1,
-  //     project_title: "Grab Wallet",
-  //     name: "Anisah Salma Rafida",
-  //     role: "UI/UX Designer",
-  //   },
-  // ];
-
-  // const combinedData = handle.map(handler => {
-  //   return {
-  //     ...handler,
-  //     projects: project.find(project => project.id === handler.id) || { projects: 'No Role' }
-  //   };
-  // });
+export default function HandleAplication({handle}) {
 
   return (
     <>
-      <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <AdminNav/>
         <div className="p-5">
@@ -135,7 +118,7 @@ export default function HandleAplication({handle, project}) {
                                 {handler.user.name}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
-                                {handler.role}
+                                {handler.role.role}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
                                 {handler.cv_file}

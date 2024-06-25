@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 export default function AllProjects() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [projects, setProjects] = useState([]);
-  const [company, setCompany] = useState([]);
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
