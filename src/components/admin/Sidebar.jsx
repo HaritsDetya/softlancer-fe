@@ -14,7 +14,7 @@ export default function Sidebar({ active }) {
   const pathParts = path.split("/");
   const thirdElement = pathParts[2];
   const fourthElement = pathParts[3];
-  const [sidebarOpen, setSidebarOpen] = useState(false); // Correctly initializing sidebarOpen
+  const [setSidebarOpen] = useState(false); // Correctly initializing sidebarOpen
 
   const menu = [
     {
@@ -40,8 +40,8 @@ export default function Sidebar({ active }) {
       icon: <PiBagSimpleFill />,
       name: "Projects Management",
       href: `/admin/project-management/all-projects`,
-      current: thirdElement === "project-management" && ["all-projects", "post-projects", "form"].includes(fourthElement),
-      subMenuPaths: ["all-projects", "post-projects", "form"],
+      current: thirdElement === "project-management" && ["all-projects", "post-projects", "form", "add-form", "edit-form"].includes(fourthElement),
+      subMenuPaths: ["all-projects", "post-projects", "form", "add-form", "edit-form"],
     },
     {
       icon: <FaHandHolding />,

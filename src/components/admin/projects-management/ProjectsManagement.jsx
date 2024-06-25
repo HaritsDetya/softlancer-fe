@@ -1,10 +1,8 @@
 import React from "react";
-import Sidebar from "../Sidebar";
-import { useRouter } from "next/router";
 import AdminNav from "../AdminNav";
 import TabsProjects from "./TabsProjects";
 
-export default function ProjectsManagement({ company, projects }) {
+export default function ProjectsManagement({ projects}) {
 
   return (
     <>

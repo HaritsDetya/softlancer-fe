@@ -7,26 +7,21 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function TabsProjects({  }) {
+export default function TabsCompany({}) {
   const router = useRouter();
   const path = router.asPath;
   const currentPath = path.split("/")[3];
 
   const tabs = [
     {
-      name: "All Projects",
-      href: `/admin/project-management/all-projects`,
-      current: currentPath === "all-projects",
+      name: "All Company",
+      href: "/admin/company-management/all-company",
+      current: currentPath === "all-company",
     },
     {
-      name: "Post Projects",
-      href: `/admin/project-management/post-projects`,
-      current: currentPath === "post-projects",
-    },
-    {
-      name: "Form",
-      href: `/admin/project-management/form`,
-      current: currentPath === "form",
+      name: "Add New Company",
+      href: "/admin/company-management/add-company",
+      current: currentPath === "add-company",
     },
   ];
 
@@ -37,13 +32,11 @@ export default function TabsProjects({  }) {
           <label htmlFor="tabs" className="sr-only">
             Select a tab
           </label>
-          {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
           <select
             id="tabs"
             name="tabs"
-            className="block w-fu bll rounded-md border-background focus:border-primary focus:ring-primary"
+            className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
             defaultValue={tabs.find((tab) => tab.current)?.name || tabs[0].name}
-            onChange={(e) => router.push(tabs.find(tab => tab.name === e.target.value).href)}
           >
             {tabs.map((tab) => (
               <option key={tab.name}>{tab.name}</option>
