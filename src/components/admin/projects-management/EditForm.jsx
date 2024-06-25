@@ -5,25 +5,9 @@ import { useRouter } from "next/router";
 import { LuLink } from "react-icons/lu";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import AdminNav from "../AdminNav";
 
 export default function EditForm() {
-  const router = useRouter();
-  const path = router.asPath;
-  const currentPath = path.split("/")[3];
-
-  const tabs = [
-    {
-      name: "All Projects",
-      href: "/admin/project-management/all-projects",
-      current: currentPath === "all-projects",
-    },
-    {
-      name: "Post Projects",
-      href: `/admin/project-management/post-projects`,
-      current: currentPath === "post-projects",
-    },
-    { name: "Form", href: `/admin/project-management/form`, current: currentPath === "form" },
-  ];
 
   const roles = [
     { id: 1, role: "UI/UX Designer" },
@@ -36,12 +20,9 @@ export default function EditForm() {
   }
 
   const [selectedRole, setSelectedRole] = useState(roles[2]);
-  const currentItem = tabs.find((tab) => tab.current);
-  const defaultValue = currentItem ? currentItem.name : tabs[0].name;
 
   return (
     <>
-      <Sidebar />
       <main
         id="all-projects"
         className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main"
