@@ -48,7 +48,7 @@ export default function ProjectsManagement({ projects}) {
                 </div>
               </div>
               <div className="my-6 px-6 flow-root">
-                <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                <div className="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                   <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                     <div className="overflow-auto shadow sm:rounded-lg max-w-full mx-auto">
                       <table className="min-w-full divide-y-2 divide-stroke">
