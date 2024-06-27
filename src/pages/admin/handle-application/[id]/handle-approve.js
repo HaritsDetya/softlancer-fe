@@ -1,35 +1,21 @@
 // pages/index.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import HandleApprove from "@/components/admin/handle/HandleApprove";
 import axios from "axios";
+import Sidebar from "@/components/admin/Sidebar";
+import { useRouter } from "next/router";
 export default function Approve() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [handle, setHandle] = useState([]);
-  const [role, setRole] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id } = useRouter().query;
 
   const fetchHandle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/applications", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setHandle(res.data.data);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const fetchRole = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/role", {
+      const res = await axios.get(process.env.API_URL + `/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,14 +29,16 @@ export default function Approve() {
   };
 
   useEffect(() => {
-    fetchHandle();
-    fetchRole();
-  }, []);
+    if (id) {
+      fetchHandle();
+    }
+  }, [id]);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <HandleApprove />
+        <Sidebar />
+        <HandleApprove id={id} handle={handle} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

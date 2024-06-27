@@ -1,34 +1,22 @@
 import React from "react";
-import Sidebar from "../Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
 import AdminNav from "../AdminNav";
 
-export default function HandleAplication({handle, project}) {
+export default function HandleAplication({ handle, id }) {
 
-  // const handle = [
-  //   {
-  //     id: 1,
-  //     project_title: "Grab Wallet",
-  //     name: "Anisah Salma Rafida",
-  //     role: "UI/UX Designer",
-  //   },
-  // ];
+  const handleDetail = (id) => {
+    window.location.href = `/admin/handle-application/handle-detail`;
+  };
 
-  // const combinedData = handle.map(handler => {
-  //   return {
-  //     ...handler,
-  //     projects: project.find(project => project.id === handler.id) || { projects: 'No Role' }
-  //   };
-  // });
+  const handleEdit = (id) => {
+    window.location.href = `/admin/handle-application/edit-detail`;
+  };
 
   return (
     <>
-      <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-md overflow-hidden">
@@ -68,9 +56,9 @@ export default function HandleAplication({handle, project}) {
                 </div>
               </div>
               <div className="my-6 px-6 flow-root">
-                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
                   <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <div className="overflow-hidden shadow sm:rounded-lg">
+                    <div className="overflow-auto shadow sm:rounded-lg mx-auto max-w-[54.5rem]">
                       <table className="min-w-full divide-y-2 divide-stroke">
                         <thead className="bg-abu text-center">
                           <tr>
@@ -96,7 +84,19 @@ export default function HandleAplication({handle, project}) {
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
-                              Role
+                              Project Role
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Curriculum Vitae
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
+                              Portfolio
                             </th>
                             <th
                               scope="col"
@@ -113,8 +113,8 @@ export default function HandleAplication({handle, project}) {
                           </tr>
                         </thead>
                         <tbody className="divide-y-2 px-5 text-center divide-stroke bg-white">
-                          {handle.map((handler, projects) => (
-                            <tr key={handler.id + project.id}>
+                          {handle.map((handler) => (
+                            <tr key={handler.id}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                                 {handler.id}
                               </td>
@@ -125,7 +125,13 @@ export default function HandleAplication({handle, project}) {
                                 {handler.user.name}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
-                                {projects.role}
+                                {handler.role.role}
+                              </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.cv_file}
+                              </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.portofolio}
                               </td>
                               <td className="whitespace-nowrap flex flex-col gap-3 text-center px-3 py-4 text-sm text-primary">
                                 <a href="">
@@ -145,19 +151,19 @@ export default function HandleAplication({handle, project}) {
                                   </button>
                                 </a>
                               </td>
-                              <td className="px-3 py-4 text-sm text-primary ">
-                                <a href="/admin/handle-application/handle-detail" className="">
+                              <td className="px-4 py-4 text-sm text-primary ">
+                                <button onClick={() => handleDetail(handler.id)}>
                                   <RiShareBoxLine className="size-5" />
                                   <span className="sr-only">, {handler.id}</span>
-                                </a>
-                                <a href="#" className="">
+                                </button>
+                                <button onClick={() => handleEdit(handler.id)}>
                                   <MdEdit className="size-5" />
                                   <span className="sr-only">, {handler.id}</span>
-                                </a>
-                                <a href="#" className="">
+                                </button>
+                                <button>
                                   <MdDelete className="size-5" />
                                   <span className="sr-only">, {handler.id}</span>
-                                </a>
+                                </button>
                               </td>
                             </tr>
                           ))}

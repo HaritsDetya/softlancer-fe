@@ -10,7 +10,8 @@ export default function Post_Project() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const { id } = router.query;
+  const path = router.asPath;
+  const currentPath = path.split("/")[3];
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const FetchData = async () => {
@@ -62,16 +63,14 @@ export default function Post_Project() {
   };
 
   useEffect(() => {
-    if (id) {
-      FetchData();
-    }
-  }, [id]);
+    FetchData();
+  }, []);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar />
-        <PostProject postData={data.project_role} applyForm={PostData} isLoading={isLoading}/>
+        <Sidebar active={currentPath} />
+        <PostProject postData={data.project_role} applyForm={PostData} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

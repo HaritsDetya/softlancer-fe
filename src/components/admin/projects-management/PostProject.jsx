@@ -5,30 +5,9 @@ import { useRouter } from "next/router";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import AdminNav from "../AdminNav";
+import TabsProjects from "./TabsProjects";
 
 export default function PostProject({ id }) {
-  const router = useRouter();
-  const path = router.asPath;
-  const currentPath = path.split("/")[3];
-
-  const tabs = [
-    {
-      name: "All Projects",
-      href: "/admin/project-management/all-projects",
-      current: currentPath === "all-projects",
-    },
-    {
-      name: "Post Projects",
-      href: `/admin/project-management/post-projects`,
-      current: currentPath === "post-projects",
-    },
-    {
-      name: "Form",
-      href: `/admin/project-management/form`,
-      current: currentPath === "form",
-    },
-  ];
-
   const role1 = [
     { id: 1, role: "UI/UX Designer" },
     { id: 2, role: "Frontend" },
@@ -44,73 +23,17 @@ export default function PostProject({ id }) {
     return classes.filter(Boolean).join(" ");
   }
 
-  const getDefaultTabName = (tabs) => {
-    const currentTab = tabs.find((tab) => tab.current);
-    return currentTab ? currentTab.name : "";
-  };
-
   const [selected, setSelected] = useState(role1[2]);
   const [select, setSelect] = useState(job1[2]);
 
   return (
     <>
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <AdminNav/>
+        <AdminNav />
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="bg-light border border-gray-100 rounded-xl overflow-hidden">
-              <div className="w-1/3">
-                <div className="sm:hidden">
-                  <label htmlFor="tabs" className="sr-only">
-                    Select a tab
-                  </label>
-                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-                  <select
-                    id="tabs"
-                    name="tabs"
-                    className="block w-full rounded-md border-background focus:border-primary focus:ring-primary"
-                    defaultValue={tabs.length > 0 ? getDefaultTabName(tabs) : ""}
-                  >
-                    {tabs.map((tab) => (
-                      <option key={tab.name}>{tab.name}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="hidden sm:block">
-                  <nav
-                    className="isolate flex divide-x divide-stroke1 rounded-lg"
-                    aria-label="Tabs"
-                  >
-                    {tabs.map((tab, tabIdx) => (
-                      <a
-                        key={tab.name}
-                        href={tab.href}
-                        className={classNames(
-                          tab.current ? "text-active" : "text-light1 hover:text-gray-700",
-                          tabIdx === 0 ? "rounded-l-lg" : "",
-                          tabIdx === tabs.length - 1 ? "rounded-r-lg" : "",
-                          "group relative min-w-0 flex-1 overflow-hidden py-3 bg-transparent text-center text-xs font-medium hover:bg-background focus:z-10",
-                        )}
-                        aria-current={tab.current ? "page" : undefined}
-                      >
-                        <span>{tab.name}</span>
-                        <span
-                          aria-hidden="true"
-                          className={classNames(
-                            tab.current ? "bg-primary" : "bg-transparent",
-                            "absolute inset-x-0 bottom-0 h-0.5",
-                          )}
-                        />
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-              <div className="relative -mx-5 my-5 -mt-0">
-                <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                  <div className="w-full border-t border-stroke1" />
-                </div>
-              </div>
+              <TabsProjects />
               <div className="px-5 pb-5">
                 <div className="pb-5 mb-4">
                   <div className="flex flex-col">

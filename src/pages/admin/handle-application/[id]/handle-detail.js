@@ -2,18 +2,20 @@
 import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import HandleAplication from "@/components/admin/handle/HandleAplication";
+import HandleDetail from "@/components/admin/handle/HandleDetail";
 import axios from "axios";
-export default function Aplication() {
+import Sidebar from "@/components/admin/Sidebar";
+import { useRouter } from "next/router";
+export default function Detail() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [handle, setHandle] = useState([]);
-  const [project, setProject] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id } = useRouter().query;
 
   const fetchHandle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/applications", {
+      const res = await axios.get(process.env.API_URL + `/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -26,31 +28,17 @@ export default function Aplication() {
     }
   };
 
-  const fetchProjects = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/projects", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setProject(res.data.data);
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   useEffect(() => {
-    fetchHandle();
-    fetchProjects();
-  }, []);
+    if (id) {
+      fetchHandle();
+    }
+  }, [id]);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <HandleAplication handle={handle} project={project} isLoading={isLoading}/>
+        <Sidebar />
+        <HandleDetail id={id} handle={handle} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

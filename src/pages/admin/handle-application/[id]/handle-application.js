@@ -2,18 +2,21 @@
 import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import HandleDetail from "@/components/admin/handle/HandleDetail";
+import HandleAplication from "@/components/admin/handle/HandleAplication";
 import axios from "axios";
-export default function Detail() {
+import Sidebar from "@/components/admin/Sidebar";
+import { useRouter } from "next/router";
+export default function Aplication() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
-  const [handle, setHandle] = useState([]);
-  const [project, setProject] = useState([]);
+  const [handle, setHandle, setHandleId] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const { id } = router.query;
 
   const fetchHandle = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/applications", {
+      const res = await axios.get(process.env.API_URL + `/applications`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -26,31 +29,32 @@ export default function Detail() {
     }
   };
 
-  const fetchProjects = async () => {
+  const fetchId = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(process.env.API_URL + "/projects", {
+      const resId = await axios.get(process.env.API_URL + `/applications/data/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setProject(res.data.data);
+      setHandleId(resId.data.data);
     } catch (error) {
       console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchHandle();
-    fetchProjects();
-  }, []);
+    if (id) {
+      fetchId();
+    }
+  }, [id]);
 
   return (
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
-        <HandleDetail handle={handle} project={project} />
+        <Sidebar />
+        <HandleAplication id={id} handle={handle} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );
