@@ -33,7 +33,7 @@ export default function ProjectsManagement({ company, projects }) {
   return (
     <>
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <Adm inNav />
+        <AdminNav />
         <div className="p-5">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <div className="bg-light border border-gray-100 shadow-md shadow-black/5 rounded-xl overflow-hidden">

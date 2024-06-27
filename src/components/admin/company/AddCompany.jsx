@@ -167,6 +167,7 @@ export default function AddCompany() {
                 </div>
                 <form className="flex items-center">
                   <input
+                    id="company-name"
                     type="text"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
@@ -180,6 +181,7 @@ export default function AddCompany() {
                 </div>
                 <form className="flex items-center">
                   <input
+                    id="company-description"
                     type="text"
                     value={companyDescription}
                     onChange={(e) => setCompanyDescription(e.target.value)}
@@ -196,6 +198,7 @@ export default function AddCompany() {
                   Cancel
                 </button>
                 <button
+                  id="btn-submit"
                   type="submit"
                   onClick={handleSubmit}
                   className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"

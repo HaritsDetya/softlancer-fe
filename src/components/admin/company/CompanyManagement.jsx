@@ -179,7 +179,7 @@ export default function CompanyManagement({ companies, isLoading, handleDelete }
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
                                 {company.id}
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
+                              <td className="company-logo whitespace-nowrap px-3 py-4 text-sm text-primary">
                                 <img
                                   className="rounded-md w-[250px] h-[150px] object-cover"
                                   src={company.company_logo}
@@ -192,11 +192,18 @@ export default function CompanyManagement({ companies, isLoading, handleDelete }
                                 {company.company_description}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary flex gap-1">
-                                <Link href={`edit/${company.id}`} className="">
+                                <Link
+                                  id={`edit-${company.id}`}
+                                  href={`edit/${company.id}`}
+                                  className=""
+                                >
                                   <MdEdit className="size-5" />
                                   <span className="sr-only">, {companies.id}</span>
                                 </Link>
-                                <button className="" onClick={() => openDialog(company)}>
+                                <button
+                                  id={`btn-delete-${company.id}`}
+                                  onClick={() => openDialog(company)}
+                                >
                                   <MdDelete className="size-5" />
                                   <span className="sr-only">, {companies.id}</span>
                                 </button>
@@ -225,6 +232,7 @@ export default function CompanyManagement({ companies, isLoading, handleDelete }
                   Cancel
                 </button>
                 <button
+                  id="btn-confirm-delete"
                   className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                   onClick={(e) => handleDelete(closeDialog, selectedCompany)}
                 >

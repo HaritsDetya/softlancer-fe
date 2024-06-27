@@ -12,16 +12,6 @@ export default function Main() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    if (!token || user.is_admin === 0) {
-      router.push("/");
-    }
-    fetchDataUsers();
-    fetchDataProjects();
-  }, []);
-
   const fetchDataUsers = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -53,6 +43,16 @@ export default function Main() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    if (!token || user.is_admin === 0) {
+      return router.push("/");
+    }
+    fetchDataUsers();
+    fetchDataProjects();
+  }, []);
 
   return (
     <div className="font-poppins">

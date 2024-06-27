@@ -72,7 +72,7 @@ const ApplyForm = ({ applyForm, projectRole, isLoading }) => {
                 </option>
                 {/* Loop Role Option */}
                 {projectRole.map((role) => (
-                  <option key={role.id} value={role.id}>
+                  <option id={role.id} key={role.id} value={role.id}>
                     {role.role.role}
                   </option>
                 ))}
