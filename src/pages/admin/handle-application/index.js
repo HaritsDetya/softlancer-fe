@@ -13,6 +13,7 @@ export default function Aplication() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const fetchHandle = async () => {
     try {
@@ -42,6 +43,27 @@ export default function Aplication() {
         },
       );
       toast.success("Successfully Approve the Application");
+      delay(2000);
+      router.reload();
+    } catch (errror) {
+      toast.error("Internal Server Error");
+    }
+  };
+
+  const declineApplication = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(
+        process.env.API_URL + `/applications/handle/${id}?status=decline`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      toast.success("Successfully Decline the Application");
+      delay(2000);
+      router.reload();
     } catch (errror) {
       toast.error("Internal Server Error");
     }
@@ -74,6 +96,7 @@ export default function Aplication() {
       <Sidebar />
       <HandleAplication
         approveApplication={approveApplication}
+        declineApplication={declineApplication}
         handle={handle}
         isLoading={isLoading}
       />

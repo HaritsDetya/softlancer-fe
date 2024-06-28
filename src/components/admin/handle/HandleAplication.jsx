@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HandleAplication({ handle, approveApplication }) {
+export default function HandleAplication({ handle, approveApplication, declineApplication }) {
   const router = useRouter();
   const path = router.asPath;
   // const currentPath = path.split("/")[4];
@@ -151,6 +151,7 @@ export default function HandleAplication({ handle, approveApplication }) {
                                   Approve
                                 </button>
                                 <button
+                                  onClick={() => declineApplication(handler.id)}
                                   type="button"
                                   className="rounded-full bg-white px-6 py-2.5 text-sm font-normal text-danger shadow-sm ring-1 ring-inset ring-danger hover:bg-slate-50"
                                 >
