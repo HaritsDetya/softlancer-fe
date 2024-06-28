@@ -69,13 +69,13 @@ export default function UpdateCompanyForm({ id, data, isLoading }) {
     if (data) {
       setCompanyName(data.company_name);
       setCompanyDescription(data.company_description);
-      setCompanyLogo(data.company_logo);
+      // setCompanyLogo(data.company_logo);
     }
   }, [data]);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -189,6 +189,7 @@ export default function UpdateCompanyForm({ id, data, isLoading }) {
                 </div>
                 <form className="flex items-center">
                   <input
+                    id="company-name"
                     type="text"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
@@ -202,6 +203,7 @@ export default function UpdateCompanyForm({ id, data, isLoading }) {
                 </div>
                 <form className="flex items-center">
                   <input
+                    id="company-description"
                     type="text"
                     value={companyDescription}
                     onChange={(e) => setCompanyDescription(e.target.value)}
@@ -219,6 +221,7 @@ export default function UpdateCompanyForm({ id, data, isLoading }) {
                 </button>
                 <button
                   type="submit"
+                  id="btn-submit"
                   onClick={(e) => handleUpdate(e)}
                   className="bg-primary text-white rounded-md py-2 px-12 hover:bg-active"
                 >
