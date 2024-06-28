@@ -6,12 +6,14 @@ import HandleAplication from "@/components/admin/handle/HandleAplication";
 import axios from "axios";
 import Sidebar from "@/components/admin/Sidebar";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
 export default function Aplication() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const [handle, setHandle, setHandleId] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const fetchHandle = async () => {
     try {
@@ -29,17 +31,41 @@ export default function Aplication() {
     }
   };
 
-  const fetchId = async () => {
+  const approveApplication = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const resId = await axios.get(process.env.API_URL + `/applications/data/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await axios.get(
+        process.env.API_URL + `/applications/handle/${id}?status=approve`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
-      setHandleId(resId.data.data);
-    } catch (error) {
-      console.error("Error:", error);
+      );
+      toast.success("Successfully Approve the Application");
+      delay(2000);
+      router.reload();
+    } catch (errror) {
+      toast.error("Internal Server Error");
+    }
+  };
+
+  const declineApplication = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(
+        process.env.API_URL + `/applications/handle/${id}?status=decline`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      toast.success("Successfully Decline the Application");
+      delay(2000);
+      router.reload();
+    } catch (errror) {
+      toast.error("Internal Server Error");
     }
   };
 
@@ -62,17 +88,18 @@ export default function Aplication() {
 
   useEffect(() => {
     fetchHandle();
-    if (id) {
-      fetchId();
-    }
-  }, [id]);
+  }, []);
 
   return (
-    <div className="font-poppins">
-      <GoogleOAuthProvider clientId={clientId}>
-        <Sidebar />
-        <HandleAplication handle={handle} isLoading={isLoading} />
-      </GoogleOAuthProvider>
-    </div>
+    <GoogleOAuthProvider clientId={clientId}>
+      <ToastContainer />
+      <Sidebar />
+      <HandleAplication
+        approveApplication={approveApplication}
+        declineApplication={declineApplication}
+        handle={handle}
+        isLoading={isLoading}
+      />
+    </GoogleOAuthProvider>
   );
 }

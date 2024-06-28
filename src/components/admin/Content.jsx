@@ -36,10 +36,8 @@ export default function Content({ users, projects, isLoading }) {
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Users Recent</div>
                 <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
-                  <Link href={`/admin/active-user`}>
-                    <button type="button" className="font-semibold">
-                      See All
-                    </button>
+                  <Link href="/admin/active-user" type="button" className="font-semibold">
+                    See All
                   </Link>
                   <FaArrowRightLong />
                 </div>
@@ -80,10 +78,12 @@ export default function Content({ users, projects, isLoading }) {
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Project Recent</div>
                 <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
-                  <Link href={`/admin/company-management/all-company`}>
-                  <button type="button" className="font-semibold">
+                  <Link
+                    href="/admin/project-management/all-projects"
+                    type="button"
+                    className="font-semibold"
+                  >
                     See All
-                  </button>
                   </Link>
                   <FaArrowRightLong />
                 </div>
