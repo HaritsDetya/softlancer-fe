@@ -44,7 +44,7 @@ export default function Content({ users, projects, isLoading }) {
                   <FaArrowRightLong />
                 </div>
               </div>
-              <div className="overflow-scroll max-h-80">
+              <div className="overflow-auto max-h-80">
                 <table className="w-full min-w-[540px]" data-tab-for="order">
                   <thead>
                     <tr className="font-bold">
@@ -76,7 +76,7 @@ export default function Content({ users, projects, isLoading }) {
                 </table>
               </div>
             </div>
-            <div className="bg-light border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
+            <div className="bg-light border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md h-full">
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Project Recent</div>
                 <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
@@ -88,7 +88,7 @@ export default function Content({ users, projects, isLoading }) {
                   <FaArrowRightLong />
                 </div>
               </div>
-              <div className="overflow-scroll max-h-80">
+              <div className="overflow-auto max-h-80">
                 <table className="w-full min-w-[540px]" data-tab-for="order">
                   <thead>
                     <tr className="font-bold">

@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import AdminNav from "./AdminNav";
 
 export default function ActiveUserContent({ users, isLoading }) {
   const [search, setSearch] = useState("");
+
+  const handleSearch = () => {
+    // Implement the search functionality here
+  };
 
   return (
     <>
@@ -13,7 +17,7 @@ export default function ActiveUserContent({ users, isLoading }) {
         <div className="p-5 m-5 bg-light rounded-xl">
           <div className="grid grid-cols-1 mb-6 text-active text-center">
             <div className="relative mt-2 mb-3 rounded-lg shadow-sm">
-              <div className="absolute m-3 inset-y-0 left-0 flex items-center">
+              <div className="absolute inset-y-0 left-0 flex items-center m-3">
                 <label htmlFor="filter" className="sr-only">
                   Filter
                 </label>
@@ -43,7 +47,7 @@ export default function ActiveUserContent({ users, isLoading }) {
               <div className="absolute m-3 inset-y-0 right-0 mr-4 flex items-center">
                 <button
                   type="button"
-                  onClick={(e) => handleSearch}
+                  onClick={handleSearch}
                   className="h-full rounded-lg bg-primary px-7 py-0 text-xs font-normal text-white shadow-sm hover:bg-active"
                 >
                   Search
@@ -51,49 +55,28 @@ export default function ActiveUserContent({ users, isLoading }) {
               </div>
             </div>
             <div className="mt-4 flow-root">
-              <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
-                <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
-                  <div className="overflow-auto shadow sm:rounded-lg mx-auto max-w-4xl">
-                    <table className="w-full min-w-[540px] divide-y-2 divide-stroke">
+              <div className="overflow-auto">
+                <div className="inline-block min-w-full align-middle">
+                  <div className="shadow sm:rounded-lg">
+                    <table className="min-w-full divide-y-2 divide-stroke">
                       <thead className="bg-abu">
                         <tr>
-                          <th
-                            scope="col"
-                            className="py-3.5 pl-4 text-sm font-semibold text-primary"
-                          >
-                            Id
-                          </th>
-                          <th
-                            scope="col"
-                            className="py-3 pl-3.5 text-sm font-semibold text-primary"
-                          >
-                            Name
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-sm font-semibold text-primary"
-                          >
-                            Email Address
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-sm font-semibold text-primary"
-                          >
-                            Phone
-                          </th>
-                          <th
-                            scope="col"
-                            className="px-3 py-3.5 text-sm font-semibold text-primary"
-                          >
-                            Role
-                          </th>
+                          {["Id", "Name", "Email Address", "Phone", "Role"].map((header) => (
+                            <th
+                              key={header}
+                              scope="col"
+                              className="py-3 px-3.5 text-sm font-semibold text-primary"
+                            >
+                              {header}
+                            </th>
+                          ))}
                         </tr>
                       </thead>
                       <tbody className="divide-y-2 divide-stroke bg-white">
                         {users &&
                           users.map((user) => (
                             <tr key={user.id}>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary sm:pl-6">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-primary">
                                 {user.id}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
@@ -107,13 +90,20 @@ export default function ActiveUserContent({ users, isLoading }) {
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-primary">
                                 {user.roles !== null &&
-                                  user.roles.slice(0, 3).map((role) => role.role + ", ")}{" "}
-                                ...
+                                  user.roles
+                                    .slice(0, 3)
+                                    .map((role) => role.role)
+                                    .join(", ")}
+                                {user.roles && user.roles.length > 3 && " ..."}
                               </td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
+                    {isLoading && <div className="py-4 text-center text-gray-500">Loading...</div>}
+                    {!isLoading && users.length === 0 && (
+                      <div className="py-4 text-center text-gray-500">No users found.</div>
+                    )}
                   </div>
                 </div>
               </div>

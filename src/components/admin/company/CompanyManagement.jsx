@@ -25,7 +25,7 @@ export default function CompanyManagement({ companies, isLoading, handleDelete }
       <Sidebar />
       <main className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         <AdminNav />
-        <div className="p-5 m-5 bg-light rounded-xl">
+        <div className="p-5 m-5 bg-light rounded-xl h-full">
           <div className="grid grid-cols-1 mb-6 text-active text-left">
             <TabsCompany/>
             <div className="relative mb-3 rounded-lg shadow-sm">
