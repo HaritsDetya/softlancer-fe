@@ -43,6 +43,23 @@ export default function Aplication() {
     }
   };
 
+  const handleDelete = async (closeDialog, selectedCompany) => {
+    try {
+      // Perform the delete action here
+      const token = localStorage.getItem("token");
+      const res = await axios.delete(`${process.env.API_URL}/application/${selectedCompany.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toast.success("Company deleted successfully.");
+      router.reload();
+    } catch (error) {
+      toast.error("An error occurred while deleting the company.");
+    }
+  };
+
   useEffect(() => {
     fetchHandle();
     if (id) {
@@ -54,7 +71,7 @@ export default function Aplication() {
     <div className="font-poppins">
       <GoogleOAuthProvider clientId={clientId}>
         <Sidebar />
-        <HandleAplication id={id} handle={handle} isLoading={isLoading} />
+        <HandleAplication handle={handle} isLoading={isLoading} />
       </GoogleOAuthProvider>
     </div>
   );

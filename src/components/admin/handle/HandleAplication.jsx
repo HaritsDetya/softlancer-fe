@@ -2,16 +2,28 @@ import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
 import AdminNav from "../AdminNav";
+import { useRouter } from "next/router";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function HandleAplication({ handle, id }) {
+  const router = useRouter();
+  const path = router.asPath;
+  const currentPath = path.split("/")[4];
 
-  const handleDetail = (id) => {
-    window.location.href = `/admin/handle-application/handle-detail`;
-  };
+  // const handleDetail = {
+  //   name: "Detail",
+  //   href: `/admin/handle-application/${id}/handle-detail`,
+  //   current: currentPath === "handle-detail",
+  // };
 
-  const handleEdit = (id) => {
-    window.location.href = `/admin/handle-application/edit-detail`;
-  };
+  // const handleEdit = {
+  //   name: "Edit",
+  //   href: `/admin/handle-application/${id}/handle-detail`,
+  //   current: currentPath === "handle-detail",
+  // };
 
   return (
     <>
@@ -152,11 +164,13 @@ export default function HandleAplication({ handle, id }) {
                                 </a>
                               </td>
                               <td className="px-4 py-4 text-sm text-primary ">
+                                <a href="/admin/handle-application/handle-detail">
+                                  <button>
+                                    <RiShareBoxLine className="size-5" />
+                                    <span className="sr-only">, {handler.id}</span>
+                                  </button>
+                                </a>
                                 <button onClick={() => handleDetail(handler.id)}>
-                                  <RiShareBoxLine className="size-5" />
-                                  <span className="sr-only">, {handler.id}</span>
-                                </button>
-                                <button onClick={() => handleEdit(handler.id)}>
                                   <MdEdit className="size-5" />
                                   <span className="sr-only">, {handler.id}</span>
                                 </button>

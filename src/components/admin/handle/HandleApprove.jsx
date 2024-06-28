@@ -1,7 +1,4 @@
 import React from "react";
-import Sidebar from "../Sidebar";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/router";
 import AdminNav from "../AdminNav";
 
 export default function HandleApprove({ handle }) {
@@ -26,7 +23,7 @@ export default function HandleApprove({ handle }) {
                       <div className=" text-active my-3 grid sm:grid-cols-7 sm:gap-4">
                         <dt className="text-sm font-medium">Project Role</dt>
                         <dd className="mt-1 text-sm leading-6 sm:col-span-5 sm:mt-0">
-                          : {detail.role}
+                          : {detail.role.role}
                         </dd>
                         <button
                           type="button"
@@ -36,7 +33,7 @@ export default function HandleApprove({ handle }) {
                         </button>
                         <dt className="text-sm font-medium">Name</dt>
                         <dd className="mt-1 text-sm leading-6 sm:col-span-6 sm:mt-0">
-                          : {detail.name}
+                          : {detail.user.name}
                         </dd>
                         <dt className="text-sm font-medium">Curriculum Vitae</dt>
                         <dd className="mt-1 text-sm leading-6 sm:col-span-6 sm:mt-0">
@@ -55,16 +52,16 @@ export default function HandleApprove({ handle }) {
                       <div className=" text-active my-3 sm:grid sm:grid-cols-7 sm:gap-4">
                         <dt className="text-sm font-medium">Project Name</dt>
                         <dd className="mt-1 text-sm leading-6 sm:col-span-6 sm:mt-0">
-                          : {detail.project_title}
+                          : {detail.project.project_title}
                         </dd>
                         <dt className="text-sm font-medium"></dt>
                         <dd className="mt-1 text-sm text-justify leading-6 sm:col-span-6 sm:mt-0">
-                          {detail.project_description}
+                          {detail.project.project_description}
                         </dd>
                         <dt className="text-sm font-medium">Qualifications</dt>
                         <dd className="mt-1 text-sm text-justify leading-6 sm:col-span-6">
                           <ol className="list-decimal pl-5">
-                            {detail.project_qualification}
+                            {detail.project.project_qualification}
                             {/* {detail.project_qualification.map((qualification, index) => (
                               <li key={index}>{qualification}</li>
                             ))} */}
@@ -73,7 +70,7 @@ export default function HandleApprove({ handle }) {
                         <dt className="text-sm font-medium">Skills</dt>
                         <dd className="mt-1 text-sm text-justify leading-6 sm:col-span-6 sm:mt-0">
                           <ol className="list-decimal pl-5">
-                            {detail.project_skill}
+                            {detail.project.project_skill}
                             {/* {detail.project_skill.map((skill, index) => (
                               <li key={index}>{skill}</li>
                             ))} */}
