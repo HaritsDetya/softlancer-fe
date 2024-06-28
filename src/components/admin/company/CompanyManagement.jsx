@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import { useRouter } from "next/router";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AdminNav from "../AdminNav";
-import Image from "next/image";
-import { toast } from "react-toastify";
-import axios from "axios";
 import Link from "next/link";
 import TabsCompany from "./TabsCompany";
 

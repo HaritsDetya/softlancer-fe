@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { FaArrowRightLong } from "react-icons/fa6";
 import AdminNav from "./AdminNav";
+import Link from "next/link";
 
 const stats = [
   { name: "Total Project", stat: "21" },
@@ -35,9 +36,11 @@ export default function Content({ users, projects, isLoading }) {
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Users Recent</div>
                 <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
-                  <button type="button" className="font-semibold">
-                    See All
-                  </button>
+                  <Link href={`/admin/active-user`}>
+                    <button type="button" className="font-semibold">
+                      See All
+                    </button>
+                  </Link>
                   <FaArrowRightLong />
                 </div>
               </div>
@@ -77,9 +80,11 @@ export default function Content({ users, projects, isLoading }) {
               <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold">Project Recent</div>
                 <div className="bg-white1 items-center grid grid-flow-col gap-2 px-4 py-2 rounded-xl">
+                  <Link href={`/admin/company-management/all-company`}>
                   <button type="button" className="font-semibold">
                     See All
                   </button>
+                  </Link>
                   <FaArrowRightLong />
                 </div>
               </div>
