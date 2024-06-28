@@ -12,6 +12,7 @@ export default function HandleAplication({ handle, approveApplication, declineAp
   const router = useRouter();
   const path = router.asPath;
   // const currentPath = path.split("/")[4];
+  // const currentPath = path.split("/")[4];
 
   return (
     <>
@@ -114,6 +115,12 @@ export default function HandleAplication({ handle, approveApplication, declineAp
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
+                              Handle
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
                               Action
                             </th>
                           </tr>
@@ -138,6 +145,9 @@ export default function HandleAplication({ handle, approveApplication, declineAp
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
                                 {handler.portofolio}
+                              </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.status}
                               </td>
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
                                 {handler.status}
