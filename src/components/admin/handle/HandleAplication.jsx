@@ -8,9 +8,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HandleAplication({ handle, approveApplication }) {
+export default function HandleAplication({ handle, approveApplication, declineApplication }) {
   const router = useRouter();
   const path = router.asPath;
+  // const currentPath = path.split("/")[4];
   // const currentPath = path.split("/")[4];
 
   return (
@@ -114,6 +115,12 @@ export default function HandleAplication({ handle, approveApplication }) {
                               scope="col"
                               className="px-3 py-3.5 text-sm font-semibold text-primary"
                             >
+                              Handle
+                            </th>
+                            <th
+                              scope="col"
+                              className="px-3 py-3.5 text-sm font-semibold text-primary"
+                            >
                               Action
                             </th>
                           </tr>
@@ -142,6 +149,9 @@ export default function HandleAplication({ handle, approveApplication }) {
                               <td className="whitespace-normal px-3 py-4 text-sm text-primary">
                                 {handler.status}
                               </td>
+                              <td className="whitespace-normal px-3 py-4 text-sm text-primary">
+                                {handler.status}
+                              </td>
                               <td className="whitespace-nowrap flex flex-col gap-3 text-center px-3 py-4 text-sm text-primary">
                                 <button
                                   onClick={() => approveApplication(handler.id)}
@@ -151,6 +161,7 @@ export default function HandleAplication({ handle, approveApplication }) {
                                   Approve
                                 </button>
                                 <button
+                                  onClick={() => declineApplication(handler.id)}
                                   type="button"
                                   className="rounded-full bg-white px-6 py-2.5 text-sm font-normal text-danger shadow-sm ring-1 ring-inset ring-danger hover:bg-slate-50"
                                 >
