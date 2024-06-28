@@ -14,9 +14,8 @@ export default function PostProject({ id }) {
     { id: 3, role: "Backend" },
   ];
   const job1 = [
-    { id: 1, job: "UI/UX Designer" },
-    { id: 2, job: "Frontend" },
-    { id: 3, job: "Backend" },
+    { id: 1, job: "Off-site" },
+    { id: 2, job: "On-site" },
   ];
 
   function classNames(...classes) {
@@ -24,7 +23,7 @@ export default function PostProject({ id }) {
   }
 
   const [selected, setSelected] = useState(role1[2]);
-  const [select, setSelect] = useState(job1[2]);
+  const [select, setSelect] = useState(job1[1]);
 
   return (
     <>

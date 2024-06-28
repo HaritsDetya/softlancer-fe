@@ -53,7 +53,7 @@ export default function ActiveUserContent({ users, isLoading }) {
             <div className="mt-4 flow-root">
               <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
                 <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
-                  <div className="overflow-auto shadow sm:rounded-lg mx-auto">
+                  <div className="overflow-auto shadow sm:rounded-lg mx-auto max-w-4xl">
                     <table className="w-full min-w-[540px] divide-y-2 divide-stroke">
                       <thead className="bg-abu">
                         <tr>
